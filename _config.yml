@@ -3,18 +3,20 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
+title: 活在21世纪的孟游
+subtitle: '21世纪孟游的奇幻漂流'
+description: '人生如戏，那就逢场作戏'
 keywords:
-author: John Doe
-language: en
-timezone: ''
+author: AydenMeng
+language: zh-CN
+timezone: Asia/Shanghai
+email: mxdongit@126.com
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
-permalink: :year/:month/:day/:title/
+url: http://aydenmeng.github.io
+  # root: /mxdon
+permalink: :year/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -28,7 +30,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: CNAME
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -95,11 +97,33 @@ exclude:
 ignore:
 
 # Extensions
+# plugins:
+#   - hexo-algoliasearch
+# algolia:
+#   appId: "Z7A3XW4R2I"
+#   apiKey: "12db1ad54372045549ef465881c17e743"
+#   adminApiKey: "40321c7c207e7f73b63a19aa24c4761b"
+#   chunkSize: 5000
+#   indexName: "my-hexo-blog"
+#   fields:
+#     - content:strip:truncate,0,500
+#     - excerpt:strip
+#     - gallery
+#     - permalink
+#     - photos
+#     - slug
+#     - tags
+#     - title
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+#theme: landscape
+theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: 'git'
+  repo: 
+    gitee: git@gitee.com:mxdon/mxdon.git
+    github: git@github.com:AydenMeng/aydenmeng.github.io.git
+  branch: master
