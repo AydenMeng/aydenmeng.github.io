@@ -118,12 +118,12 @@ ignore:
 ## Themes: https://hexo.io/themes/
 #theme: landscape
 theme: butterfly
+# remote_theme: jerryc127/hexo-theme-butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
   repo: 
-    gitee: git@gitee.com:mxdon/mxdon.git
     github: git@github.com:AydenMeng/aydenmeng.github.io.git
   branch: master

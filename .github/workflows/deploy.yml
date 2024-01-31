@@ -1,0 +1,37 @@
+name: Deploy Blog
+
+on:
+  push:
+    branch: master
+  workflow_dispatch:
+
+jobs:
+  build: # 一项叫做build的任务
+
+    runs-on: ubuntu-latest # 在最新版的Ubuntu系统下运行
+
+    steps:
+      - name: Checkout # 将仓库内master分支的内容下载到工作目录
+        uses: actions/checkout@v2 # 脚本来自 https://github.com/actions/checkout
+        with:
+          submodules: true
+
+      - name: Use Node.js 10.x # 配置Node环境
+        uses: actions/setup-node@v2 # 配置脚本来自 https://github.com/actions/setup-node
+        with:
+          node-version: "14"
+
+      - name: Build Web
+        run: |
+          npm i -g hexo-cli # 安装hexo
+          npm install --save hexo-deployer-git
+          npm i
+          hexo clean && hexo generate # 执行部署程序
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./public
+          commit_message: ${{ github.event.head_commit.message }}
