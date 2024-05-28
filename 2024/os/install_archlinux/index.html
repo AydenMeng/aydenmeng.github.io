@@ -1,0 +1,599 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>新世界Archlinux系统安装 | 活在21世纪的孟游</title><meta name="author" content="AydenMeng,mxdongit@126.com"><meta name="copyright" content="AydenMeng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="转载文章来源：https:&#x2F;&#x2F;bbs.loongarch.org&#x2F;d&#x2F;88-archlinux&#x2F;28  本主题多人协作，版主权限可编辑，开源爱好者若要参与协作，可回复中申请权限，或者在QQ群里申请。为了协调一致，本指南基于@yetist制作的可引导安装镜像，指南覆盖系统引导、安装和具体应用配置。安装配置中遇到的问题，可以在回复中提出。本主题多人协作持续更新，勿催，谢谢！一、龙芯新固件环境下引导盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="新世界Archlinux系统安装">
+<meta property="og:url" content="http://aydenmeng.github.io/2024/os/install_archlinux/index.html">
+<meta property="og:site_name" content="活在21世纪的孟游">
+<meta property="og:description" content="转载文章来源：https:&#x2F;&#x2F;bbs.loongarch.org&#x2F;d&#x2F;88-archlinux&#x2F;28  本主题多人协作，版主权限可编辑，开源爱好者若要参与协作，可回复中申请权限，或者在QQ群里申请。为了协调一致，本指南基于@yetist制作的可引导安装镜像，指南覆盖系统引导、安装和具体应用配置。安装配置中遇到的问题，可以在回复中提出。本主题多人协作持续更新，勿催，谢谢！一、龙芯新固件环境下引导盘">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://aydenmeng.github.io/img_random/17.jpg">
+<meta property="article:published_time" content="2024-05-28T13:01:28.975Z">
+<meta property="article:modified_time" content="2024-05-28T13:01:28.975Z">
+<meta property="article:author" content="AydenMeng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://aydenmeng.github.io/img_random/17.jpg"><link rel="shortcut icon" href="/img/mxdon.png"><link rel="canonical" href="http://aydenmeng.github.io/2024/os/install_archlinux/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: AydenMeng","link":"链接: ","source":"来源: 活在21世纪的孟游","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '新世界Archlinux系统安装',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-28 21:01:28'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/footer.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (true) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/mxdon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img_random/17.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="活在21世纪的孟游"><span class="site-name">活在21世纪的孟游</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">新世界Archlinux系统安装</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-28T13:01:28.975Z" title="发表于 2024-05-28 21:01:28">2024-05-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-28T13:01:28.975Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/2-%E7%B3%BB%E7%BB%9F/">2. 系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="新世界Archlinux系统安装"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>转载文章来源：<a target="_blank" rel="noopener" href="https://bbs.loongarch.org/d/88-archlinux/28">https://bbs.loongarch.org/d/88-archlinux/28</a></p>
+</blockquote>
+<h4 id="本主题多人协作，版主权限可编辑，开源爱好者若要参与协作，可回复中申请权限，或者在QQ群里申请。"><a href="#本主题多人协作，版主权限可编辑，开源爱好者若要参与协作，可回复中申请权限，或者在QQ群里申请。" class="headerlink" title="本主题多人协作，版主权限可编辑，开源爱好者若要参与协作，可回复中申请权限，或者在QQ群里申请。"></a>本主题多人协作，版主权限可编辑，开源爱好者若要参与协作，可回复中申请权限，或者在QQ群里申请。</h4><h4 id="为了协调一致，本指南基于-yetist制作的可引导安装镜像，指南覆盖系统引导、安装和具体应用配置。安装配置中遇到的问题，可以在回复中提出。本主题多人协作持续更新，勿催，谢谢！"><a href="#为了协调一致，本指南基于-yetist制作的可引导安装镜像，指南覆盖系统引导、安装和具体应用配置。安装配置中遇到的问题，可以在回复中提出。本主题多人协作持续更新，勿催，谢谢！" class="headerlink" title="为了协调一致，本指南基于@yetist制作的可引导安装镜像，指南覆盖系统引导、安装和具体应用配置。安装配置中遇到的问题，可以在回复中提出。本主题多人协作持续更新，勿催，谢谢！"></a>为了协调一致，本指南基于<a target="_blank" rel="noopener" href="https://bbs.loongarch.org/u/79">@yetist</a>制作的可引导安装镜像，指南覆盖系统引导、安装和具体应用配置。安装配置中遇到的问题，可以在回复中提出。本主题多人协作持续更新，勿催，谢谢！</h4><h2 id="一、龙芯新固件环境下引导盘的制作"><a href="#一、龙芯新固件环境下引导盘的制作" class="headerlink" title="一、龙芯新固件环境下引导盘的制作"></a>一、龙芯新固件环境下引导盘的制作</h2><h3 id="安装镜像及软件仓库动态，可在如下主题中找到"><a href="#安装镜像及软件仓库动态，可在如下主题中找到" class="headerlink" title="安装镜像及软件仓库动态，可在如下主题中找到"></a>安装镜像及软件仓库动态，可在如下主题中找到</h3><p><a target="_blank" rel="noopener" href="https://bbs.loongarch.org/d/67-loongarchlinux-202203/30">https://bbs.loongarch.org/d/67-loongarchlinux-202203/30</a></p>
+<h3 id="最新镜像下载，随时更新"><a href="#最新镜像下载，随时更新" class="headerlink" title="最新镜像下载，随时更新"></a>最新镜像下载，随时更新</h3><p><a target="_blank" rel="noopener" href="https://mirrors.wsyu.edu.cn/loongarch/2022.03/iso/2022.06/loongarchlinux-2022.06.16.1-loongarch64.iso">https://mirrors.wsyu.edu.cn/loongarch/2022.03/iso/2022.06/loongarchlinux-2022.06.16.1-loongarch64.iso</a><br><a target="_blank" rel="noopener" href="https://mirrors.wsyu.edu.cn/loongarch/2022.03/iso/2022.06/loongarchlinux-2022.06.22.1-loongarch64.iso">https://mirrors.wsyu.edu.cn/loongarch/2022.03/iso/2022.06/loongarchlinux-2022.06.22.1-loongarch64.iso</a></p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.wsyu.edu.cn/loongarch/archlinux/iso/latest/archlinux-loong64.iso">https://mirrors.wsyu.edu.cn/loongarch/archlinux/iso/latest/archlinux-loong64.iso</a></p>
+<h3 id="引导盘制作"><a href="#引导盘制作" class="headerlink" title="引导盘制作"></a>引导盘制作</h3><p>准备工作：一块确定状态良好的U盘，容量4G以上即可，制作引导U盘会擦除盘内原始数据，注意备份。<br>Linux环境下，插入U盘，系统会识别，不要做任何打开，加载等操作，具体设备名，可使用如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -la /dev/sd*      <span class="comment">##  U盘一般会识别成硬盘设备，*表示系统动态赋予的一个字符，用以区分不同硬盘</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Linux环境下，使用dd这个工具软件"><a href="#Linux环境下，使用dd这个工具软件" class="headerlink" title="Linux环境下，使用dd这个工具软件"></a>Linux环境下，使用dd这个工具软件</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">注意：<span class="keyword">x</span>是个字符，用实际内容替换，命令执行需要root用户权限</span><br><span class="line">sudo dd <span class="keyword">if</span>=loongarchlinux-xxx.iso of=<span class="regexp">/dev/sdx</span>  bs=<span class="number">1</span>M status=progress oflag=direct </span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令执行完成后，建议运行下如下命令，确保U盘写入完整</span></span><br><span class="line">sudo sync </span><br></pre></td></tr></table></figure>
+
+<h2 id="二、系统引导和安装前的检查"><a href="#二、系统引导和安装前的检查" class="headerlink" title="二、系统引导和安装前的检查"></a>二、系统引导和安装前的检查</h2><p>使用新固件引导，有两个快捷键会经常用到：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F2 <span class="comment">----- 激活固件配置界面，可在配置界面的选择引导设备</span></span><br><span class="line">F12 <span class="comment">----- 激活引导管理菜单，暂时不推荐使用这个方式选择引导设备</span></span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bbs.loongarch.org/assets/files/2022-06-18/1655528601-696633-boot.jpg"></p>
+<p><strong>使用新固件引导系统，包括引导本主题中制作好的U盘和之前使用grub有区别，具体流程是：</strong></p>
+<p>1、开机前把<strong>制作好的U盘</strong>插入机器USB接口，建议插入到<strong>主板提供的接口</strong>上，不建议使用前置接口，躲坑。<br>2、开机后出现龙芯logo，<strong>快速按F2</strong>，直到进入<strong>固件配置界面</strong><br>3、按如下图示操作：<br>…<br>TODO: 需要补充英文界面操作，或说明修改语言方法。</p>
+<p>移动光标到 <strong>启动管理</strong> 项，回车：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bbs.loongarch.org/assets/files/2022-06-18/1655534559-721436-dbd7f34c6e4fa17c59420e5fe2852376.jpg"></p>
+<p>进入 <strong>启动管理</strong> 菜单之后，将会看到一系列可选择的启动项，请在列表中找到 <strong>EFI System Partition</strong> 或 <strong>EFI System Partition 2</strong>，并选择此项启动：<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bbs.loongarch.org/assets/files/2022-06-18/1655534991-6743-9d13303388461bb11beb2e2ae202d27b.jpg"></p>
+<ol start="4">
+<li>如果在 <strong>启动管理</strong> 界面选择对了正确的启动项，电脑将会从U盘启动，如果看到显示器上出现了以下黑色背景的菜单项，则说明从 U 盘引导成功。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bbs.loongarch.org/assets/files/2022-06-18/1655533619-356520-2022-06-18-13-00.png"></li>
+</ol>
+<p>在这个界面出现后，请选择带有 <strong>LoongArchLinux</strong> 的菜单项，一般使用第1个就可以，电脑将开始从U 盘上启动系统。</p>
+<ol start="5">
+<li>当看到如下界面出现时，说明已经进入了 ArchLinux 安装环境，可以开始安装系统了。<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bbs.loongarch.org/assets/files/2022-06-18/1655535657-243475-1d0feaab65ec1e6fce482435d488a229.jpg"></li>
+</ol>
+<h2 id="三、安装到机内硬盘"><a href="#三、安装到机内硬盘" class="headerlink" title="三、安装到机内硬盘"></a>三、安装到机内硬盘</h2><h3 id="分区和格式化"><a href="#分区和格式化" class="headerlink" title="分区和格式化"></a>分区和格式化</h3><p>分区和挂载也可以参考<a target="_blank" rel="noopener" href="https://lwqwq.com/posts/arch-linux-install-notes#:~:text=%E7%9A%84%E5%89%8D%E5%90%8E%E5%AF%B9%E6%AF%94-,%E5%88%86%E5%8C%BA%EF%BC%8C%E5%88%9B%E5%BB%BA%E5%AD%90%E5%8D%B7%EF%BC%8C%E6%88%96%E6%98%AF%E6%B8%85%E9%99%A4%E7%8E%B0%E6%9C%89%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F,-%E6%A0%B9%E6%8D%AE%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F">凌莞的分区方案</a></p>
+<h4 id="1、磁盘分区操作"><a href="#1、磁盘分区操作" class="headerlink" title="1、磁盘分区操作"></a>1、磁盘分区操作</h4><p>安装引导盘提供的分区工具比较多，常用的<strong>fdisk,cfdisk,gpart</strong>都有提供，推荐使用<strong>cfdisk</strong>，文本图形界面。</p>
+<p><strong>重要</strong>：分区和格式化后，磁盘（机械硬盘、固态硬盘和U盘）原有信息会被清除，友情提示谨慎操作，一定要确定好使用哪块硬盘，要记住它的设备名，如果是sata接口，或者U盘，设备名一般是sda、sdb、sdc，固态情况要复杂些，但也很好辨认。本指南预设目标磁盘是 <strong>sdx</strong> ，<strong>x</strong> 字符根据实际需要选择！</p>
+<p><strong>预备知识</strong>：sdx磁盘分区后，会生成 sdx1、sdx2 … sdxn，数字表示的是第几个分区。分区操作执行完成后，可执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -la /dev/sd*     <span class="comment"># 命令会列出所有识别出来的硬盘设备，也可以验证分区是否成功</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>分区的具体操作</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cfdisk  /dev/sdx     </span><br></pre></td></tr></table></figure>
+
+<p>输入命令回车后，会出现一个全屏界面，里面显示的是<strong>分区列表</strong>，屏幕下面是几个<strong>按钮</strong><br><strong>具体操作</strong>，选择分区用上下箭头，用tab键和左右键可选择屏幕下面的按钮，回车确定<br><strong>提示</strong>：所有操作都会在 write 后生效，所以要再次检查下分区布局</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bbs.loongarch.org/assets/files/2022-06-18/1655538879-594777-cfdisk.jpg"></p>
+<h5 id="如果原来的分区都要放弃，全盘切入到新固件新环境，有个便捷的方法"><a href="#如果原来的分区都要放弃，全盘切入到新固件新环境，有个便捷的方法" class="headerlink" title="如果原来的分区都要放弃，全盘切入到新固件新环境，有个便捷的方法"></a>如果原来的分区都要放弃，全盘切入到新固件新环境，有个便捷的方法</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cfdisk -z /dev/sdx</span><br></pre></td></tr></table></figure>
+
+<p><strong>它会清空你选定的设备的所有分区，一切从头来过</strong></p>
+<p>分<strong>区的结果：</strong><br>一个EFI分区，多个linux分区<br>建议：EFI分区容量200M不少，1G也不多，创建这个分区时，在cfdisk里，可以指定分区类型，选第一个EFI即可<br>可以考虑建一个8G或16G的分区，后续把这个分区当交换分区用</p>
+<h4 id="2、分区格式化操作"><a href="#2、分区格式化操作" class="headerlink" title="2、分区格式化操作"></a>2、分区格式化操作</h4><p>本例中使用的磁盘是sata接口的固态硬盘，所以系统识别为sdb，配置了6个分区，sdb1是efi分区，sdb3是要准备使用的root分区，sdb5准备当成交换分区，具体的格式化操作是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkfs.fat /dev/sdb1       <span class="comment"># 将 ESP 分区格式化成 fat 文件格式，这是EFI分区的要求</span></span><br><span class="line">mkfs.ext4 /dev/sdb3   <span class="comment"># 将根分区格式化成 ext4 文件格式，这样更加稳定简单</span></span><br><span class="line">mkswap /dev/sdb5      <span class="comment"># 制作交换分区</span></span><br><span class="line">swapon /dev/sdb5       <span class="comment"># 交换分区使能</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装必要的基础组件"><a href="#安装必要的基础组件" class="headerlink" title="安装必要的基础组件"></a>安装必要的基础组件</h3><h4 id="1、分区挂载"><a href="#1、分区挂载" class="headerlink" title="1、分区挂载"></a>1、分区挂载</h4><p>进行到这个步骤，算是完成了前期的准备工作，后续是要真正安装archlinux了，建议确认如下事项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pacman -Syy             <span class="comment"># 检测下网络，并确认所需工具能正常使用</span></span><br><span class="line">lsblk                            <span class="comment"># 检查下磁盘分区，是否有效</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来要做的是把准备好的分区进行挂载，以便往磁盘里安装组件，一般情况下建议使用 &#x2F;mnt 这个挂载点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span>  /                                         <span class="comment"># 到根目录</span></span><br><span class="line">mount /dev/sdb3  /mnt          <span class="comment"># 把准备好的根分区，挂载到 /mnt 上  </span></span><br><span class="line"><span class="built_in">mkdir</span>  /mnt/boot                    <span class="comment"># 在/mnt目录下，建立一个boot目录，用于挂载efi分区</span></span><br><span class="line">mount  /dev/sdb1  /mnt/boot     <span class="comment"># 挂载efi分区到 /mnt/boot上</span></span><br></pre></td></tr></table></figure>
+
+<p>可以运行如下命令确认下挂载情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span>         <span class="comment"># 如果能看到   /mnt 对应 sdb3  以及  /mnt/boot 对应sdb1，说明挂载成功</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2、使用pacstrap安装必须组件"><a href="#2、使用pacstrap安装必须组件" class="headerlink" title="2、使用pacstrap安装必须组件"></a>2、使用pacstrap安装必须组件</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pacstrap   /mnt   <span class="keyword">base</span> <span class="keyword">base</span>-devel  linux  linux-headers  linux-firmware vi nano dhcpcd networkmanager</span><br><span class="line"></span><br><span class="line">这个命令会启动下载安装到硬盘过程，时间长短受网络状况影响，需要等待，这个时间可以边休憩边看下载和安装这两个过程是否出错中止，整个过程结束后，可输入如下命令，进入安装系统的配置阶段</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、生成新系统的fstab"><a href="#3、生成新系统的fstab" class="headerlink" title="3、生成新系统的fstab"></a>3、生成新系统的fstab</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genfstab -U /mnt &gt; <span class="regexp">/mnt/</span>etc/fstab</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、进入新系统"><a href="#4、进入新系统" class="headerlink" title="4、进入新系统"></a>4、进入新系统</h4><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arch-<span class="keyword">chroot</span>   /mnt</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、重启前要做的系统配置"><a href="#四、重启前要做的系统配置" class="headerlink" title="四、重启前要做的系统配置"></a>四、重启前要做的系统配置</h2><h3 id="设置时区和语言"><a href="#设置时区和语言" class="headerlink" title="设置时区和语言"></a>设置时区和语言</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/<span class="keyword">localtime</span> </span><br><span class="line"></span><br><span class="line">hwclock --systohc</span><br><span class="line"></span><br><span class="line">nano  /etc/locale.gen</span><br><span class="line"><span class="comment"># 如下两行前面的#号删除</span></span><br><span class="line">en_US.UTF-<span class="number">8</span> UTF-<span class="number">8</span></span><br><span class="line">zh_CN.UTF-<span class="number">8</span> UTF-<span class="number">8</span></span><br><span class="line"><span class="comment"># 保存退出</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个命令会根据/etc/locale.gen的配置，生成需要的locale数据</span></span><br><span class="line">locale-gen</span><br></pre></td></tr></table></figure>
+
+<p>下一步是设置整个系统的首选语言。如果你的设备是服务器之类，只会以 SSH 连接，那么可以设置一个全局中文语言</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">&#x27;LANG=zh_CN.UTF-8&#x27;</span> &gt; <span class="regexp">/etc/</span>locale.<span class="property">conf</span></span><br></pre></td></tr></table></figure>
+
+<p>如果这台机器一般接键盘鼠标，那么这里就设置英文 locale，不然 tty 会显示口口。进了图形界面（比如说 KDE）之后是可以在设置里把用户级别的语言设置成中文的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">&#x27;LANG=en_US.UTF-8&#x27;</span> &gt; <span class="regexp">/etc/</span>locale.<span class="property">conf</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置-hostname"><a href="#设置-hostname" class="headerlink" title="设置 hostname"></a>设置 hostname</h3><p>请把 <code>myarchlinux</code> 换成任何你喜欢的 hostname</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;myarchlinux&#x27;</span> &gt; /etc/hostname</span><br><span class="line"></span><br><span class="line">nano  /etc/hosts</span><br><span class="line"><span class="comment"># 输入如下三行信息</span></span><br><span class="line"></span><br><span class="line">127.0.0.1	localhost</span><br><span class="line">::1		localhost</span><br><span class="line">127.0.1.1	myarchlinux.localdomain myarchlinux</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存退出</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置root用户密码（超级管理员密码）"><a href="#设置root用户密码（超级管理员密码）" class="headerlink" title="设置root用户密码（超级管理员密码）"></a>设置root用户密码（超级管理员密码）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">passwd </span><br><span class="line"></span><br><span class="line"><span class="comment"># 因为当前用户为root，所以设置的是root用户密码，命令运行会提示输入两次密码，两次密码要保持一致。</span></span><br><span class="line"><span class="comment"># 因为系统当前并未设置密码规则，所以无相关限制，确保两次一样即可，此密码权限最高，注意保密。</span></span><br><span class="line"><span class="comment"># 设置好这个密码后，可以在任何用户环境下，通过如下命令进入超级管理员权限，比如安装软件，调整配置等</span></span><br><span class="line"></span><br><span class="line">su </span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入正确的root密码后，可使用超级管理员权限。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="建立一个普通用户"><a href="#建立一个普通用户" class="headerlink" title="建立一个普通用户"></a>建立一个普通用户</h3><p>这个用户用于日常登陆，无管理员权限，确保日常操作不会对系统文件和配置进行更改，组名这里建议使用 <code>wheel</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加新用户</span></span><br><span class="line"></span><br><span class="line">useradd 用户名 -m -G 组名</span><br><span class="line"></span><br><span class="line">例如： </span><br><span class="line">useradd   xyz -m -G wheel</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置用户登录密码</span></span><br><span class="line"></span><br><span class="line">passwd 用户名</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line"> passwd xyz</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装并配置-sudo"><a href="#安装并配置-sudo" class="headerlink" title="安装并配置 sudo"></a>安装并配置 sudo</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S sudo vi</span><br></pre></td></tr></table></figure>
+
+<p>然后执行 <code>visudo</code> 并将 <code>%wheel</code> 前面的 <code>#</code> 去掉 (可按 x), 去掉之后按 <code>[esc]</code> (ESC 按键） 然后输入 <code>:wq</code> 保存退出。</p>
+<p>现在所有在 wheel 组里面的用户就可以执行 <code>sudo</code> 命令了。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## Uncomment <span class="keyword">to</span> allow members <span class="keyword">of</span> <span class="keyword">group</span> wheel <span class="keyword">to</span> <span class="keyword">execute</span> <span class="keyword">any</span> command</span><br><span class="line"><span class="operator">%</span>wheel <span class="keyword">ALL</span><span class="operator">=</span>(<span class="keyword">ALL</span>:<span class="keyword">ALL</span>) <span class="keyword">ALL</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h3><h4 id="有线连接，自动获取ip的配置，两种方案任选其一，推荐方案2，进入桌面环境，可以直接管理网络连接"><a href="#有线连接，自动获取ip的配置，两种方案任选其一，推荐方案2，进入桌面环境，可以直接管理网络连接" class="headerlink" title="有线连接，自动获取ip的配置，两种方案任选其一，推荐方案2，进入桌面环境，可以直接管理网络连接"></a>有线连接，自动获取ip的配置，两种方案任选其一，推荐方案2，进入桌面环境，可以直接管理网络连接</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">方案1：</span><br><span class="line">systemctl <span class="built_in">enable</span> dhcpcd</span><br><span class="line"></span><br><span class="line">方案2：</span><br><span class="line">systemctl <span class="built_in">enable</span> NetworkManager</span><br></pre></td></tr></table></figure>
+
+<h3 id="引导配置"><a href="#引导配置" class="headerlink" title="引导配置"></a>引导配置</h3><p>这一步的配置影响到是否可以正确引导安装完成的基本系统，所以每一步都需要仔细确认：</p>
+<p>系统引导有多个方案配置，根据需要进行选择！</p>
+<h4 id="systemd-boot-方案"><a href="#systemd-boot-方案" class="headerlink" title="systemd-boot 方案"></a>systemd-boot 方案</h4><p>龙芯推出的新固件新内核，一个突出的特性是内核支持EFI引导，这让固件直接加载linux内核成为可能。和Grub加载内核相比，系统引导所需要的时间有所缩短，改善了用户体验。具体信息详见：<br><a target="_blank" rel="noopener" href="https://bbs.loongarch.org/d/89">如何把你的系统从旧世界迁移到新世界</a></p>
+<p>指南推荐使用 systemd 内置的 systemd-boot 方案，具体配置方法如下：</p>
+<p>在配置之前，可以使用如下命令确认下分区方案以及挂载情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span>         <span class="comment"># 如果能看到   /mnt 对应 sdb3  以及  /mnt/boot 对应sdb1，说明挂载成功</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要说明的是，接下来的操作主要影响 /mnt/boot，也就是EFI分区</span></span><br></pre></td></tr></table></figure>
+
+<p>1、 安装引导管理程序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如下两个命令，把固件引导系统所需二进制文件和配置文件拷贝到/boot，也就是EFI分区</span></span><br><span class="line"><span class="comment"># 之前安装内核时，内核文件也安装在这个分区上</span></span><br><span class="line">bootctl --path=/boot install</span><br><span class="line">bootctl update</span><br></pre></td></tr></table></figure>
+
+<p>2、配置引导时传递给内核的参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入引导配置入口目录</span></span><br><span class="line"><span class="built_in">cd</span>  /boot/loader/entries</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一个引导配置文件</span></span><br><span class="line">nano arch.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把如下内容输入到arch.conf文件中</span></span><br><span class="line"></span><br><span class="line">title	ArchLinux</span><br><span class="line">linux	/vmlinuz-linux</span><br><span class="line">initrd	/initramfs-linux-fallback.img</span><br><span class="line">options	root=/dev/sdb3 rw loglevel=3 </span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：root&#x3D;&#x2F;dev&#x2F;sdb3 是指定根分区的设备名，根据实际情况进行更改，也可以使用uuid名</strong></p>
+<p>3、仔细校对后保存，重启计算机</p>
+<h4 id="grub-方案"><a href="#grub-方案" class="headerlink" title="grub 方案"></a>grub 方案</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pacman -S grub</span></span><br><span class="line"><span class="comment"># grub-install /dev/sda   (把sda换成你安装archlinux的硬盘名）</span></span><br><span class="line"><span class="comment"># grub-mkconfig /boot/grub/grub.cfg</span></span><br></pre></td></tr></table></figure>
+
+<p>重启电脑后，在EFI启动选项里面选择arch即可。</p>
+<h2 id="五、本机硬盘引导，确认archlinux基本系统安装成功"><a href="#五、本机硬盘引导，确认archlinux基本系统安装成功" class="headerlink" title="五、本机硬盘引导，确认archlinux基本系统安装成功"></a>五、本机硬盘引导，确认archlinux基本系统安装成功</h2><p>经过上述步骤设置，重启计算机后，可自动加载内核进入archlinux命令行界面<br>为了便于后续的图形界面安装，使用root用户，登陆进命令行界面，需要做如下检查：</p>
+<p>1、检查网络连接情况，运行如下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -Syy</span><br></pre></td></tr></table></figure>
+
+<p>此命令可测试网络连通情况，也可进一步确认系统的pacman配置是否正确。</p>
+<p>2、安装一些工具软件，对系统信息进行基础检测</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装辅助工具软件包</span></span><br><span class="line">pacman -S neofetch efivar </span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统信息，注意查看gpu是否正确识别</span></span><br><span class="line">neofetch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看efi固件的基本变量</span></span><br><span class="line">efivar</span><br></pre></td></tr></table></figure>
+
+<p>3、添加仓库</p>
+<p>建议添加下面所有仓库，不要为了省事只添加一部分。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 编辑文件</span></span><br><span class="line">nano /etc/pacman.conf</span><br><span class="line"></span><br><span class="line"><span class="meta"># 查看如下内容，可根据需要进行修改定制</span></span><br><span class="line"><span class="meta"># 行首加#号，表示不使用这个库</span></span><br><span class="line"></span><br><span class="line">[<span class="meta">testing</span>]</span><br><span class="line">Include = /etc/pacman.d/mirrorlist</span><br><span class="line"></span><br><span class="line">[<span class="meta">core</span>]</span><br><span class="line">Include = /etc/pacman.d/mirrorlist</span><br><span class="line"></span><br><span class="line">[<span class="meta">extra</span>]</span><br><span class="line">Include = /etc/pacman.d/mirrorlist</span><br><span class="line"></span><br><span class="line"><span class="meta">#[community-testing]</span></span><br><span class="line"><span class="meta">#Include = /etc/pacman.d/mirrorlist</span></span><br><span class="line"></span><br><span class="line">[<span class="meta">community</span>]</span><br><span class="line">Include = /etc/pacman.d/mirrorlist</span><br><span class="line"></span><br><span class="line">[<span class="meta">aur</span>]</span><br><span class="line">Include = /etc/pacman.d/mirrorlist</span><br></pre></td></tr></table></figure>
+
+<p>编辑完成后，再次运行如下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -Syy</span><br></pre></td></tr></table></figure>
+
+<p>可以使用最新的库设置，下载所有生效库的软件包数据库</p>
+<h2 id="六、图形界面组件和程序安装配置"><a href="#六、图形界面组件和程序安装配置" class="headerlink" title="六、图形界面组件和程序安装配置"></a>六、图形界面组件和程序安装配置</h2><p><strong>1、基本图形环境</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装基本图形系统 xorg</span></span><br><span class="line">pacman -S --needed xorg </span><br><span class="line"></span><br><span class="line"><span class="comment"># 建议确认下如下软件包是否安装</span></span><br><span class="line">xorg-server xf86-video-amdgpu xf86-video-ati xf86-video-loongson</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 gnome 桌面环境</span></span><br><span class="line">pacman -S --needed gnome gdm </span><br><span class="line"></span><br><span class="line"><span class="comment"># gdm是 gnome 的图形登陆管理器，若准备系统引导直接进入gdm登陆，输入如下命令：</span></span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> gdm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可以不重启系统测试下gdm是否正常，可执行如下命令：</span></span><br><span class="line"></span><br><span class="line">systemctl start gdm</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">**2、图形登录管理器的配置**</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用lightdm替换gdm，可以进行如下操作：</span></span><br><span class="line"></span><br><span class="line">pacman -S --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lightdm-webkit2-greeter</span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">disable</span> gdm    <span class="comment"># 取消gdm</span></span><br><span class="line">systemctl <span class="built_in">enable</span> lightdm</span><br></pre></td></tr></table></figure>
+
+<p><strong>3、安装更多的桌面环境</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 mate 桌面环境</span></span><br><span class="line">pacman -S --needed mate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 xfce4 桌面环境</span></span><br><span class="line">pacman -S --needed xfce4  xfce4-goodies</span><br></pre></td></tr></table></figure>
+
+<p><strong>4、中文输入和显示</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加中文字体</span></span><br><span class="line">pacman -S wqy-bitmapfont wqy-microhei wqy-microhei-lite wqy-zenhei</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重建字体缓存，安装字体即刻生效</span></span><br><span class="line">fc-cache -fv</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装输入法，使用拼音输入</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">方案1：使用ibus输入法引擎</span></span><br><span class="line">pacman -S ibus ibus-libpinyin pinyin-data</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">方案2：使用fcitx输入法引擎</span></span><br><span class="line">pacman -S --needed fcitx5 fcitx5-chinese-addons </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># fcitx 的一些词库</span></span></span><br><span class="line">pacman -S fcitx5-pinyin-moegirl fcitx5-pinyin-zhwiki</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">中文处理的一些配置</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在桌面环境启用输入法，最直观的办法是启动对应的配置界面</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这样输入法引擎和输入法都可以进行自由切换</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">方法是双击对应的图标即可，按界面内容添加拼音即刻使用</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>已xfce桌面环境，启动 ibus 输入法引擎为例：</strong></p>
+<p><strong>5、常用的应用软件</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 媒体播放，桌面环境已有播放软件，但一些解码组件需要单独安装</span></span><br><span class="line">pacman -S  parole  gst-libav  x264 libva-vdpau-driver mesa-vdpau libvdpau-va-gl vdpauinfo ffmpeg</span><br><span class="line">pacman -S libva-utils libva libva-mesa-driver libva1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可使用下面两个工具，查看下解码器支持信息</span></span><br><span class="line">vainfo</span><br><span class="line">vdpauinfo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 浏览器</span></span><br><span class="line">pacman -S firefox</span><br><span class="line">pacman -S chromium</span><br><span class="line"></span><br><span class="line"><span class="comment"># 虚拟机软件</span></span><br><span class="line">pacman -S qemu-full virt-manager</span><br><span class="line"><span class="comment"># 文本编辑器</span></span><br><span class="line">pacman -S --needed kate</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://aydenmeng.github.io">AydenMeng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://aydenmeng.github.io/2024/os/install_archlinux/">http://aydenmeng.github.io/2024/os/install_archlinux/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://aydenmeng.github.io" target="_blank">活在21世纪的孟游</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img_random/17.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechatpay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/os/gen_sys_file/" title="生成系统下的一些文件"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/12.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">生成系统下的一些文件</div></div></a></div><div class="next-post pull-right"><a href="/2024/os/systeminfo/" title="系统下查看一些信息"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">系统下查看一些信息</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/mxdon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">AydenMeng</div><div class="author-info__description">人生如戏，那就逢场作戏</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/AydenMeng" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:aydenmeng@yeah.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is Ayden's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E4%B8%BB%E9%A2%98%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C%EF%BC%8C%E7%89%88%E4%B8%BB%E6%9D%83%E9%99%90%E5%8F%AF%E7%BC%96%E8%BE%91%EF%BC%8C%E5%BC%80%E6%BA%90%E7%88%B1%E5%A5%BD%E8%80%85%E8%8B%A5%E8%A6%81%E5%8F%82%E4%B8%8E%E5%8D%8F%E4%BD%9C%EF%BC%8C%E5%8F%AF%E5%9B%9E%E5%A4%8D%E4%B8%AD%E7%94%B3%E8%AF%B7%E6%9D%83%E9%99%90%EF%BC%8C%E6%88%96%E8%80%85%E5%9C%A8QQ%E7%BE%A4%E9%87%8C%E7%94%B3%E8%AF%B7%E3%80%82"><span class="toc-number">1.</span> <span class="toc-text">本主题多人协作，版主权限可编辑，开源爱好者若要参与协作，可回复中申请权限，或者在QQ群里申请。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BA%86%E5%8D%8F%E8%B0%83%E4%B8%80%E8%87%B4%EF%BC%8C%E6%9C%AC%E6%8C%87%E5%8D%97%E5%9F%BA%E4%BA%8E-yetist%E5%88%B6%E4%BD%9C%E7%9A%84%E5%8F%AF%E5%BC%95%E5%AF%BC%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F%EF%BC%8C%E6%8C%87%E5%8D%97%E8%A6%86%E7%9B%96%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%E3%80%81%E5%AE%89%E8%A3%85%E5%92%8C%E5%85%B7%E4%BD%93%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE%E3%80%82%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%9B%9E%E5%A4%8D%E4%B8%AD%E6%8F%90%E5%87%BA%E3%80%82%E6%9C%AC%E4%B8%BB%E9%A2%98%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%8C%E5%8B%BF%E5%82%AC%EF%BC%8C%E8%B0%A2%E8%B0%A2%EF%BC%81"><span class="toc-number">2.</span> <span class="toc-text">为了协调一致，本指南基于@yetist制作的可引导安装镜像，指南覆盖系统引导、安装和具体应用配置。安装配置中遇到的问题，可以在回复中提出。本主题多人协作持续更新，勿催，谢谢！</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%BE%99%E8%8A%AF%E6%96%B0%E5%9B%BA%E4%BB%B6%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BC%95%E5%AF%BC%E7%9B%98%E7%9A%84%E5%88%B6%E4%BD%9C"><span class="toc-number"></span> <span class="toc-text">一、龙芯新固件环境下引导盘的制作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F%E5%8F%8A%E8%BD%AF%E4%BB%B6%E4%BB%93%E5%BA%93%E5%8A%A8%E6%80%81%EF%BC%8C%E5%8F%AF%E5%9C%A8%E5%A6%82%E4%B8%8B%E4%B8%BB%E9%A2%98%E4%B8%AD%E6%89%BE%E5%88%B0"><span class="toc-number"></span> <span class="toc-text">安装镜像及软件仓库动态，可在如下主题中找到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E6%96%B0%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD%EF%BC%8C%E9%9A%8F%E6%97%B6%E6%9B%B4%E6%96%B0"><span class="toc-number"></span> <span class="toc-text">最新镜像下载，随时更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%AF%BC%E7%9B%98%E5%88%B6%E4%BD%9C"><span class="toc-number"></span> <span class="toc-text">引导盘制作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%EF%BC%8C%E4%BD%BF%E7%94%A8dd%E8%BF%99%E4%B8%AA%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">Linux环境下，使用dd这个工具软件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%E5%92%8C%E5%AE%89%E8%A3%85%E5%89%8D%E7%9A%84%E6%A3%80%E6%9F%A5"><span class="toc-number"></span> <span class="toc-text">二、系统引导和安装前的检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%85%E5%88%B0%E6%9C%BA%E5%86%85%E7%A1%AC%E7%9B%98"><span class="toc-number"></span> <span class="toc-text">三、安装到机内硬盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%8C%BA%E5%92%8C%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number"></span> <span class="toc-text">分区和格式化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">1、磁盘分区操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E5%8E%9F%E6%9D%A5%E7%9A%84%E5%88%86%E5%8C%BA%E9%83%BD%E8%A6%81%E6%94%BE%E5%BC%83%EF%BC%8C%E5%85%A8%E7%9B%98%E5%88%87%E5%85%A5%E5%88%B0%E6%96%B0%E5%9B%BA%E4%BB%B6%E6%96%B0%E7%8E%AF%E5%A2%83%EF%BC%8C%E6%9C%89%E4%B8%AA%E4%BE%BF%E6%8D%B7%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">如果原来的分区都要放弃，全盘切入到新固件新环境，有个便捷的方法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E5%8C%BA%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">2、分区格式化操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%BF%85%E8%A6%81%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6"><span class="toc-number"></span> <span class="toc-text">安装必要的基础组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%88%86%E5%8C%BA%E6%8C%82%E8%BD%BD"><span class="toc-number">1.</span> <span class="toc-text">1、分区挂载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E4%BD%BF%E7%94%A8pacstrap%E5%AE%89%E8%A3%85%E5%BF%85%E9%A1%BB%E7%BB%84%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">2、使用pacstrap安装必须组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E7%94%9F%E6%88%90%E6%96%B0%E7%B3%BB%E7%BB%9F%E7%9A%84fstab"><span class="toc-number">3.</span> <span class="toc-text">3、生成新系统的fstab</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E8%BF%9B%E5%85%A5%E6%96%B0%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.</span> <span class="toc-text">4、进入新系统</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%87%8D%E5%90%AF%E5%89%8D%E8%A6%81%E5%81%9A%E7%9A%84%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE"><span class="toc-number"></span> <span class="toc-text">四、重启前要做的系统配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%97%B6%E5%8C%BA%E5%92%8C%E8%AF%AD%E8%A8%80"><span class="toc-number"></span> <span class="toc-text">设置时区和语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-hostname"><span class="toc-number"></span> <span class="toc-text">设置 hostname</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEroot%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%EF%BC%88%E8%B6%85%E7%BA%A7%E7%AE%A1%E7%90%86%E5%91%98%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">设置root用户密码（超级管理员密码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7"><span class="toc-number"></span> <span class="toc-text">建立一个普通用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AE-sudo"><span class="toc-number"></span> <span class="toc-text">安装并配置 sudo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="toc-number"></span> <span class="toc-text">网络配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E7%BA%BF%E8%BF%9E%E6%8E%A5%EF%BC%8C%E8%87%AA%E5%8A%A8%E8%8E%B7%E5%8F%96ip%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%8C%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%A1%88%E4%BB%BB%E9%80%89%E5%85%B6%E4%B8%80%EF%BC%8C%E6%8E%A8%E8%8D%90%E6%96%B9%E6%A1%882%EF%BC%8C%E8%BF%9B%E5%85%A5%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E7%AE%A1%E7%90%86%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">有线连接，自动获取ip的配置，两种方案任选其一，推荐方案2，进入桌面环境，可以直接管理网络连接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%AF%BC%E9%85%8D%E7%BD%AE"><span class="toc-number"></span> <span class="toc-text">引导配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#systemd-boot-%E6%96%B9%E6%A1%88"><span class="toc-number">1.</span> <span class="toc-text">systemd-boot 方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#grub-%E6%96%B9%E6%A1%88"><span class="toc-number">2.</span> <span class="toc-text">grub 方案</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%9C%AC%E6%9C%BA%E7%A1%AC%E7%9B%98%E5%BC%95%E5%AF%BC%EF%BC%8C%E7%A1%AE%E8%AE%A4archlinux%E5%9F%BA%E6%9C%AC%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="toc-number"></span> <span class="toc-text">五、本机硬盘引导，确认archlinux基本系统安装成功</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E7%BB%84%E4%BB%B6%E5%92%8C%E7%A8%8B%E5%BA%8F%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="toc-number"></span> <span class="toc-text">六、图形界面组件和程序安装配置</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/virtual/qemu_on_loongarch/" title="Qemu使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qemu使用"/></a><div class="content"><a class="title" href="/2024/virtual/qemu_on_loongarch/" title="Qemu使用">Qemu使用</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/virtual/run-linux-on-loongson-FPGA/" title="run linux on loongson_FPGA"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="run linux on loongson_FPGA"/></a><div class="content"><a class="title" href="/2020/virtual/run-linux-on-loongson-FPGA/" title="run linux on loongson_FPGA">run linux on loongson_FPGA</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/web/mxdon_xydh_fun/" title="炫猿导航"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="炫猿导航"/></a><div class="content"><a class="title" href="/2021/web/mxdon_xydh_fun/" title="炫猿导航">炫猿导航</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/web/try_react/" title="React实现五子棋游戏"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="React实现五子棋游戏"/></a><div class="content"><a class="title" href="/2020/web/try_react/" title="React实现五子棋游戏">React实现五子棋游戏</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/firmware/pmon_usage/" title="PMON的使用方法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PMON的使用方法"/></a><div class="content"><a class="title" href="/2024/firmware/pmon_usage/" title="PMON的使用方法">PMON的使用方法</a><time datetime="2024-05-28T13:01:28.975Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/background1.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By AydenMeng</div><div class="footer_custom_text">Hi, welcome to Ayden's blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://blog-comment-eiv9e480i-mxdongit.vercel.app',
+      region: 'eastasia',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.29/dist/twikoo.all.min.js').then(init)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://blog-comment-eiv9e480i-mxdongit.vercel.app',
+      region: 'eastasia',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+      GLOBAL_CONFIG_SITE.isPost && getCount()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://blog-comment-eiv9e480i-mxdongit.vercel.app',
+        region: 'eastasia',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.29/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="/js/fish.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/tajf1h7dq4euas8t8jusi0x28q74d8av.js" async="async"></script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    let isShow = false
+    const close = () => {
+      window.tidioChatApi.hide()
+      isShow = false
+    }
+    
+    const open = () => {
+      window.tidioChatApi.open()
+      window.tidioChatApi.show()
+      isShow = true
+    }
+
+    const onTidioChatApiReady = () => {
+      window.tidioChatApi.hide()
+      window.tidioChatApi.on("close", close)
+    }
+    if (window.tidioChatApi) {
+      window.tidioChatApi.on("ready", onTidioChatApiReady)
+    } else {
+      document.addEventListener("tidioChat-ready", onTidioChatApiReady)
+    }
+
+    window.chatBtnFn = () => {
+      if (!window.tidioChatApi) return
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        window.tidioChatApi && window.tidioChatApi.hide()
+      },
+      show: () => {
+        window.tidioChatApi && window.tidioChatApi.show()
+      }
+    }
+  }
+})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.12.0"></script></div></div></body></html>

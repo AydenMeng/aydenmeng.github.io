@@ -1,0 +1,529 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PMON的使用方法 | 活在21世纪的孟游</title><meta name="author" content="AydenMeng,mxdongit@126.com"><meta name="copyright" content="AydenMeng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 查看设备1234PMON&gt; devlssyn0wd0usb0  sync0, igb0, em0 等字样,表示网络设备, 即网卡 wd0, nvme0, usb0, cd0等字样表示存储设备, 即硬盘, U盘等. 2. 查看pci信息123456789101112131415161718PMON&gt; pciscan&gt;&gt; BUS  0 &lt;&lt;Dev Fun De">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PMON的使用方法">
+<meta property="og:url" content="http://aydenmeng.github.io/2024/firmware/pmon_usage/index.html">
+<meta property="og:site_name" content="活在21世纪的孟游">
+<meta property="og:description" content="1. 查看设备1234PMON&gt; devlssyn0wd0usb0  sync0, igb0, em0 等字样,表示网络设备, 即网卡 wd0, nvme0, usb0, cd0等字样表示存储设备, 即硬盘, U盘等. 2. 查看pci信息123456789101112131415161718PMON&gt; pciscan&gt;&gt; BUS  0 &lt;&lt;Dev Fun De">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://aydenmeng.github.io/img_random/9.jpg">
+<meta property="article:published_time" content="2024-05-28T13:01:28.971Z">
+<meta property="article:modified_time" content="2024-05-28T13:01:28.975Z">
+<meta property="article:author" content="AydenMeng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://aydenmeng.github.io/img_random/9.jpg"><link rel="shortcut icon" href="/img/mxdon.png"><link rel="canonical" href="http://aydenmeng.github.io/2024/firmware/pmon_usage/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: AydenMeng","link":"链接: ","source":"来源: 活在21世纪的孟游","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PMON的使用方法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-28 21:01:28'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/footer.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (true) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/mxdon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img_random/9.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="活在21世纪的孟游"><span class="site-name">活在21世纪的孟游</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PMON的使用方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-28T13:01:28.971Z" title="发表于 2024-05-28 21:01:28">2024-05-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-28T13:01:28.975Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/1-%E5%9B%BA%E4%BB%B6/">1. 固件</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PMON的使用方法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-查看设备"><a href="#1-查看设备" class="headerlink" title="1. 查看设备"></a>1. 查看设备</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; devls</span><br><span class="line">syn0</span><br><span class="line">wd0</span><br><span class="line">usb0</span><br></pre></td></tr></table></figure>
+
+<p><code>sync0</code>, <code>igb0</code>, <code>em0</code> 等字样,表示网络设备, 即网卡</p>
+<p><code>wd0</code>, <code>nvme0</code>, <code>usb0</code>, <code>cd0</code>等字样表示存储设备, 即硬盘, <code>U</code>盘等.</p>
+<h2 id="2-查看pci信息"><a href="#2-查看pci信息" class="headerlink" title="2. 查看pci信息"></a>2. 查看pci信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; pciscan</span><br><span class="line">&gt;&gt; BUS  0 &lt;&lt;</span><br><span class="line">Dev Fun Device description</span><br><span class="line">--------------------------</span><br><span class="line">  0   0 vendor/product: 0x0014/0x7a00 (bridge, host, interface: 0x00, revision: 0x00)</span><br><span class="line">0x00000000:0x00000000 mem @0x00000000, 0 bytes</span><br><span class="line">  0   1 vendor/product: 0x0014/0x7a10 (bridge, host, interface: 0x00, revision: 0x01)</span><br><span class="line">0x00000000:0x00000000 mem @0x00000000, 0 bytes</span><br><span class="line">  0   2 vendor/product: 0x0014/0x7a20 (bridge, host, interface: 0x00, revision: 0x01)</span><br><span class="line">0x00000000:0x00000000 mem @0x00000000, 0 bytes</span><br><span class="line">  0   3 vendor/product: 0x0014/0x7a30 (bridge, host, interface: 0x00, revision: 0x00)</span><br><span class="line">0x00000000:0x00000000 mem @0x00000000, 0 bytes</span><br><span class="line">  4   0 vendor/product: 0x0014/0x7a24 (serialbus, USB, interface: 0x10, revision: 0x02)</span><br><span class="line">64-bit mem,low address</span><br><span class="line">0x59648004:0xffff8004 mem @0x59648000, 32768 bytes</span><br><span class="line">0x00000000:0x00000000 mem @0x00000000, 0 bytes</span><br><span class="line">  ......</span><br><span class="line">  ......</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-产看固件版本信息"><a href="#3-产看固件版本信息" class="headerlink" title="3. 产看固件版本信息"></a>3. 产看固件版本信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; vers</span><br><span class="line">PMON: PMON 5.0.3-Release (loongson) #233: Wed Oct 18 15:09:40 CST 2023 commit d044be8f495e97082c8905b131d525ef31ade0b9 Author: Xiangdong Meng &lt;mengxiangdong@loongson.cn&gt; Date:   Wed Sep 6 15:15:31 2023 +0800</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-查看寄存器信息"><a href="#4-查看寄存器信息" class="headerlink" title="4. 查看寄存器信息"></a>4. 查看寄存器信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; d8 0x800000001fe00020 2</span><br><span class="line">800000001fe00020 : 0000303030364133 0000000000000000 3A6000..........</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-查看磁盘信息"><a href="#5-查看磁盘信息" class="headerlink" title="5. 查看磁盘信息"></a>5. 查看磁盘信息</h2><p>这里<code>fdisk</code>命令后面的设备名是在第一节中<code>devls</code>命令列出来的.</p>
+<p><code>PMON</code>支持<code>GPT</code>和<code>MBR</code>分区</p>
+<p><code>PMON</code>暂不支持设备热插拔.</p>
+<p><code>MBR</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; fdisk usb0</span><br><span class="line"></span><br><span class="line">Device    Boot  Start       End         Sectors     Id        System</span><br><span class="line">usb0a           2048        122880000   122877952   83        Linux</span><br></pre></td></tr></table></figure>
+
+<p><code>GPT</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; fdisk usb0</span><br><span class="line"></span><br><span class="line">Device    Boot  Start       End         Sectors     Id        System</span><br><span class="line">usb0a           2048        122877951   122875904   0FC63DAF  Linux filesystem</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-查看磁盘中的文件"><a href="#6-查看磁盘中的文件" class="headerlink" title="6. 查看磁盘中的文件"></a>6. 查看磁盘中的文件</h2><p><code>/dev/fs/</code>后的字符是<code>fdisk usb0</code>命令中, <code>Device</code>一列中显示的内容.</p>
+<p><code>PMON</code>只支持<code>Fat</code>, <code>Ext2/3/4</code>, <code>ISO9660</code>等分区</p>
+<p><code>PMON</code>在查看文件时, 通常不用指定文件系统类型.</p>
+<p>比如加载一个<code>fat</code>分区的内容: <code>load /dev/fs/usb0/</code>和<code>load /dev/fs/fat@usb0/</code>的效果是一样的</p>
+<p><code>Fat</code>分区:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; load /dev/fs/usb0/</span><br><span class="line">gz.mxd                                  &lt;FILE&gt;         993222</span><br><span class="line">boot.cfg                                &lt;FILE&gt;         403</span><br><span class="line">vm.mxd                                  &lt;FILE&gt;         95024056</span><br><span class="line"></span><br><span class="line">/dev/fs/fat@usb0/: Is a directory</span><br></pre></td></tr></table></figure>
+
+<p><code>ext2</code>&#x2F;<code>ext3</code>&#x2F;<code>ext4</code>分区:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; load /dev/fs/usb1a/</span><br><span class="line">|./ ../ lost+found/ gz.mxd boot.cfg</span><br><span class="line">/dev/fs/ext4@usb1a/: Undefined error: 0</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/pmon/1.png" alt="load MBR"></p>
+<h2 id="7-加载内核"><a href="#7-加载内核" class="headerlink" title="7. 加载内核"></a>7. 加载内核</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; load /dev/fs/usb0a/vm.mxd</span><br><span class="line">\Loading file: /dev/fs/fat@usb0a/vm.mxd (elf)</span><br><span class="line">(elf)</span><br><span class="line">0x9000000000200000/20053784 + 0x151ff18/922672(z) + 31926 syms|</span><br><span class="line">Entry address is 00c01000</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-加载initrd"><a href="#8-加载initrd" class="headerlink" title="8. 加载initrd"></a>8. 加载initrd</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; initrd /dev/fs/usb0a/initrd.img-4.19.0-19-loongson-3</span><br><span class="line">Loading initrd image /dev/fs/usb0a/initrd.img-4.19.0-19-loongson--dl_offset 9000000090000000 addr 9000000090000000</span><br><span class="line">(bin)</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-启动内核"><a href="#9-启动内核" class="headerlink" title="9. 启动内核"></a>9. 启动内核</h2><p>必须要在加载内核之后执行:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; g console=ttyS0,115200 earlycon=uart,mmio,0x1fe001e0 root=/dev/sda3</span><br><span class="line">Warning! NVRAM checksum fail. Reset!</span><br><span class="line">Reached finished_ap_limit=7 in a5 microseconds</span><br><span class="line">BootCore ID: 0 Collect AP: 7 Total Core: 8</span><br><span class="line">ACPI: ACPI tables init.</span><br><span class="line">VBIOS crc check is wrong,use default setting!</span><br><span class="line">GMEM: Get vbios from ls3a spi done!</span><br><span class="line">Init acpi table OK!</span><br><span class="line">set coherent</span><br><span class="line">[    0.000000] Linux version 4.19.190+ (mengxiangdong@5.5) (gcc version 8.3.0 (GCC)) #9 SMP Tue Oct 17 11:14:31 CST 2023</span><br><span class="line">[    0.000000] 64-bit Loongson Processor probed (LA664 Core)</span><br><span class="line">[    0.000000] CPU0 revision is: 0014d000 (Loongson-64bit)</span><br><span class="line">[    0.000000] FPU0 revision is: 00000001</span><br><span class="line">[    0.000000] efi:  SMBIOS=0xfffe000  ACPI 2.0=0xfefe000  NEWMEM=0xb036800</span><br><span class="line">[    0.000000] earlycon: uart0 at MMIO 0x000000001fe001e0 (options &#x27;&#x27;)</span><br><span class="line">[    0.000000] bootconsole [uart0] enabled</span><br><span class="line">[    0.000000] ACPI: Early table checksum verification disabled</span><br><span class="line">[    0.000000] ACPI: RSDP 0x000000000FEFE000 000024 (v02 LOONGS)</span><br><span class="line">......</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<h2 id="10-加载引导文件"><a href="#10-加载引导文件" class="headerlink" title="10. 加载引导文件"></a>10. 加载引导文件</h2><p><code>UEFI</code>通过找到<code>grub.efi</code>, 接着找到<code>grub.cfg</code>, 进而引导内核</p>
+<p>而<code>PMON</code>只需要找到<code>boot.cfg</code>文件即可. <code>PMON</code>默认会从<code>/</code>和<code>/boot</code>目录中找<code>boot.cfg</code></p>
+<p>倘若没有找到, 可以手动加载:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; bl /dev/fs/fat@usb0a/boot.cfg</span><br><span class="line"></span><br><span class="line">������������������������������������������������Ŀ</span><br><span class="line">�                 Boot Menu List                 �</span><br><span class="line">������������������������������������������������Ĵ</span><br><span class="line">� -&gt; 1 Loongnix 20 GNU/Linux 4.19.0-19-loongson-3�</span><br><span class="line">�                                                �</span><br><span class="line">�                                                �</span><br><span class="line">�                                                �</span><br><span class="line">�                                                �</span><br><span class="line">�                                                �</span><br><span class="line">�                                                �</span><br><span class="line">�                                                �</span><br><span class="line">�                                                �</span><br><span class="line">� Please Select Boot Menu [1]                    �</span><br><span class="line">��������������������������������������������������</span><br><span class="line">Use the UP and DOWN keys to select the entry.</span><br><span class="line">Press ENTER to boot selected OS.</span><br><span class="line">Press &#x27;c&#x27; to command-line.</span><br><span class="line">                                                 Booting system in [2] second(s)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="11-查看文件"><a href="#11-查看文件" class="headerlink" title="11. 查看文件"></a>11. 查看文件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; devcp /dev/fs/fat@usb0a/boot.cfg /dev/tty0</span><br><span class="line"></span><br><span class="line">default 0</span><br><span class="line">timeout 3</span><br><span class="line">showmenu 0</span><br><span class="line"></span><br><span class="line">title Loongnix 20 GNU/Linux 4.19.0-19-loongson-3</span><br><span class="line">    kernel /dev/fs/fat@usb0a/vmlinuz-4.19.0-19-loongson-3</span><br><span class="line">    initrd /dev/fs/fat@usb0a/initrd.img-4.19.0-19-loongson-3</span><br><span class="line">    args   root=/dev/sda3 console=ttyS0,115200 loglevel=8</span><br></pre></td></tr></table></figure>
+
+<h2 id="12-配置网络"><a href="#12-配置网络" class="headerlink" title="12. 配置网络"></a>12. 配置网络</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; devls</span><br><span class="line">Device name  Type</span><br><span class="line">syn0         IFNET</span><br><span class="line">usb0         DISK</span><br><span class="line">PMON&gt; ifconfig syn0 192.168.1.13</span><br><span class="line">synopGMAC_linux_open called</span><br><span class="line">Version = 0xd137</span><br><span class="line">MacAddr = 0x3e  0xd0    0x62    0xf5    0x46    0x94</span><br><span class="line"></span><br><span class="line">===phy HALFDUPLEX MODE</span><br><span class="line">DMA status reg = 0x0 before cleared!</span><br><span class="line">DMA status reg = 0x0 after cleared!</span><br><span class="line">register poll interrupt: gmac 0</span><br><span class="line">==arp_ifinit done</span><br><span class="line">===phy FULLDUPLEX MODE</span><br><span class="line">Link is with 1000M Speed</span><br><span class="line"></span><br><span class="line">PMON&gt; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="13-加载网络文件"><a href="#13-加载网络文件" class="headerlink" title="13. 加载网络文件"></a>13. 加载网络文件</h2><p><code>PMON</code>支持从网络加载内核, 支持的协议有<code>http</code>和<code>tftp</code></p>
+<p><code>http</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; load http://192.168.1.4/vm.mxd</span><br><span class="line">\Loading file: http://192.168.1.4/vm.mxd (elf)</span><br><span class="line">(elf)</span><br><span class="line">0x9000000000200000/20053784 + 0x151ff18/922672(z) + 31926 syms|</span><br><span class="line">Entry address is 00c01000</span><br></pre></td></tr></table></figure>
+
+<p><code>tftp</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; load tftp://192.168.1.4/vm.mxd</span><br><span class="line">\Loading file: tftp://192.168.1.4/vm.mxd (elf)</span><br><span class="line">(elf)</span><br><span class="line">0x9000000000200000/20053784 + 0x151ff18/922672(z) + 31926 syms|</span><br><span class="line">Entry address is 00c01000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="14-更新固件"><a href="#14-更新固件" class="headerlink" title="14. 更新固件"></a>14. 更新固件</h2><p><code>PMON</code>更新固件的命令为<code>fload</code></p>
+<p>与加载内核类似, 可以从硬盘加载, 也可以从网络加载</p>
+<p>从硬盘加载:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; fload /dev/fs/usb0a/gz.mxd</span><br><span class="line">Loading file: /dev/fs/fat@usb0a/gz.mxd dl_offset 900000000f800000 addr 900000000f800000</span><br><span class="line">(bin)</span><br><span class="line">-</span><br><span class="line">Loaded 993222 bytes</span><br><span class="line"></span><br><span class="line">Programming flash 900000000f800000:f27c6 into 800000001c000000</span><br><span class="line">Erase end!</span><br><span class="line">-Programming end!</span><br></pre></td></tr></table></figure>
+
+<p>从<code>tftp</code>服务器加载:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; fload tftp://192.168.1.4/gz.mxd</span><br><span class="line">Loading file: tftp://192.168.1.4/gz.mxd dl_offset 900000000f800000 addr 900000000f800000</span><br><span class="line">(bin)</span><br><span class="line">-</span><br><span class="line">Loaded 993222 bytes</span><br><span class="line"></span><br><span class="line">Programming flash 900000000f800000:f27c6 into 800000001c000000</span><br><span class="line">Erase end!</span><br><span class="line">-Programming end!</span><br></pre></td></tr></table></figure>
+
+<p>从<code>http</code>服务器加载:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PMON&gt; fload http://192.168.1.4/gz.mxd</span><br><span class="line">Loading file: http://192.168.1.4/gz.mxd dl_offset 900000000f800000 addr 900000000f800000</span><br><span class="line">(bin)</span><br><span class="line">-</span><br><span class="line">Loaded 993222 bytes</span><br><span class="line"></span><br><span class="line">Programming flash 900000000f800000:f27c6 into 800000001c000000</span><br><span class="line">Erase end!</span><br><span class="line">-Programming end!</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://aydenmeng.github.io">AydenMeng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://aydenmeng.github.io/2024/firmware/pmon_usage/">http://aydenmeng.github.io/2024/firmware/pmon_usage/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://aydenmeng.github.io" target="_blank">活在21世纪的孟游</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img_random/9.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechatpay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/firmware/pmon_and_uefi_update/" title="如何更新固件"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/12.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">如何更新固件</div></div></a></div><div class="next-post pull-right"><a href="/2024/kernel/smp/" title="龙芯多核唤醒流程"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/13.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">龙芯多核唤醒流程</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/mxdon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">AydenMeng</div><div class="author-info__description">人生如戏，那就逢场作戏</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/AydenMeng" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:aydenmeng@yeah.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is Ayden's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9F%A5%E7%9C%8B%E8%AE%BE%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">1. 查看设备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9F%A5%E7%9C%8Bpci%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">2. 查看pci信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%BA%A7%E7%9C%8B%E5%9B%BA%E4%BB%B6%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">3. 产看固件版本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%9F%A5%E7%9C%8B%E5%AF%84%E5%AD%98%E5%99%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">4.</span> <span class="toc-text">4. 查看寄存器信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%E4%BF%A1%E6%81%AF"><span class="toc-number">5.</span> <span class="toc-text">5. 查看磁盘信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">6.</span> <span class="toc-text">6. 查看磁盘中的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%8A%A0%E8%BD%BD%E5%86%85%E6%A0%B8"><span class="toc-number">7.</span> <span class="toc-text">7. 加载内核</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%8A%A0%E8%BD%BDinitrd"><span class="toc-number">8.</span> <span class="toc-text">8. 加载initrd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%90%AF%E5%8A%A8%E5%86%85%E6%A0%B8"><span class="toc-number">9.</span> <span class="toc-text">9. 启动内核</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%8A%A0%E8%BD%BD%E5%BC%95%E5%AF%BC%E6%96%87%E4%BB%B6"><span class="toc-number">10.</span> <span class="toc-text">10. 加载引导文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6"><span class="toc-number">11.</span> <span class="toc-text">11. 查看文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C"><span class="toc-number">12.</span> <span class="toc-text">12. 配置网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E5%8A%A0%E8%BD%BD%E7%BD%91%E7%BB%9C%E6%96%87%E4%BB%B6"><span class="toc-number">13.</span> <span class="toc-text">13. 加载网络文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E6%9B%B4%E6%96%B0%E5%9B%BA%E4%BB%B6"><span class="toc-number">14.</span> <span class="toc-text">14. 更新固件</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/virtual/qemu_on_loongarch/" title="Qemu使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qemu使用"/></a><div class="content"><a class="title" href="/2024/virtual/qemu_on_loongarch/" title="Qemu使用">Qemu使用</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/virtual/run-linux-on-loongson-FPGA/" title="run linux on loongson_FPGA"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="run linux on loongson_FPGA"/></a><div class="content"><a class="title" href="/2020/virtual/run-linux-on-loongson-FPGA/" title="run linux on loongson_FPGA">run linux on loongson_FPGA</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/web/mxdon_xydh_fun/" title="炫猿导航"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="炫猿导航"/></a><div class="content"><a class="title" href="/2021/web/mxdon_xydh_fun/" title="炫猿导航">炫猿导航</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/web/try_react/" title="React实现五子棋游戏"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="React实现五子棋游戏"/></a><div class="content"><a class="title" href="/2020/web/try_react/" title="React实现五子棋游戏">React实现五子棋游戏</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/firmware/pmon_usage/" title="PMON的使用方法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PMON的使用方法"/></a><div class="content"><a class="title" href="/2024/firmware/pmon_usage/" title="PMON的使用方法">PMON的使用方法</a><time datetime="2024-05-28T13:01:28.975Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/background1.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By AydenMeng</div><div class="footer_custom_text">Hi, welcome to Ayden's blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://blog-comment-eiv9e480i-mxdongit.vercel.app',
+      region: 'eastasia',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.29/dist/twikoo.all.min.js').then(init)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://blog-comment-eiv9e480i-mxdongit.vercel.app',
+      region: 'eastasia',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+      GLOBAL_CONFIG_SITE.isPost && getCount()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://blog-comment-eiv9e480i-mxdongit.vercel.app',
+        region: 'eastasia',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.29/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="/js/fish.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/tajf1h7dq4euas8t8jusi0x28q74d8av.js" async="async"></script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    let isShow = false
+    const close = () => {
+      window.tidioChatApi.hide()
+      isShow = false
+    }
+    
+    const open = () => {
+      window.tidioChatApi.open()
+      window.tidioChatApi.show()
+      isShow = true
+    }
+
+    const onTidioChatApiReady = () => {
+      window.tidioChatApi.hide()
+      window.tidioChatApi.on("close", close)
+    }
+    if (window.tidioChatApi) {
+      window.tidioChatApi.on("ready", onTidioChatApiReady)
+    } else {
+      document.addEventListener("tidioChat-ready", onTidioChatApiReady)
+    }
+
+    window.chatBtnFn = () => {
+      if (!window.tidioChatApi) return
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        window.tidioChatApi && window.tidioChatApi.hide()
+      },
+      show: () => {
+        window.tidioChatApi && window.tidioChatApi.show()
+      }
+    }
+  }
+})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.12.0"></script></div></div></body></html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>系统下查看一些信息 | 活在21世纪的孟游</title><meta name="author" content="AydenMeng,mxdongit@126.com"><meta name="copyright" content="AydenMeng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 查看系统版本123456789101112[root@mxd mxd]# cat &#x2F;etc&#x2F;os-releaseNAME&#x3D;&quot;Arch Linux&quot;PRETTY_NAME&#x3D;&quot;Arch Linux&quot;ID&#x3D;archBUILD_ID&#x3D;rollingANSI_COLOR&#x3D;&quot;38;2;23;147;209&quot;HOME_URL&#x3D;&quot;http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统下查看一些信息">
+<meta property="og:url" content="http://aydenmeng.github.io/2024/os/systeminfo/index.html">
+<meta property="og:site_name" content="活在21世纪的孟游">
+<meta property="og:description" content="1. 查看系统版本123456789101112[root@mxd mxd]# cat &#x2F;etc&#x2F;os-releaseNAME&#x3D;&quot;Arch Linux&quot;PRETTY_NAME&#x3D;&quot;Arch Linux&quot;ID&#x3D;archBUILD_ID&#x3D;rollingANSI_COLOR&#x3D;&quot;38;2;23;147;209&quot;HOME_URL&#x3D;&quot;http">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://aydenmeng.github.io/img_random/3.jpg">
+<meta property="article:published_time" content="2024-05-28T13:01:28.975Z">
+<meta property="article:modified_time" content="2024-05-28T13:01:28.975Z">
+<meta property="article:author" content="AydenMeng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://aydenmeng.github.io/img_random/3.jpg"><link rel="shortcut icon" href="/img/mxdon.png"><link rel="canonical" href="http://aydenmeng.github.io/2024/os/systeminfo/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><meta/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: AydenMeng","link":"链接: ","source":"来源: 活在21世纪的孟游","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '系统下查看一些信息',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-28 21:01:28'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/footer.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (true) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/mxdon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img_random/3.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="活在21世纪的孟游"><span class="site-name">活在21世纪的孟游</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">系统下查看一些信息</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-28T13:01:28.975Z" title="发表于 2024-05-28 21:01:28">2024-05-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-28T13:01:28.975Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/2-%E7%B3%BB%E7%BB%9F/">2. 系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>21分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="系统下查看一些信息"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-查看系统版本"><a href="#1-查看系统版本" class="headerlink" title="1. 查看系统版本"></a>1. 查看系统版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# cat /etc/os-release</span><br><span class="line">NAME=&quot;Arch Linux&quot;</span><br><span class="line">PRETTY_NAME=&quot;Arch Linux&quot;</span><br><span class="line">ID=arch</span><br><span class="line">BUILD_ID=rolling</span><br><span class="line">ANSI_COLOR=&quot;38;2;23;147;209&quot;</span><br><span class="line">HOME_URL=&quot;https://archlinux.org/&quot;</span><br><span class="line">DOCUMENTATION_URL=&quot;https://wiki.archlinux.org/&quot;</span><br><span class="line">SUPPORT_URL=&quot;https://bbs.archlinux.org/&quot;</span><br><span class="line">BUG_REPORT_URL=&quot;https://bugs.archlinux.org/&quot;</span><br><span class="line">PRIVACY_POLICY_URL=&quot;https://terms.archlinux.org/docs/privacy-policy/&quot;</span><br><span class="line">LOGO=archlinux-logo</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-查看内核版本"><a href="#2-查看内核版本" class="headerlink" title="2. 查看内核版本"></a>2. 查看内核版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# uname -a</span><br><span class="line">Linux mxd 6.5.0-4 #1 SMP PREEMPT Thu, 31 Aug 2023 09:38:08 +0000 loongarch64 GNU/Linux</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-查看固件版本"><a href="#3-查看固件版本" class="headerlink" title="3. 查看固件版本"></a>3. 查看固件版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# cat /sys/firmware/loongson/boardinfo</span><br><span class="line">BIOS Information</span><br><span class="line">Vendor			: Loongson</span><br><span class="line">Version			: Loongson-UDK2018-V4.0.05494-stable202305</span><br><span class="line">ROM Size		: 4096 KB</span><br><span class="line">Release Date		: 07/10/23 18:05:47</span><br><span class="line"></span><br><span class="line">Board Information</span><br><span class="line">Manufacturer		: Loongson</span><br><span class="line">Board Name		: Loongson-LS3A6000-7A2000-1w-EVB-V1.21</span><br><span class="line">Family			: LOONGSON64</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-查看ip"><a href="#4-查看ip" class="headerlink" title="4. 查看ip"></a>4. 查看ip</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# ip a</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host noprefixroute </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: enp0s3f0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc mq state DOWN group default qlen 1000</span><br><span class="line">    link/ether 00:55:7b:b5:7d:f7 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">3: enp2s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000</span><br><span class="line">    link/ether ce:38:b3:df:3b:23 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.1.13/23 brd 192.168.1.255 scope global dynamic noprefixroute enp2s0</span><br><span class="line">       valid_lft 40218sec preferred_lft 40218sec</span><br><span class="line">    inet6 fe80::80b6:e9f0:ab6c:e9c5/64 scope link noprefixroute </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">4: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default </span><br><span class="line">    link/ether 02:42:4e:12:01:c7 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.18.0.1/16 brd 172.18.255.255 scope global docker0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-查看pci设备"><a href="#5-查看pci设备" class="headerlink" title="5. 查看pci设备"></a>5. 查看pci设备</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# lspci </span><br><span class="line">00:00.0 Host bridge: Loongson Technology LLC Hyper Transport Bridge Controller</span><br><span class="line">00:00.1 Host bridge: Loongson Technology LLC Hyper Transport Bridge Controller (rev 01)</span><br><span class="line">00:00.2 Host bridge: Loongson Technology LLC Device 7a20 (rev 01)</span><br><span class="line">00:00.3 Host bridge: Loongson Technology LLC Device 7a30</span><br><span class="line">00:03.0 Ethernet controller: Loongson Technology LLC Device 7a13</span><br><span class="line">00:04.0 USB controller: Loongson Technology LLC OHCI USB Controller (rev 02)</span><br><span class="line">00:04.1 USB controller: Loongson Technology LLC EHCI USB Controller (rev 02)</span><br><span class="line">00:05.0 USB controller: Loongson Technology LLC OHCI USB Controller (rev 02)</span><br><span class="line">00:05.1 USB controller: Loongson Technology LLC EHCI USB Controller (rev 02)</span><br><span class="line">00:06.0 Multimedia video controller: Loongson Technology LLC Device 7a25 (rev 01)</span><br><span class="line">00:06.1 VGA compatible controller: Loongson Technology LLC Device 7a36 (rev 02)</span><br><span class="line">00:06.2 Audio device: Loongson Technology LLC Device 7a37</span><br><span class="line">00:07.0 Audio device: Loongson Technology LLC HDA (High Definition Audio) Controller</span><br><span class="line">00:08.0 SATA controller: Loongson Technology LLC Device 7a18</span><br><span class="line">00:09.0 PCI bridge: Loongson Technology LLC Device 7a49</span><br><span class="line">00:0a.0 PCI bridge: Loongson Technology LLC Device 7a39</span><br><span class="line">00:0b.0 PCI bridge: Loongson Technology LLC Device 7a39</span><br><span class="line">00:0c.0 PCI bridge: Loongson Technology LLC Device 7a39</span><br><span class="line">00:0d.0 PCI bridge: Loongson Technology LLC Device 7a49</span><br><span class="line">00:0f.0 PCI bridge: Loongson Technology LLC Device 7a69</span><br><span class="line">00:10.0 PCI bridge: Loongson Technology LLC Device 7a59</span><br><span class="line">00:13.0 PCI bridge: Loongson Technology LLC Device 7a59</span><br><span class="line">00:16.0 System peripheral: Loongson Technology LLC Device 7a1b</span><br><span class="line">00:19.0 USB controller: Loongson Technology LLC Device 7a34</span><br><span class="line">02:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)</span><br><span class="line">05:00.0 Non-Volatile memory controller: Shenzhen Longsys Electronics Co., Ltd. SM2263EN/SM2263XT-based OEM SSD (rev 03)</span><br><span class="line">07:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Oland [Radeon HD 8570 / R5 430 OEM / R7 240/340 / Radeon 520 OEM] (rev 87)</span><br><span class="line">07:00.1 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] Oland/Hainan/Cape Verde/Pitcairn HDMI Audio [Radeon HD 7000 Series]</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-1-详细查看某pci设备使用的驱动"><a href="#5-1-详细查看某pci设备使用的驱动" class="headerlink" title="5.1 详细查看某pci设备使用的驱动"></a>5.1 详细查看某pci设备使用的驱动</h3><p>其中<code>07:00.0</code>是上面左侧显示的一段数字, 根据描述, <code>07:00.0</code>那一行指一个<code>VGA兼容设备</code>, 换句话说是指显示设备, 业内叫做<code>显卡</code></p>
+<p>如下, 该显卡使用的驱动是:<code>radeon</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# lspci  -vvv -s 07:00.0 2&gt;/dev/null | grep driver -A 2</span><br><span class="line">	Kernel driver in use: radeon</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-查看系统下某驱动是否加载"><a href="#6-查看系统下某驱动是否加载" class="headerlink" title="6. 查看系统下某驱动是否加载"></a>6. 查看系统下某驱动是否加载</h2><p>如下显示:</p>
+<p>第1列：表示模块的名称，如<code>radeon</code>表示<code>radeon</code>模块。</p>
+<p>第2列：表示模块的大小，如<code>1687552</code>表示<code>radeon</code>模块的大小为<code>1687552</code>字节。</p>
+<p>第3列：表示依赖模块的个数，如<code>74</code>表示<code>radeon</code>有<code>74</code>个依赖模块。</p>
+<p>第4列：表示依赖模块的内容, 如<code>drm_suballoc_helper</code>依赖于<code>amdgpu</code>,<code>radeon</code>俩模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# lsmod  | grep radeon</span><br><span class="line">radeon               1687552  74</span><br><span class="line">drm_suballoc_helper    49152  2 amdgpu,radeon</span><br><span class="line">drm_ttm_helper         49152  2 amdgpu,radeon</span><br><span class="line">ttm                   131072  3 amdgpu,radeon,drm_ttm_helper</span><br><span class="line">drm_display_helper    229376  2 amdgpu,radeon</span><br><span class="line">drm_kms_helper        229376  5 drm_dma_helper,drm_display_helper,amdgpu,radeon,loongson</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-查看系统启动log"><a href="#7-查看系统启动log" class="headerlink" title="7. 查看系统启动log"></a>7. 查看系统启动log</h2><p>当不确定开发人员需要哪些信息时, 请优先将此信息给出.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# dmesg</span><br><span class="line">[    2.248064] ATOM BIOS: C57701</span><br><span class="line">[    2.248176] radeon 0000:07:00.0: VRAM: 2048M 0x0000000000000000 - 0x000000007FFFFFFF (2048M used)</span><br><span class="line">[    2.248179] radeon 0000:07:00.0: GTT: 2048M 0x0000000080000000 - 0x00000000FFFFFFFF</span><br><span class="line">[    2.248180] [drm] Detected VRAM RAM=2048M, BAR=256M</span><br><span class="line">[    2.248182] [drm] RAM width 64bits DDR</span><br><span class="line">[    2.248289] [drm] radeon: 2048M of VRAM memory ready</span><br><span class="line">[    2.248292] [drm] radeon: 2048M of GTT memory ready.</span><br><span class="line">[    2.248300] [drm] Loading oland Microcode</span><br><span class="line">[    2.249595] [drm] Internal thermal controller with fan control</span><br><span class="line">[    2.259143] [drm] radeon: dpm initialized</span><br><span class="line">[    2.261098] [drm] GART: num cpu pages 131072, num gpu pages 524288</span><br><span class="line">[    2.261845] [drm] PCIE gen 3 link speeds already enabled</span><br><span class="line">[    2.328096] [drm] PCIE GART of 2048M enabled (table at 0x0000000000168000).</span><br><span class="line">[    2.328289] radeon 0000:07:00.0: WB enabled</span><br><span class="line">[    2.328291] radeon 0000:07:00.0: fence driver on ring 0 use gpu addr 0x0000000080000c00</span><br><span class="line">[    2.328293] radeon 0000:07:00.0: fence driver on ring 1 use gpu addr 0x0000000080000c04</span><br><span class="line">[    2.328294] radeon 0000:07:00.0: fence driver on ring 2 use gpu addr 0x0000000080000c08</span><br><span class="line">[    2.328296] radeon 0000:07:00.0: fence driver on ring 3 use gpu addr 0x0000000080000c0c</span><br><span class="line">[    2.328297] radeon 0000:07:00.0: fence driver on ring 4 use gpu addr 0x0000000080000c10</span><br><span class="line">[    2.343597] radeon 0000:07:00.0: fence driver on ring 5 use gpu addr 0x0000000000075a18</span><br><span class="line">[    2.343678] radeon 0000:07:00.0: radeon: MSI limited to 32-bit</span><br><span class="line">......</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>或:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# journalctl  -b -0</span><br><span class="line">10月 11 09:16:21 mxd kernel: Linux version 6.5.0-4 (linux@archlinux) (gcc (GCC) 13.2.1 20230801, GNU ld (GNU Binutils)&gt;</span><br><span class="line">10月 11 09:16:21 mxd kernel: 64-bit Loongson Processor probed (LA664 Core)</span><br><span class="line">10月 11 09:16:21 mxd kernel: CPU0 revision is: 0014d000 (Loongson-64bit)</span><br><span class="line">10月 11 09:16:21 mxd kernel: FPU0 revision is: 00000000</span><br><span class="line">10月 11 09:16:21 mxd kernel: efi: EFI v2.7 by EDK II</span><br><span class="line">10月 11 09:16:21 mxd kernel: efi: ACPI 2.0=0xfa3b0000 SMBIOS 3.0=0xfe5b0000 INITRD=0xfa2d0e98 MEMRESERVE=0xfa2d0d98 ME&gt;</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: Early table checksum verification disabled</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: RSDP 0x00000000FA3B0000 000024 (v02 LOONGS)</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: XSDT 0x00000000FA3A0000 000064 (v01 LOONGS LOONGSON 00000002      01000013)</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: FACP 0x00000000FA370000 0000F4 (v03 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: DSDT 0x00000000FA340000 002676 (v02 LOONGS LOONGSON 00000002 INTL 20180629)</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: FACS 0x00000000FA380000 000040</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: APIC 0x00000000FA390000 0000FA (v01 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: IVRS 0x00000000FA360000 00004C (v01 LARCH  LOONGSON 00000001 LIUX 00000001)</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: MCFG 0x00000000FA350000 00003C (v01 LOONGS LOONGSON 00000001 LIUX 01000013)</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: SRAT 0x00000000FA330000 000100 (v02 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: SLIT 0x00000000FA320000 00002D (v01 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: VIAT 0x00000000FA310000 00002C (v01 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">10月 11 09:16:21 mxd kernel: ACPI: PPTT 0x00000000FA300000 000128 (v03 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">......</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>两种打印不一致是因为<code>dmesg</code>命令显示的内容是从2秒开始的, 前面的内容被冲掉了, 而<code>journalctl</code>显示的内容则更完整.</p>
+<h3 id="7-1-查看系统上一次的启动log"><a href="#7-1-查看系统上一次的启动log" class="headerlink" title="7.1 查看系统上一次的启动log"></a>7.1 查看系统上一次的启动log</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# journalctl  -b -1</span><br><span class="line">9月 06 16:19:37 mxd kernel: Linux version 6.5.0-4 (linux@archlinux) (gcc (GCC) 13.2.1 20230801, GNU ld (GNU Binutils) &gt;</span><br><span class="line">9月 06 16:19:37 mxd kernel: 64-bit Loongson Processor probed (LA664 Core)</span><br><span class="line">9月 06 16:19:37 mxd kernel: CPU0 revision is: 0014d000 (Loongson-64bit)</span><br><span class="line">9月 06 16:19:37 mxd kernel: FPU0 revision is: 00000000</span><br><span class="line">9月 06 16:19:37 mxd kernel: efi: EFI v2.7 by EDK II</span><br><span class="line">9月 06 16:19:37 mxd kernel: efi: ACPI 2.0=0xfa3b0000 SMBIOS 3.0=0xfe5b0000 INITRD=0xfa2d0e98 MEMRESERVE=0xfa2d0d18 MEM&gt;</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: Early table checksum verification disabled</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: RSDP 0x00000000FA3B0000 000024 (v02 LOONGS)</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: XSDT 0x00000000FA3A0000 000064 (v01 LOONGS LOONGSON 00000002      01000013)</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: FACP 0x00000000FA370000 0000F4 (v03 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: DSDT 0x00000000FA340000 002676 (v02 LOONGS LOONGSON 00000002 INTL 20180629)</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: FACS 0x00000000FA380000 000040</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: APIC 0x00000000FA390000 0000FA (v01 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: IVRS 0x00000000FA360000 00004C (v01 LARCH  LOONGSON 00000001 LIUX 00000001)</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: MCFG 0x00000000FA350000 00003C (v01 LOONGS LOONGSON 00000001 LIUX 01000013)</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: SRAT 0x00000000FA330000 000100 (v02 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: SLIT 0x00000000FA320000 00002D (v01 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: VIAT 0x00000000FA310000 00002C (v01 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">9月 06 16:19:37 mxd kernel: ACPI: PPTT 0x00000000FA300000 000128 (v03 LOONGS LOONGSON 00000002 LIUX 01000013)</span><br><span class="line">......</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="8-查看磁盘挂载信息"><a href="#8-查看磁盘挂载信息" class="headerlink" title="8. 查看磁盘挂载信息"></a>8. 查看磁盘挂载信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# lsblk</span><br><span class="line">NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS</span><br><span class="line">sda           8:0    0 931.5G  0 disk</span><br><span class="line">├─sda1        8:1    0   500M  0 part</span><br><span class="line">├─sda2        8:2    0     1G  0 part</span><br><span class="line">├─sda3        8:3    0   500G  0 part</span><br><span class="line">└─sda4        8:4    0   430G  0 part /work</span><br><span class="line">nvme0n1     259:0    0 238.5G  0 disk</span><br><span class="line">├─nvme0n1p1 259:1    0   300M  0 part /boot/efi</span><br><span class="line">├─nvme0n1p2 259:2    0   300M  0 part /boot</span><br><span class="line">├─nvme0n1p3 259:3    0    80G  0 part /</span><br><span class="line">├─nvme0n1p4 259:4    0 150.4G  0 part /home</span><br><span class="line">└─nvme0n1p5 259:5    0   7.5G  0 part</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-查看磁盘使用信息"><a href="#9-查看磁盘使用信息" class="headerlink" title="9. 查看磁盘使用信息"></a>9. 查看磁盘使用信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# df -h</span><br><span class="line">文件系统        大小  已用  可用 已用% 挂载点</span><br><span class="line">dev             7.9G     0  7.9G    0% /dev</span><br><span class="line">run             7.9G  6.2M  7.9G    1% /run</span><br><span class="line">efivarfs         59K   14K   46K   23% /sys/firmware/efi/efivars</span><br><span class="line">/dev/nvme0n1p3   80G   16G   65G   20% /</span><br><span class="line">tmpfs           7.9G  338M  7.6G    5% /dev/shm</span><br><span class="line">tmpfs           7.9G  1.9G  6.1G   24% /tmp</span><br><span class="line">/dev/nvme0n1p4  150G   99G   52G   66% /home</span><br><span class="line">/dev/nvme0n1p2  272M  110M  147M   43% /boot</span><br><span class="line">/dev/nvme0n1p1  300M  196K  300M    1% /boot/efi</span><br><span class="line">/dev/sda4       430G   22G  408G    6% /work</span><br><span class="line">tmpfs           1.6G  608K  1.6G    1% /run/user/1000</span><br></pre></td></tr></table></figure>
+
+<h2 id="10-查看内存使用情况"><a href="#10-查看内存使用情况" class="headerlink" title="10. 查看内存使用情况"></a>10. 查看内存使用情况</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# free -m</span><br><span class="line">               total        used        free      shared  buff/cache   available</span><br><span class="line">内存：         16146       13354        1372        2354        5945        2792</span><br><span class="line">交换：             0           0           0</span><br></pre></td></tr></table></figure>
+
+<h2 id="11-查看系统某服务运行情况"><a href="#11-查看系统某服务运行情况" class="headerlink" title="11. 查看系统某服务运行情况"></a>11. 查看系统某服务运行情况</h2><p>比如<code>NetworkManager</code>服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# systemctl status NetworkManager</span><br><span class="line">● NetworkManager.service - Network Manager</span><br><span class="line">     Loaded: loaded (/usr/lib/systemd/system/NetworkManager.service; enabled; preset: disabled)</span><br><span class="line">     Active: active (running) since Wed 2023-10-11 09:16:23 CST; 2 weeks 1 day ago</span><br><span class="line">       Docs: man:NetworkManager(8)</span><br><span class="line">   Main PID: 2746 (NetworkManager)</span><br><span class="line">      Tasks: 4 (limit: 19334)</span><br><span class="line">     Memory: 10.7M</span><br><span class="line">        CPU: 8min 57.592s</span><br><span class="line">     CGroup: /system.slice/NetworkManager.service</span><br><span class="line">             └─2746 /usr/bin/NetworkManager --no-daemon</span><br><span class="line"></span><br><span class="line">10月 26 09:20:04 mxd NetworkManager[2746]: &lt;info&gt;  [1698283204.0241] manager: NetworkManager state is now CONNECTED_GL&gt;</span><br><span class="line">10月 26 09:22:31 mxd NetworkManager[2746]: &lt;info&gt;  [1698283351.8060] dhcp4 (enp2s0): state changed new lease, address=&gt;</span><br><span class="line">10月 26 09:35:23 mxd NetworkManager[2746]: &lt;info&gt;  [1698284123.6465] manager: NetworkManager state is now CONNECTED_SI&gt;</span><br><span class="line">10月 26 09:39:39 mxd NetworkManager[2746]: &lt;info&gt;  [1698284379.0202] manager: NetworkManager state is now CONNECTED_GL&gt;</span><br><span class="line">10月 26 09:49:58 mxd NetworkManager[2746]: &lt;info&gt;  [1698284998.6470] manager: NetworkManager state is now CONNECTED_SI&gt;</span><br><span class="line">10月 26 09:54:14 mxd NetworkManager[2746]: &lt;info&gt;  [1698285254.0105] manager: NetworkManager state is now CONNECTED_GL&gt;</span><br><span class="line">10月 26 10:04:33 mxd NetworkManager[2746]: &lt;info&gt;  [1698285873.6467] manager: NetworkManager state is now CONNECTED_SI&gt;</span><br><span class="line">10月 26 10:05:06 mxd NetworkManager[2746]: &lt;info&gt;  [1698285906.0615] manager: NetworkManager state is now CONNECTED_GL&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-1-查看某服务的运行log"><a href="#11-1-查看某服务的运行log" class="headerlink" title="11.1 查看某服务的运行log"></a>11.1 查看某服务的运行log</h3><p>比如<code>NetworkManager</code>服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# journalctl -b -u NetworkManager</span><br><span class="line">10月 11 09:16:23 mxd systemd[1]: Starting Network Manager...</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.3066] NetworkManager (version 1.42.6-1) is starting... &gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.3069] Read config: /etc/NetworkManager/NetworkManager.c&gt;</span><br><span class="line">10月 11 09:16:23 mxd systemd[1]: Started Network Manager.</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.3090] bus-manager: acquired D-Bus service &quot;org.freedesk&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.3143] manager[0x5555767b5ec0]: monitoring kernel firmwa&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5504] hostname: hostname: using hostnamed</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5505] hostname: static hostname changed from (none) to &gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5509] dns-mgr: init: dns=default,systemd-resolved rc-ma&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5529] manager[0x5555767b5ec0]: rfkill: Wi-Fi hardware r&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5529] manager[0x5555767b5ec0]: rfkill: WWAN hardware ra&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5566] Loaded device plugin: NMAtmManager (/usr/lib/Netw&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5615] Loaded device plugin: NMBluezManager (/usr/lib/Ne&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5627] Loaded device plugin: NMOvsFactory (/usr/lib/Netw&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5831] Loaded device plugin: NMTeamFactory (/usr/lib/Net&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5842] Loaded device plugin: NMWifiFactory (/usr/lib/Net&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5849] Loaded device plugin: NMWwanFactory (/usr/lib/Net&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5851] manager: rfkill: Wi-Fi enabled by radio killswitc&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5852] manager: rfkill: WWAN enabled by radio killswitch&gt;</span><br><span class="line">10月 11 09:16:23 mxd NetworkManager[2746]: &lt;info&gt;  [1696986983.5852] manager: Networking is enabled by state file</span><br><span class="line">......</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<h2 id="12-查看USB连接信息"><a href="#12-查看USB连接信息" class="headerlink" title="12. 查看USB连接信息"></a>12. 查看USB连接信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# lsusb -t</span><br><span class="line">/:  Bus 06.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/4p, 5000M</span><br><span class="line">/:  Bus 05.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/4p, 480M</span><br><span class="line">/:  Bus 04.Port 1: Dev 1, Class=root_hub, Driver=ohci-pci/4p, 12M</span><br><span class="line">    |__ Port 2: Dev 7, If 0, Class=Vendor Specific Class, Driver=pl2303, 12M</span><br><span class="line">/:  Bus 03.Port 1: Dev 1, Class=root_hub, Driver=ehci-pci/4p, 480M</span><br><span class="line">    |__ Port 1: Dev 103, If 0, Class=Hub, Driver=hub/4p, 480M</span><br><span class="line">        |__ Port 1: Dev 104, If 0, Class=Human Interface Device, Driver=usbhid, 1.5M</span><br><span class="line">        |__ Port 3: Dev 105, If 0, Class=Human Interface Device, Driver=usbhid, 1.5M</span><br><span class="line">        |__ Port 3: Dev 105, If 1, Class=Human Interface Device, Driver=usbhid, 1.5M</span><br><span class="line">/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=ohci-pci/4p, 12M</span><br><span class="line">    |__ Port 1: Dev 4, If 0, Class=Vendor Specific Class, Driver=pl2303, 12M</span><br><span class="line">/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=ehci-pci/4p, 480M</span><br></pre></td></tr></table></figure>
+
+<h2 id="13-查看CPU相关信息"><a href="#13-查看CPU相关信息" class="headerlink" title="13. 查看CPU相关信息"></a>13. 查看CPU相关信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# lscpu</span><br><span class="line">架构：               loongarch64</span><br><span class="line">  CPU 运行模式：     32-bit, 64-bit</span><br><span class="line">  Address sizes:     48 bits physical, 48 bits virtual</span><br><span class="line">  字节序：           Little Endian</span><br><span class="line">CPU:                 8</span><br><span class="line">  在线 CPU 列表：    0-7</span><br><span class="line">BIOS 厂商 ID：       Loongson</span><br><span class="line">型号名称：           Loongson-3A6000</span><br><span class="line">  BIOS 型号名称：    Loongson-3A6000 Not Specified CPU @ 2.5GHz</span><br><span class="line">  BIOS CPU family:   603</span><br><span class="line">  CPU 系列：         Loongson-64bit</span><br><span class="line">  型号：             0x00</span><br><span class="line">  每个核的线程数：   2</span><br><span class="line">  每个座的核数：     4</span><br><span class="line">  座：               1</span><br><span class="line">  BogoMIPS：         5000.00</span><br><span class="line">  标记：             cpucfg lam ual fpu lsx lasx crc32 complex crypto lvz lbt_x86 lbt_arm lbt_mips</span><br><span class="line">Caches (sum of all):</span><br><span class="line">  L1d:               512 KiB (8 instances)</span><br><span class="line">  L1i:               512 KiB (8 instances)</span><br><span class="line">  L2:                2 MiB (8 instances)</span><br><span class="line">  L3:                16 MiB (1 instance)</span><br><span class="line">NUMA:</span><br><span class="line">  NUMA 节点：        1</span><br><span class="line">  NUMA 节点0 CPU：   0-7</span><br></pre></td></tr></table></figure>
+
+<p>以及:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# cat /proc/cpuinfo </span><br><span class="line">system type		: generic-loongson-machine</span><br><span class="line"></span><br><span class="line">processor		: 0</span><br><span class="line">package			: 0</span><br><span class="line">core			: 0</span><br><span class="line">global_id		: 0</span><br><span class="line">CPU Family		: Loongson-64bit</span><br><span class="line">Model Name		: Loongson-3A6000</span><br><span class="line">CPU Revision		: 0x00</span><br><span class="line">FPU Revision		: 0x00</span><br><span class="line">CPU MHz			: 2500.00</span><br><span class="line">BogoMIPS		: 5000.00</span><br><span class="line">TLB Entries		: 2112</span><br><span class="line">Address Sizes		: 48 bits physical, 48 bits virtual</span><br><span class="line">ISA			: loongarch32 loongarch64</span><br><span class="line">Features		: cpucfg lam ual fpu lsx lasx crc32 complex crypto lvz lbt_x86 lbt_arm lbt_mips</span><br><span class="line">Hardware Watchpoint	: yes, iwatch count: 8, dwatch count: 4</span><br><span class="line">......</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<h2 id="14-查看SMBIOS详细信息"><a href="#14-查看SMBIOS详细信息" class="headerlink" title="14. 查看SMBIOS详细信息"></a>14. 查看SMBIOS详细信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# dmidecode</span><br><span class="line"># dmidecode 3.5</span><br><span class="line">Getting SMBIOS data from sysfs.</span><br><span class="line">SMBIOS 3.2.0 present.</span><br><span class="line">Table at 0xFE5A0000.</span><br><span class="line"></span><br><span class="line">Handle 0x0000, DMI type 0, 26 bytes</span><br><span class="line">BIOS Information</span><br><span class="line">	Vendor: Loongson</span><br><span class="line">	Version: Loongson-UDK2018-V4.0.05494-stable202305</span><br><span class="line">	Release Date: 07/10/23 18:05:47</span><br><span class="line">	ROM Size: 4 MB</span><br><span class="line">	Characteristics:</span><br><span class="line">		PCI is supported</span><br><span class="line">		BIOS is upgradeable</span><br><span class="line">		Boot from CD is supported</span><br><span class="line">		Selectable boot is supported</span><br><span class="line">		BIOS ROM is socketed</span><br><span class="line">		Serial services are supported (int 14h)</span><br><span class="line">		USB legacy is supported</span><br><span class="line">		UEFI is supported</span><br><span class="line">	BIOS Revision: 4.0</span><br><span class="line"></span><br><span class="line">Handle 0x0001, DMI type 1, 27 bytes</span><br><span class="line">System Information</span><br><span class="line">	Manufacturer: Loongson</span><br><span class="line">	Product Name: Loongson-3A6000-7A2000-1w-V0.1-EVB</span><br><span class="line">	Version: Not Specified</span><br><span class="line">	Serial Number: Not Specified</span><br><span class="line">	UUID: Not Present</span><br><span class="line">	Wake-up Type: Power Switch</span><br><span class="line">	SKU Number: Not Specified</span><br><span class="line">	Family: Not Specified</span><br><span class="line">......</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>可以使用<code>-t</code>参数只看某一项信息</p>
+<p>如查看<code>processor</code>信息:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd mxd]# dmidecode -t processor</span><br><span class="line"># dmidecode 3.5</span><br><span class="line">Getting SMBIOS data from sysfs.</span><br><span class="line">SMBIOS 3.2.0 present.</span><br><span class="line"></span><br><span class="line">Handle 0x0004, DMI type 4, 48 bytes</span><br><span class="line">Processor Information</span><br><span class="line">	Socket Designation: CPU0</span><br><span class="line">	Type: Central Processor</span><br><span class="line">	Family: &lt;OUT OF SPEC&gt;</span><br><span class="line">	Manufacturer: Loongson</span><br><span class="line">	ID: 33 41 36 30 30 30 00 00</span><br><span class="line">	Version: Loongson-3A6000</span><br><span class="line">	Voltage: Unknown</span><br><span class="line">	External Clock: Unknown</span><br><span class="line">	Max Speed: Unknown</span><br><span class="line">	Current Speed: 2500 MHz</span><br><span class="line">	Status: Populated, Enabled</span><br><span class="line">	Upgrade: &lt;OUT OF SPEC&gt;</span><br><span class="line">	L1 Cache Handle: Not Provided</span><br><span class="line">	L2 Cache Handle: Not Provided</span><br><span class="line">	L3 Cache Handle: Not Provided</span><br><span class="line">	Serial Number: Not Specified</span><br><span class="line">	Asset Tag: Not Specified</span><br><span class="line">	Part Number: Not Specified</span><br><span class="line">	Core Count: 8</span><br><span class="line">	Core Enabled: 8</span><br><span class="line">	Thread Count: 8</span><br><span class="line">	Characteristics:</span><br><span class="line">		64-bit capable</span><br><span class="line">		Multi-Core</span><br><span class="line">		Hardware Thread</span><br></pre></td></tr></table></figure>
+
+<h2 id="15-查看媒体文件信息"><a href="#15-查看媒体文件信息" class="headerlink" title="15. 查看媒体文件信息"></a>15. 查看媒体文件信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd video_test]# mediainfo yangman.wav</span><br><span class="line">General</span><br><span class="line">Complete name                            : yangman.wav</span><br><span class="line">Format                                   : Wave</span><br><span class="line">Format settings                          : PcmWaveformat</span><br><span class="line">File size                                : 43.4 MiB</span><br><span class="line">Duration                                 : 3 min 56 s</span><br><span class="line">Overall bit rate mode                    : Constant</span><br><span class="line">Overall bit rate                         : 1 541 kb/s</span><br><span class="line">Album                                    : 少年</span><br><span class="line">Track name                               : 少年</span><br><span class="line">Track name/Position                      : 1</span><br><span class="line">Performer                                : 梦然</span><br><span class="line">Director                                 : ÃÎÈ»</span><br><span class="line">Genre                                    : pop</span><br><span class="line">Recorded date                            : 2019</span><br><span class="line">Original source form/Name                : ÉÙÄê</span><br><span class="line">Copyright                                : 夏星星收藏</span><br><span class="line">Cover                                    : Yes</span><br><span class="line">Cover type                               : Cover (front)</span><br><span class="line">Cover MIME                               : image/jpeg</span><br><span class="line">ITRK                                     : 1</span><br><span class="line">iurl                                     : http://user.qzone.qq.com/</span><br><span class="line"></span><br><span class="line">Audio</span><br><span class="line">Format                                   : PCM</span><br><span class="line">Format settings                          : Little / Signed</span><br><span class="line">Codec ID                                 : 1</span><br><span class="line">Duration                                 : 3 min 56 s</span><br><span class="line">Bit rate mode                            : Constant</span><br><span class="line">Bit rate                                 : 1 536 kb/s</span><br><span class="line">Channel(s)                               : 2 channels</span><br><span class="line">Sampling rate                            : 48.0 kHz</span><br><span class="line">Bit depth                                : 16 bits</span><br><span class="line">Stream size                              : 43.2 MiB (100%)</span><br></pre></td></tr></table></figure>
+
+<h2 id="16-查看文件"><a href="#16-查看文件" class="headerlink" title="16. 查看文件"></a>16. 查看文件</h2><h3 id="16-1-产看文件类型"><a href="#16-1-产看文件类型" class="headerlink" title="16.1 产看文件类型"></a>16.1 产看文件类型</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd video_test]# file yangman.wav</span><br><span class="line">yangman.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 16 bit, stereo 48000 Hz</span><br></pre></td></tr></table></figure>
+
+<h3 id="16-2-查看文件大小"><a href="#16-2-查看文件大小" class="headerlink" title="16.2 查看文件大小"></a>16.2 查看文件大小</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd video_test]# du -sh yangman.wav</span><br><span class="line">44M	yangman.wav</span><br></pre></td></tr></table></figure>
+
+<h3 id="16-3-查看文件校验码"><a href="#16-3-查看文件校验码" class="headerlink" title="16.3 查看文件校验码"></a>16.3 查看文件校验码</h3><p>如<code>md5</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd video_test]# md5sum yangman.wav</span><br><span class="line">07c75d425e152d3ef782a8dd4b420ab7  yangman.wav</span><br></pre></td></tr></table></figure>
+
+<h2 id="17-查看网络端口信息"><a href="#17-查看网络端口信息" class="headerlink" title="17. 查看网络端口信息"></a>17. 查看网络端口信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@mxd video_test]# netstat -tnup | grep 3389</span><br><span class="line">tcp6       0      0 192.168.1.3:3389           192.168.1.4:59708       ESTABLISHED -</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://aydenmeng.github.io">AydenMeng</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://aydenmeng.github.io/2024/os/systeminfo/">http://aydenmeng.github.io/2024/os/systeminfo/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://aydenmeng.github.io" target="_blank">活在21世纪的孟游</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img_random/3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechatpay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/wechatpay.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/os/install_archlinux/" title="新世界Archlinux系统安装"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/17.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">新世界Archlinux系统安装</div></div></a></div><div class="next-post pull-right"><a href="/2024/os/update_system/" title="如何更新系统"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">如何更新系统</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/mxdon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">AydenMeng</div><div class="author-info__description">人生如戏，那就逢场作戏</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/AydenMeng" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:aydenmeng@yeah.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is Ayden's Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC"><span class="toc-number">1.</span> <span class="toc-text">1. 查看系统版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9F%A5%E7%9C%8B%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC"><span class="toc-number">2.</span> <span class="toc-text">2. 查看内核版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9F%A5%E7%9C%8B%E5%9B%BA%E4%BB%B6%E7%89%88%E6%9C%AC"><span class="toc-number">3.</span> <span class="toc-text">3. 查看固件版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%9F%A5%E7%9C%8Bip"><span class="toc-number">4.</span> <span class="toc-text">4. 查看ip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%9F%A5%E7%9C%8Bpci%E8%AE%BE%E5%A4%87"><span class="toc-number">5.</span> <span class="toc-text">5. 查看pci设备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E8%AF%A6%E7%BB%86%E6%9F%A5%E7%9C%8B%E6%9F%90pci%E8%AE%BE%E5%A4%87%E4%BD%BF%E7%94%A8%E7%9A%84%E9%A9%B1%E5%8A%A8"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 详细查看某pci设备使用的驱动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E4%B8%8B%E6%9F%90%E9%A9%B1%E5%8A%A8%E6%98%AF%E5%90%A6%E5%8A%A0%E8%BD%BD"><span class="toc-number">6.</span> <span class="toc-text">6. 查看系统下某驱动是否加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8log"><span class="toc-number">7.</span> <span class="toc-text">7. 查看系统启动log</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E5%90%AF%E5%8A%A8log"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 查看系统上一次的启动log</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E4%BF%A1%E6%81%AF"><span class="toc-number">8.</span> <span class="toc-text">8. 查看磁盘挂载信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">9.</span> <span class="toc-text">9. 查看磁盘使用信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">10.</span> <span class="toc-text">10. 查看内存使用情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E6%9F%90%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C%E6%83%85%E5%86%B5"><span class="toc-number">11.</span> <span class="toc-text">11. 查看系统某服务运行情况</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-1-%E6%9F%A5%E7%9C%8B%E6%9F%90%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8Clog"><span class="toc-number">11.1.</span> <span class="toc-text">11.1 查看某服务的运行log</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E6%9F%A5%E7%9C%8BUSB%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF"><span class="toc-number">12.</span> <span class="toc-text">12. 查看USB连接信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E6%9F%A5%E7%9C%8BCPU%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF"><span class="toc-number">13.</span> <span class="toc-text">13. 查看CPU相关信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E6%9F%A5%E7%9C%8BSMBIOS%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF"><span class="toc-number">14.</span> <span class="toc-text">14. 查看SMBIOS详细信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E6%9F%A5%E7%9C%8B%E5%AA%92%E4%BD%93%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF"><span class="toc-number">15.</span> <span class="toc-text">15. 查看媒体文件信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6"><span class="toc-number">16.</span> <span class="toc-text">16. 查看文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#16-1-%E4%BA%A7%E7%9C%8B%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="toc-number">16.1.</span> <span class="toc-text">16.1 产看文件类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-2-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F"><span class="toc-number">16.2.</span> <span class="toc-text">16.2 查看文件大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-3-%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E6%A0%A1%E9%AA%8C%E7%A0%81"><span class="toc-number">16.3.</span> <span class="toc-text">16.3 查看文件校验码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%BB%9C%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF"><span class="toc-number">17.</span> <span class="toc-text">17. 查看网络端口信息</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/virtual/qemu_on_loongarch/" title="Qemu使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/11.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qemu使用"/></a><div class="content"><a class="title" href="/2024/virtual/qemu_on_loongarch/" title="Qemu使用">Qemu使用</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/virtual/run-linux-on-loongson-FPGA/" title="run linux on loongson_FPGA"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="run linux on loongson_FPGA"/></a><div class="content"><a class="title" href="/2020/virtual/run-linux-on-loongson-FPGA/" title="run linux on loongson_FPGA">run linux on loongson_FPGA</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/web/mxdon_xydh_fun/" title="炫猿导航"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/20.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="炫猿导航"/></a><div class="content"><a class="title" href="/2021/web/mxdon_xydh_fun/" title="炫猿导航">炫猿导航</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/web/try_react/" title="React实现五子棋游戏"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="React实现五子棋游戏"/></a><div class="content"><a class="title" href="/2020/web/try_react/" title="React实现五子棋游戏">React实现五子棋游戏</a><time datetime="2024-05-28T13:01:28.979Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/firmware/pmon_usage/" title="PMON的使用方法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img_random/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PMON的使用方法"/></a><div class="content"><a class="title" href="/2024/firmware/pmon_usage/" title="PMON的使用方法">PMON的使用方法</a><time datetime="2024-05-28T13:01:28.975Z" title="更新于 2024-05-28 21:01:28">2024-05-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/background1.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By AydenMeng</div><div class="footer_custom_text">Hi, welcome to Ayden's blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaid.length === 0) return
+  const runMermaid = () => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from($mermaid).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const loadMermaid = () => {
+    window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js').then(runMermaid)
+  }
+
+  btf.addGlobalFn('themeChange', runMermaid, 'mermaid')
+
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://blog-comment-eiv9e480i-mxdongit.vercel.app',
+      region: 'eastasia',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.29/dist/twikoo.all.min.js').then(init)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://blog-comment-eiv9e480i-mxdongit.vercel.app',
+      region: 'eastasia',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+      GLOBAL_CONFIG_SITE.isPost && getCount()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://blog-comment-eiv9e480i-mxdongit.vercel.app',
+        region: 'eastasia',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.6.29/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script src="/js/fish.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script src="//code.tidio.co/tajf1h7dq4euas8t8jusi0x28q74d8av.js" async="async"></script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    let isShow = false
+    const close = () => {
+      window.tidioChatApi.hide()
+      isShow = false
+    }
+    
+    const open = () => {
+      window.tidioChatApi.open()
+      window.tidioChatApi.show()
+      isShow = true
+    }
+
+    const onTidioChatApiReady = () => {
+      window.tidioChatApi.hide()
+      window.tidioChatApi.on("close", close)
+    }
+    if (window.tidioChatApi) {
+      window.tidioChatApi.on("ready", onTidioChatApiReady)
+    } else {
+      document.addEventListener("tidioChat-ready", onTidioChatApiReady)
+    }
+
+    window.chatBtnFn = () => {
+      if (!window.tidioChatApi) return
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        window.tidioChatApi && window.tidioChatApi.hide()
+      },
+      show: () => {
+        window.tidioChatApi && window.tidioChatApi.show()
+      }
+    }
+  }
+})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.12.0"></script></div></div></body></html>
