@@ -1,0 +1,852 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>活在21世纪的孟游 – 教程</title><link>https://aydenmeng.github.io/tags/%E6%95%99%E7%A8%8B/</link><description>Recent content in 教程 on 活在21世纪的孟游</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 03 Jun 2024 17:54:33 +0000</lastBuildDate><atom:link href="https://aydenmeng.github.io/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>3A6000上搭建gogs</title><link>https://aydenmeng.github.io/cs/9-app/linux_gogs_for_git/</link><pubDate>Mon, 03 Jun 2024 17:54:33 +0000</pubDate><guid>https://aydenmeng.github.io/cs/9-app/linux_gogs_for_git/</guid><description>
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;pacman -S mariadb
+mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+systemctl start mysql
+mariadb --initialize-insecure --user=mysql --datadir=&amp;#39;./data&amp;#39;
+mysql -u root
+[root@mxd gitrepo]# mysql -u root
+mysql: Deprecated program name. It will be removed in a future release, use &amp;#39;/usr/bin/mariadb&amp;#39; instead
+Welcome to the MariaDB monitor. Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 11.0.2-MariaDB Arch Linux
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+Type &amp;#39;help;&amp;#39; or &amp;#39;\h&amp;#39; for help. Type &amp;#39;\c&amp;#39; to clear the current input statement.
+MariaDB [(none)]&amp;gt; create user &amp;#39;gogs&amp;#39;@&amp;#39;localhost&amp;#39; identified by &amp;#39;passwd&amp;#39;;
+Query OK, 0 rows affected (0.001 sec)
+MariaDB [(none)]&amp;gt; select user,host from mysql.user;
+&amp;#43;-------------&amp;#43;-----------&amp;#43;
+| User | Host |
+&amp;#43;-------------&amp;#43;-----------&amp;#43;
+| PUBLIC | |
+| | localhost |
+| gogs | localhost |
+| mariadb.sys | localhost |
+| mysql | localhost |
+| root | localhost |
+| | mxd |
+&amp;#43;-------------&amp;#43;-----------&amp;#43;
+7 rows in set (0.001 sec)
+MariaDB [(none)]&amp;gt; CREATE DATABASE gogs;
+Query OK, 1 row affected (0.000 sec)
+MariaDB [(none)]&amp;gt; show databases;
+&amp;#43;--------------------&amp;#43;
+| Database |
+&amp;#43;--------------------&amp;#43;
+| gogs |
+| information_schema |
+| mysql |
+| performance_schema |
+| sys |
+| test |
+&amp;#43;--------------------&amp;#43;
+6 rows in set (0.000 sec)
+MariaDB [(none)]&amp;gt; grant all privileges on gogs.* to &amp;#39;gogs&amp;#39;@&amp;#39;%&amp;#39; identified by &amp;#39;passwd&amp;#39; with grant option;
+Query OK, 0 rows affected (0.001 sec)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;build gogs:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;pacman -S go node npm
+git clone --depth 1 https://github.com/gogs/gogs.git gogs
+cd gogs
+go build -o gogs
+./gogs web&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>hvml gui 01: Configure xGUI-Pro for hvml</title><link>https://aydenmeng.github.io/cs/3-software/hvml_00_configure_xgui_pro_for_hvml/</link><pubDate>Sun, 16 Oct 2022 20:22:06 +0000</pubDate><guid>https://aydenmeng.github.io/cs/3-software/hvml_00_configure_xgui_pro_for_hvml/</guid><description>
+&lt;p&gt;libssl-dev libgtk-3-dev libsoup2.4-dev ninja ninja-build libruby2.5 libgcrypt-dev libjpeg-dev libsqlite3-dev&lt;/p&gt;</description></item><item><title>hvml02-学习hvml的语法</title><link>https://aydenmeng.github.io/cs/3-software/hvml_02_grammar/</link><pubDate>Tue, 27 Sep 2022 22:00:33 +0000</pubDate><guid>https://aydenmeng.github.io/cs/3-software/hvml_02_grammar/</guid><description>
+&lt;h2&gt;关键字&lt;span class="hx:absolute hx:-mt-20" id="关键字"&gt;&lt;/span&gt;
+&lt;a href="#%e5%85%b3%e9%94%ae%e5%ad%97" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;在HVML中将其称为标签, 我是这么理解的.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;HVML 为不同的操作引入了大约 20 个标签：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;hvml, head 和 body 被称为 框架标签（frame tag）; 它们用于定义 HVML 程序的框架或者整体结构。&lt;/li&gt;
+&lt;li&gt;archetype, achedata, error 和 except 被称为 模板标签（template tag）; 它们用于定义参数化模板。&lt;/li&gt;
+&lt;li&gt;init, test, iterate, define, call, include, load, exit, return, update, back 和其他使用动词的标签被称为 动词标签（verb tag），它们用于定义操作数据、更新目标文档或控制虚拟机的动作。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;注意，body 标签不是外部标签，它是 HVML 的框架标签。用于定义一个 HVML 程序的入口体。实际上，您可以在 HVML 程序中定义多个 body 元素，并告诉解释器使用特定的主体作为程序的主入口。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;类比成C语言, body就像是main函数.&lt;/p&gt;
+&lt;h2&gt;数据类型&lt;span class="hx:absolute hx:-mt-20" id="数据类型"&gt;&lt;/span&gt;
+&lt;a href="#%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;基本数据类型&lt;span class="hx:absolute hx:-mt-20" id="基本数据类型"&gt;&lt;/span&gt;
+&lt;a href="#%e5%9f%ba%e6%9c%ac%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;null&lt;/td&gt;
+&lt;td&gt;空&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;boolean&lt;/td&gt;
+&lt;td&gt;用于表示真假逻辑值，可取 true 或 false 两种值。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;number&lt;/td&gt;
+&lt;td&gt;用于表达整数或浮点数，一般情况下，等价于 C 语言的 double 类型（双精度浮点数）。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;用于表达文本，始终使用 UTF-8 编码。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;array&lt;/td&gt;
+&lt;td&gt;可使用索引引用的多个数据项，容量可变。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;object&lt;/td&gt;
+&lt;td&gt;用单个或多个键值对（key-value pair）表示，亦称字典、关联数组等；键值对也常被称作属性（property）。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;扩展数据类型&lt;span class="hx:absolute hx:-mt-20" id="扩展数据类型"&gt;&lt;/span&gt;
+&lt;a href="#%e6%89%a9%e5%b1%95%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;undefined&lt;/td&gt;
+&lt;td&gt;该数据仅在内部使用，用来表示数据尚未就绪，或在更新容器数据时移除一个成员。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;exception&lt;/td&gt;
+&lt;td&gt;该数据仅在内部使用，用来表示异常。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;longint&lt;/td&gt;
+&lt;td&gt;应实现为 64 位有符号整数。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ulongint&lt;/td&gt;
+&lt;td&gt;应实现为 64 位无符号整数。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;longdouble&lt;/td&gt;
+&lt;td&gt;对应 C 语言 long double 类型。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;bsequence&lt;/td&gt;
+&lt;td&gt;&lt;del&gt;应该指字符数组&lt;/del&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;tuple&lt;/td&gt;
+&lt;td&gt;可使用索引引用的多个数据项，一旦创建，其容量不可变，其成员不可移除，仅可置空。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;set&lt;/td&gt;
+&lt;td&gt;特殊的数组，其中的成员可根据其值或者对象数组上的唯一性键值确保唯一性。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;特殊数据类型&lt;span class="hx:absolute hx:-mt-20" id="特殊数据类型"&gt;&lt;/span&gt;
+&lt;a href="#%e7%89%b9%e6%ae%8a%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;dynamic value&lt;/td&gt;
+&lt;td&gt;动态值本质上由 获取器（getter） 和 设置器（setter） 方法构成，读取时，由获取器返回对应的值，设置时，由设置器完成对应的工作。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;native entity&lt;/td&gt;
+&lt;td&gt;由底层实现的原生实体，通常用于代表一些可执行复杂操作的抽象数据，如读写流、长连接等。这些复杂操作包括实现虚拟属性上的获取器或设置器方法，实现对原生对象的观察（observe）等。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;上述特殊数据类型属于内部数据类型，仅在运行时有效，在 HVML 代码中可通过变量和表达式访问。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;变量&lt;span class="hx:absolute hx:-mt-20" id="变量"&gt;&lt;/span&gt;
+&lt;a href="#%e5%8f%98%e9%87%8f" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a
+href="https://github.com/HVML/hvml-docs/blob/master/zh/hvml-spec-predefined-variables-v1.0-zh.md"target="_blank" rel="noopener"&gt;HVML 预定义变量&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;变量初始化&lt;span class="hx:absolute hx:-mt-20" id="变量初始化"&gt;&lt;/span&gt;
+&lt;a href="#%e5%8f%98%e9%87%8f%e5%88%9d%e5%a7%8b%e5%8c%96" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>hvml01-在龙芯平台搭建hvml运行环境</title><link>https://aydenmeng.github.io/cs/3-software/hvml_01_env_prepare_on_loongarch/</link><pubDate>Sun, 25 Sep 2022 21:08:55 +0000</pubDate><guid>https://aydenmeng.github.io/cs/3-software/hvml_01_env_prepare_on_loongarch/</guid><description>
+&lt;h2&gt;1. 准备环境&lt;span class="hx:absolute hx:-mt-20" id="1-准备环境"&gt;&lt;/span&gt;
+&lt;a href="#1-%e5%87%86%e5%a4%87%e7%8e%af%e5%a2%83" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;根据Hvml社区介绍:&lt;/p&gt;
+&lt;p&gt;PurC 的目标是用 C 语言实现HVML 规范 V1.0定义的所有特性和HVML 预定义变量 V1.0 定义的所有预定义动态对象。&lt;/p&gt;
+&lt;p&gt;To build PurC, make sure that the following tools or libraries are available on your Linux or macOS system:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;cmake&lt;/li&gt;
+&lt;li&gt;A C11 and CXX17 compliant complier: GCC 8+ or Clang 6+&lt;/li&gt;
+&lt;li&gt;glib 2.44.0 or later&lt;/li&gt;
+&lt;li&gt;Python 3&lt;/li&gt;
+&lt;li&gt;BISON 3.0 or later&lt;/li&gt;
+&lt;li&gt;FLEX 2.6.4 or later&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我使用的是龙芯发布的Loongnix系统:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml$ cat /etc/os-release
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;PRETTY_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Loongnix GNU/Linux 20 (DaoXiangHu)&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Loongnix GNU/Linux&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;VERSION_ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;20&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;20 (DaoXiangHu)&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;VERSION_CODENAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;DaoXiangHu
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Loongnix
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;HOME_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;https://www.loongnix.cn/&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;SUPPORT_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;https://www.loongnix.cn/&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;BUG_REPORT_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;http://www.loongnix.cn/&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其中系统自带的gcc, glibc, python3是满足需求的, 需要手动安装的bison, flex默认版本也都是满足需求的, 安装命令如下:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install bison flex -y&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其中只有cmake的环境有一点问题, 但也很好解决.&lt;/p&gt;
+&lt;p&gt;系统默认不带有cmake, &lt;code&gt;sudo apt install cmake&lt;/code&gt;所安装的cmake版本是3.13.4, 编译PurC时提示需要3.15以上的cmake:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml/PurC$ cmake -DCMAKE_BUILD_TYPE&lt;span class="o"&gt;=&lt;/span&gt;RelWithDebInfo -DPORT&lt;span class="o"&gt;=&lt;/span&gt;Linux -B build &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; cmake --build build &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo cmake --install build
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;CMake Error at CMakeLists.txt:11 &lt;span class="o"&gt;(&lt;/span&gt;cmake_minimum_required&lt;span class="o"&gt;)&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; CMake 3.15 or higher is required. You are running version 3.13.4
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Configuring incomplete, errors occurred!
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;See also &lt;span class="s2"&gt;&amp;#34;/home/mxdon/hvml/PurC/build/CMakeFiles/CMakeOutput.log&amp;#34;&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;See also &lt;span class="s2"&gt;&amp;#34;/home/mxdon/hvml/PurC/build/CMakeFiles/CMakeError.log&amp;#34;&lt;/span&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;所以手动编译一个cmake3.15.3, 其他版本应该是类似的:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml/cmake-3.15.3$ ./bootstrap --prefix&lt;span class="o"&gt;=&lt;/span&gt;/home/mxdon/hvml/cmake-3.15.3/build/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;CMake 3.15.3, Copyright 2000-2019 Kitware, Inc. and Contributors
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Found GNU toolchain
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;C compiler on this system is: gcc
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;C++ compiler on this system is: g++
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Makefile processor on this system is: make
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ has setenv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ has unsetenv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ does not have environ in stdlib.h
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ has stl wstring
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ has &amp;lt;ext/stdio_filebuf.h&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ -I/home/mxdon/hvml/cmake-3.15.3/Bootstrap.cmk -I/home/mxdon/hvml/cmake-3.15.3/Source -I/home/mxdon/hvml/cmake-3.15.3/Source/LexerParser -I/home/mxdon/hvml/cmake-3.15.3/Utilities -c /home/mxdon/hvml/cmake-3.15.3/Source/cmAddCustomCommandCommand.cxx -o cmAddCustomCommandCommand.o
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;In file included from /home/mxdon/hvml/cmake-3.15.3/Utilities/cm_kwiml.h:12,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; from /home/mxdon/hvml/cmake-3.15.3/Source/cmAlgorithms.h:10,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; from /home/mxdon/hvml/cmake-3.15.3/Source/cmGlobalGenerator.h:16,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; from /home/mxdon/hvml/cmake-3.15.3/Source/cmAddCustomCommandCommand.cxx:11:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/home/mxdon/hvml/cmake-3.15.3/Utilities/KWIML/include/kwiml/abi.h:476:3: error: &lt;span class="c1"&gt;#error &amp;#34;Byte order of target CPU unknown.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# error &amp;#34;Byte order of target CPU unknown.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ^~~~~
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make: *** &lt;span class="o"&gt;[&lt;/span&gt;Makefile:4：cmAddCustomCommandCommand.o&lt;span class="o"&gt;]&lt;/span&gt; 错误 &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Error when bootstrapping CMake:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Problem &lt;span class="k"&gt;while&lt;/span&gt; running make
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Log of errors: /home/mxdon/hvml/cmake-3.15.3/Bootstrap.cmk/cmake_bootstrap.log
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---------------------------------------------&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这个问题很好解决, 只是在&lt;code&gt;Utilities/KWIML/include/kwiml/abi.h&lt;/code&gt;缺少一个大小端的定义, 所以就直接加个小端定义好了.&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-patch" data-lang="patch"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; /* Unknown CPU */
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; #elif !defined(KWIML_ABI_NO_ERROR_ENDIAN)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gd"&gt;-# error &amp;#34;Byte order of target CPU unknown.&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+//# error &amp;#34;Byte order of target CPU unknown.&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+# define KWIML_ABI_ENDIAN_ID KWIML_ABI_ENDIAN_ID_LITTLE
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; #endif
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;将cmake-3.15.3添加至环境变量中, 然后就可以编译PurC了:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;root@mxdon-la:/home/mxdon/hvml/PurC# &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/mxdon/hvml/cmake-3.15.3/build/bin/:&lt;span class="nv"&gt;$PATH&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;root@mxdon-la:/home/mxdon/hvml/PurC# cmake -DCMAKE_BUILD_TYPE&lt;span class="o"&gt;=&lt;/span&gt;RelWithDebInfo -DPORT&lt;span class="o"&gt;=&lt;/span&gt;Linux -B build &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; cmake --build build &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo /home/mxdon/hvml/cmake-3.15.3/build/bin/cmake --install build
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- The CMake build &lt;span class="nb"&gt;type&lt;/span&gt; is: RelWithDebInfo
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Enabling ccache: Couldn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t find ccache program. Not enabling it.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Performing Test C_COMPILER_SUPPORTS_-fmax-errors&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Performing Test C_COMPILER_SUPPORTS_-fmax-errors&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt; - Success
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Performing Test CXX_COMPILER_SUPPORTS_-fmax-errors&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Performing Test CXX_COMPILER_SUPPORTS_-fmax-errors&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt; - Success
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;......
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Installing: /usr/local/include/purc/purc.h
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Installing: /usr/local/lib/purc-0.8/libpurc-dvobj-FS.so
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Set runtime path of &lt;span class="s2"&gt;&amp;#34;/usr/local/lib/purc-0.8/libpurc-dvobj-FS.so&amp;#34;&lt;/span&gt; to &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Installing: /usr/local/lib/purc-0.8/libpurc-dvobj-MATH.so
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Set runtime path of &lt;span class="s2"&gt;&amp;#34;/usr/local/lib/purc-0.8/libpurc-dvobj-MATH.so&amp;#34;&lt;/span&gt; to &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Installing: /usr/local/bin/purc
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Set runtime path of &lt;span class="s2"&gt;&amp;#34;/usr/local/bin/purc&amp;#34;&lt;/span&gt; to &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;之后需要将PurC用到的链接库增加至系统链接路径, 修改&lt;code&gt;/etc/ld.so.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml$ cat /etc/ld.so.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;include /etc/ld.so.conf.d/*.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/usr/local/lib/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml$ sudo ldconfig&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后执行demo程序:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml/PurC$ cat demo.hvml
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;!DOCTYPE hvml&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;hvml &lt;span class="nv"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;void&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;$STREAM&lt;/span&gt;.stdout.writelines&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Hello, world!&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;/hvml&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml/PurC$ purc demo.hvml
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hello, world!&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>个人git仓库搭建过程</title><link>https://aydenmeng.github.io/cs/9-app/linux_gitea_for_git/</link><pubDate>Sat, 22 Jan 2022 17:57:36 +0000</pubDate><guid>https://aydenmeng.github.io/cs/9-app/linux_gitea_for_git/</guid><description>
+&lt;h2&gt;准备&lt;span class="hx:absolute hx:-mt-20" id="准备"&gt;&lt;/span&gt;
+&lt;a href="#%e5%87%86%e5%a4%87" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;gitea——gitea是一款轻量开源git服务器，可以在本地搭建。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;mysql——gitea需要数据库支持，mysql对个人用户比较方便。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;搭建&lt;span class="hx:absolute hx:-mt-20" id="搭建"&gt;&lt;/span&gt;
+&lt;a href="#%e6%90%ad%e5%bb%ba" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;mysql&lt;span class="hx:absolute hx:-mt-20" id="mysql"&gt;&lt;/span&gt;
+&lt;a href="#mysql" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;由于服务器没有root权限，所以数据库需要非root用户安装，可以参考：&lt;a
+href="https://cloud.tencent.com/developer/article/1583129"target="_blank" rel="noopener"&gt;https://cloud.tencent.com/developer/article/1583129&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PS: 如果有root权限的话完全不必这么麻烦～&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;下载过程省略&lt;/p&gt;
+&lt;p&gt;配置文件：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;[client]
+port=3333
+socket=/home/mxdon/gitea/mysql/mysql.sock
+[mysqld]
+port=3333
+basedir=/home/mxdon/gitea/mysql
+datadir=/home/mxdon/gitea/mysql/data
+pid-file=/home/mxdon/gitea/mysql/mysql.pid
+socket=/home/mxdon/gitea/mysql/mysql.sock
+log_error=/home/mxdon/gitea/mysql/error.log
+server-id=100&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：由于3306端口常被占用，需要更改&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;启动命令&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;/home/mxdon/gitea/mysql/bin/mysqld_safe --defaults-file=/home/mxdon/gitea/mysql/my.cnf --user=mxdon&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：这里的user是mysql的主机用户，与文件夹的拥有者不同&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;gitea&lt;span class="hx:absolute hx:-mt-20" id="gitea"&gt;&lt;/span&gt;
+&lt;a href="#gitea" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;启动命令&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;/home/mxdon/gitea/gitea web -p 5000&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;-p 指定http访问端口，默认是3000&lt;/p&gt;
+&lt;p&gt;然后打开15.2.5.5:5000网址，即可进行图形配置，这里只放出ini文件：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;APP_NAME = mxdon资料共享
+RUN_USER = mxdon
+RUN_MODE = prod
+[security]
+INTERNAL_TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2MzY0NDM5MzB9.LyfUN-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+INSTALL_LOCK = true
+SECRET_KEY = okb73n7MVPRTC1UAeIlxxxxxxxxxxxxxxxxxxxxxxxfunuGv7tPVRQD9CvJMQGFv
+PASSWORD_HASH_ALGO = pbkdf2
+[server]
+LOCAL_ROOT_URL = http://localhost:5000/
+SSH_DOMAIN = 15.2.5.5
+DOMAIN = 15.2.5.5
+HTTP_PORT = 5000
+ROOT_URL = http://15.2.5.5:5000/
+DISABLE_SSH = false
+SSH_PORT = 22
+LFS_START_SERVER = true
+LFS_CONTENT_PATH = /home/mxdon/gitea/data/lfs
+LFS_JWT_SECRET = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxQ6N80
+OFFLINE_MODE = false
+[database]
+DB_TYPE = mysql
+HOST = 15.2.5.5:3333
+NAME = gitea
+USER = mxdon
+PASSWD = mxdon123
+SCHEMA =
+SSL_MODE = disable
+CHARSET = utf8
+PATH = /home/mxdon/gitea/data/gitea.db
+LOG_SQL = false
+[repository]
+ROOT = /home/mxdon/gitea/data/gitea-repositories
+[mailer]
+ENABLED = false
+[service]
+REGISTER_EMAIL_CONFIRM = false
+ENABLE_NOTIFY_MAIL = false
+DISABLE_REGISTRATION = false
+ALLOW_ONLY_EXTERNAL_REGISTRATION = false
+ENABLE_CAPTCHA = false
+REQUIRE_SIGNIN_VIEW = false
+DEFAULT_KEEP_EMAIL_PRIVATE = false
+DEFAULT_ALLOW_CREATE_ORGANIZATION = true
+DEFAULT_ENABLE_TIMETRACKING = true
+NO_REPLY_ADDRESS = noreply.localhost
+[picture]
+DISABLE_GRAVATAR = false
+ENABLE_FEDERATED_AVATAR = true
+[openid]
+ENABLE_OPENID_SIGNIN = true
+ENABLE_OPENID_SIGNUP = true
+[session]
+PROVIDER = file
+[log]
+MODE = console
+LEVEL = info
+ROOT_PATH = /home/mxdon/gitea/log
+ROUTER = console&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意，其中mysql的账户需要有远程访问的权限，并建议新建数据库gitea用作gitea服务器交互，配置过程如下，其中先设权限后建数据库，以防数据库被弄脏使索引不匹配&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;mysql&amp;gt; GRANT ALL ON *.* TO &amp;#39;mxdon&amp;#39;@&amp;#39;%&amp;#39;;
+mysql&amp;gt; create database gitea;
+mysql&amp;gt; flush privileges;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;使用如下命令查看，可以验证：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;mysql&amp;gt; use mysql;
+mysql&amp;gt; select user, host from user;
+&amp;#43;---------------&amp;#43;-----------&amp;#43;
+| user | host |
+&amp;#43;---------------&amp;#43;-----------&amp;#43;
+| mxdon | % |
+| mysql.session | localhost |
+| mysql.sys | localhost |
+| root | localhost |
+&amp;#43;---------------&amp;#43;-----------&amp;#43;
+4 rows in set (0.00 sec)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;自启动&lt;span class="hx:absolute hx:-mt-20" id="自启动"&gt;&lt;/span&gt;
+&lt;a href="#%e8%87%aa%e5%90%af%e5%8a%a8" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;没有root权限没法自启动，只能假装一下: nohup&lt;/p&gt;
+&lt;p&gt;可以写一个简单的脚本：&lt;/p&gt;
+&lt;p&gt;另外，不要在脚本中添加echo输出一些提示信息，这样会使scp不生效，我也不知道为什么&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;#!/bin/sh
+Pgitea=`ps -aux | grep &amp;#34;/home/mxdon/gitea/gitea web -p 5000&amp;#34;`
+Pmysql=`ps -aux | grep &amp;#34;/home/mxdon/gitea/mysql/bin/mysqld_safe --defaults-file&amp;#34;`
+if [ ${#Pmysql} -eq 0 ]
+then
+nohup /home/mxdon/gitea/mysql/bin/mysqld_safe --defaults-file=/home/mxdon/gitea/mysql/my.cnf --user=mxdon &amp;gt; /home/mxdon/gitea/mysql/.nohup.log 2&amp;gt;&amp;amp;1 &amp;amp;
+fi
+if [ ${#Pgitea} -eq 0 ]
+then
+nohup /home/mxdon/gitea/gitea web -p 5000 &amp;gt; /home/mxdon/gitea/.nohup.log 2&amp;gt;&amp;amp;1 &amp;amp;
+fi&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;命名为.gitea.sh&lt;/p&gt;
+&lt;p&gt;每次可以直接source一下即可，也可以写进bashrc中：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;source /home/mxdon/.gitea.sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;另外，由于mysql的启动有些麻烦，可以使用alias:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;alias mysql=&amp;#39;/home/mxdon/gitea/mysql/bin/mysql -S /home/mxdon/gitea/mysql/mysql.sock&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这样就可以无痕使用mysql&lt;/p&gt;
+&lt;h2&gt;最后，点个关注不迷路&lt;span class="hx:absolute hx:-mt-20" id="最后点个关注不迷路"&gt;&lt;/span&gt;
+&lt;a href="#%e6%9c%80%e5%90%8e%e7%82%b9%e4%b8%aa%e5%85%b3%e6%b3%a8%e4%b8%8d%e8%bf%b7%e8%b7%af" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;公众号：&lt;a
+href="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8a089ae12bfb4ca9a9e5d9ac82f58d43~tplv-k3u1fbpfcp-zoom-1.image"target="_blank" rel="noopener"&gt;孟游先生的旅游笔记&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>Java环境变量配置超详细教程</title><link>https://aydenmeng.github.io/cs/9-app/software_install_java/</link><pubDate>Tue, 15 Jan 2019 17:03:22 +0000</pubDate><guid>https://aydenmeng.github.io/cs/9-app/software_install_java/</guid><description>
+&lt;h1&gt;概述&lt;/h1&gt;&lt;p&gt;Java的环境配置并不是特别难，但是对刚上手的新手来说确实是一个大问题&lt;/p&gt;
+&lt;p&gt;首先下载jdk安装包&lt;a
+href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html"target="_blank" rel="noopener"&gt;网址&lt;/a&gt;进去选择自己需要的版本下载就行了，这里演示的是jdk-8u131-windows-x64_8.0.1310.11，版本稍老，道理一样&lt;/p&gt;
+&lt;h2&gt;安装&lt;span class="hx:absolute hx:-mt-20" id="安装"&gt;&lt;/span&gt;
+&lt;a href="#%e5%ae%89%e8%a3%85" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;下载后直接双击运行，这时会让你选择安装路径
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image1.png" alt="" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image2.png" alt="" loading="lazy" /&gt;
+默认是C盘，这里改成自己想要存放的地方，我放在了我D盘的ROUTE文件夹下的java目录下的jdk1.8.0_131
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/22.png" alt="" loading="lazy" /&gt;
+然后点击确定，下一步，开始跑进度条，但是不一会就会弹窗出来jre的安装路径
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image3.png" alt="" loading="lazy" /&gt;
+我们点击更改，然后选择一个别的文件夹,我这里放在了java文件夹下的jre1.8文件夹，因为老放C盘等C盘满了就很麻烦，所以做好分类条理清晰点用着也舒服。
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image4.png" alt="" loading="lazy" /&gt;
+然后点击下一步
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image5.png" alt="" loading="lazy" /&gt;
+接着等待跑进度条，分分钟完事
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image6.png" alt="" loading="lazy" /&gt;
+然后就安装结束了，点击完成即可
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image7.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;环境变量的配置&lt;span class="hx:absolute hx:-mt-20" id="环境变量的配置"&gt;&lt;/span&gt;
+&lt;a href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e7%9a%84%e9%85%8d%e7%bd%ae" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;接下来就是环境变量的配置&lt;/p&gt;
+&lt;p&gt;首先右键此电脑，选择属性
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/23.png" alt="" loading="lazy" /&gt;
+点击左侧的高级系统设置
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/24.png" alt="" loading="lazy" /&gt;
+点击环境变量
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/25.png" alt="" loading="lazy" /&gt;
+在下方的系统变量中点击新建
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image8.png" alt="" loading="lazy" /&gt;
+新建变量名为JAVA_HOME
+变量值我们点击浏览目录，选择jdk的安装路径jdk1.8.0_131文件夹
+然后点击确定
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image9.png" alt="" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image10.png" alt="" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image11.png" alt="" loading="lazy" /&gt;
+到这里还没有完成，别着急
+然后我们还要继续新建一个环境变量
+变量名为CLASSPATH
+变量值为&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;%之间的相当于一个路径的绝对引用，好处是如果你想给别人演示一遍这个教程，只需要重新安装一边jdk，环境变量重新说说就行了
+当然你也可以自己选择浏览文件，这里不做过多演示
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image12.png" alt="" loading="lazy" /&gt;
+到这里还是没有完成
+接下来配置系统变量path，这里有点东西要注意，一不小心就出错&lt;/p&gt;
+&lt;h3&gt;path系统变量的配置&lt;span class="hx:absolute hx:-mt-20" id="path系统变量的配置"&gt;&lt;/span&gt;
+&lt;a href="#path%e7%b3%bb%e7%bb%9f%e5%8f%98%e9%87%8f%e7%9a%84%e9%85%8d%e7%bd%ae" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4&gt;先按做一遍错误示范&lt;span class="hx:absolute hx:-mt-20" id="先按做一遍错误示范"&gt;&lt;/span&gt;
+&lt;a href="#%e5%85%88%e6%8c%89%e5%81%9a%e4%b8%80%e9%81%8d%e9%94%99%e8%af%af%e7%a4%ba%e8%8c%83" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;我们点击path环境变量进行编辑
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image13.png" alt="" loading="lazy" /&gt;
+然后点击右侧的编辑
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image14.png" alt="" loading="lazy" /&gt;
+在编辑框的后面输入&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;注意：符号都是英文符号
+然后点击确定，确定，确定，直到退出环境变量的设置的地方，这就算是配置完成了
+这时候如果打开cmd小黑框进行验证环境变量是否配置成功的话，分别输入java、javac、java -version再分别回车，但是javac的回车后面会报错，这里暂时先不放图片了&lt;/p&gt;
+&lt;h4&gt;接下来做正确示范&lt;span class="hx:absolute hx:-mt-20" id="接下来做正确示范"&gt;&lt;/span&gt;
+&lt;a href="#%e6%8e%a5%e4%b8%8b%e6%9d%a5%e5%81%9a%e6%ad%a3%e7%a1%ae%e7%a4%ba%e8%8c%83" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;在按照上述错误做法进行的时候我们退出来可以发现path系统变量的值多了一个双引号
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image16.png" alt="" loading="lazy" /&gt;
+所以我们只需要再次点击编辑，然后点击编辑文本
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image17.png" alt="" loading="lazy" /&gt;
+接下里窗口会变成下图这样，我们移动光标找到两个双引号并删除就ok了
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image18.png" alt="" loading="lazy" /&gt;
+当然，如果没有按照错误的做法来做的话，直接点击编辑文本，然后把;%JAVA_HOME%/bin;%JAVA_HOME%/jre\bin;输入进去当然就直接ok了&lt;/p&gt;
+&lt;h5&gt;ps：貌似win7系统可以直接点编辑就有编辑文本的效果&lt;span class="hx:absolute hx:-mt-20" id="ps貌似win7系统可以直接点编辑就有编辑文本的效果"&gt;&lt;/span&gt;
+&lt;a href="#ps%e8%b2%8c%e4%bc%bcwin7%e7%b3%bb%e7%bb%9f%e5%8f%af%e4%bb%a5%e7%9b%b4%e6%8e%a5%e7%82%b9%e7%bc%96%e8%be%91%e5%b0%b1%e6%9c%89%e7%bc%96%e8%be%91%e6%96%87%e6%9c%ac%e7%9a%84%e6%95%88%e6%9e%9c" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h5&gt;&lt;h2&gt;检查是否安装成功&lt;span class="hx:absolute hx:-mt-20" id="检查是否安装成功"&gt;&lt;/span&gt;
+&lt;a href="#%e6%a3%80%e6%9f%a5%e6%98%af%e5%90%a6%e5%ae%89%e8%a3%85%e6%88%90%e5%8a%9f" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;打开cmd，下面三种命令同时成功才算是真正的成功，否则还是无法使用。
+输入java回车出现类似下图即为成功
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image19.png" alt="" loading="lazy" /&gt;
+输入javac回车出现类似下图即为成功
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image20.png" alt="" loading="lazy" /&gt;
+输入java -version回车出现类似下图即为成功
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/java-install/image21.png" alt="" loading="lazy" /&gt;&lt;/p&gt;</description></item><item><title>MySQL安装及配置</title><link>https://aydenmeng.github.io/cs/9-app/software_install_mysql/</link><pubDate>Mon, 14 Jan 2019 18:24:43 +0000</pubDate><guid>https://aydenmeng.github.io/cs/9-app/software_install_mysql/</guid><description>
+&lt;p&gt;MySQL作为最常用的数据库，手动安装的方法还是稍微有些弯弯&lt;/p&gt;
+&lt;p&gt;首先下载安装包 （&lt;a
+href="https://dev.mysql.com/downloads/file/?id=476233"target="_blank" rel="noopener"&gt;官网&lt;/a&gt;） 进入页面后可以不登录。后点击底部”No thanks, just start my download.”即可开始下载。&lt;/p&gt;
+&lt;h2&gt;安装：&lt;span class="hx:absolute hx:-mt-20" id="安装"&gt;&lt;/span&gt;
+&lt;a href="#%e5%ae%89%e8%a3%85" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;直接把压缩包解压到你想安装的路径即可，相当于不用安装，可以看到我的解压路径在D盘的ROUTE文件夹下的mysql8文件夹中，下图画红线的Date文件夹和my.ini文件是解压时本没有的，这里先不说，后面会讲
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image1.png" alt="" loading="lazy" /&gt;
+我安装的时候，先在解压到的文件夹下创建了my.ini文件，其中代码如下：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;[mysqld]
+#设置3306端口
+port=3306
+#设置mysql的安装目录
+basedir=D:\\ROUTE\\mysql8 # 此处可以用单斜杠也可以用双斜杠，有的人用单斜杠会错，自己试试就知道了
+#设置mysql数据库的数据的存放目录
+datadir=D:\\ROUTE\\mysql8\\Data # 此处同上
+#允许最大连接数
+max_connections=200
+#允许连接失败的次数。这是为了防止有人从该主机试图攻击数据库系统
+max_connect_errors=10
+#服务端使用的字符集默认为UTF8
+character-set-server=utf8
+#创建新表时将使用的默认存储引擎
+default-storage-engine=INNODB
+#默认使用“mysql_native_password”插件认证
+default_authentication_plugin=mysql_native_password
+[mysql]
+#设置mysql客户端默认字符集
+default-character-set=utf8
+[client]
+#设置mysql客户端连接服务端时默认使用的端口
+port=3306
+default-character-set=utf8
+[WinMySQLAdmin]
+Server=D:\ROUTE\mysql8\bin\mysqld.exe
+#设置将mysql的服务添加到注册表中，反正我当时没加这句话初始化有问题，目录照猫画虎，单双杠自己选&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;关于3360端口没什么好说的，MySQL默认端口可能会被占用，修改端口即可。
+然后上面写的路径是我电脑上的相关路径，第二处（D:\ROUTE\mysql8\Data）Date就是指在接下来初始化时会自行创建的文件夹，你就别改了，跟我先做一遍再说。然后保存即可。&lt;/p&gt;
+&lt;h2&gt;配置环境变量&lt;span class="hx:absolute hx:-mt-20" id="配置环境变量"&gt;&lt;/span&gt;
+&lt;a href="#%e9%85%8d%e7%bd%ae%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;然后我们来配置环境变量
+右键此电脑选择属性
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image2.png" alt="" loading="lazy" /&gt;
+然后点击“高级系统设置”
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image3.png" alt="" loading="lazy" /&gt;
+点击环境变量
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image4.png" alt="" loading="lazy" /&gt;
+在系统变量下找到path，点一下path然后再点击“编辑”
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image5.png" alt="" loading="lazy" /&gt;
+然后点新建，再点浏览
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image6.png" alt="" loading="lazy" /&gt;
+选择bin文件的目录点确定就ok，然后退出时依此确定保存即可，环境变量配置成功。
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image7.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;数据库初始化&lt;span class="hx:absolute hx:-mt-20" id="数据库初始化"&gt;&lt;/span&gt;
+&lt;a href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e5%88%9d%e5%a7%8b%e5%8c%96" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;接下来进行数据库初始化&lt;/p&gt;
+&lt;p&gt;找到cmd，这里要以管理员身份运行，怎么操作呢？
+我们打开运行(win 和 R一起按），输入cmd回车
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image8.png" alt="" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image9.png" alt="" loading="lazy" /&gt;
+可以看到上面写着C:\Windows\System32\cmd.exe
+然后我们找到这个路径，右键以管理员身份运行就ok
+(当然也可以直接在搜索框中搜索cmd然后右键以管理员身份运行就行了，这里就不演示了。)
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image10.png" alt="" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image11.png" alt="" loading="lazy" /&gt;
+然后打开到bin目录下：
+如果不在C盘，比如我的在D盘，就要先输入D:
+因为从C盘到其他盘必须先转到其他盘以后才能使用cd命令
+然后输入cd ROUTE\mysql8\bin
+如果在C盘就直接用cd按照上述形式打开即可
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image12.png" alt="" loading="lazy" /&gt;
+然后输入mysqld &amp;ndash;initialize &amp;ndash;console
+注意是mysqld不是mysql，是两个横不是一个横，单词后面有一个空格！
+然后回车
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image13.png" alt="" loading="lazy" /&gt;
+这个显示过程大概30秒吧
+效果图如上，三个方框里显示的内容是固定的，顺序也固定，多显示或许没问题，少显示一定有问题，warning只是警告，千万别有error
+然后这里一定记住！！！！！！！
+@localhost：后面的几个奇怪字符是初始化密码，千万记住，要不然忘记密码的改密码很麻烦！！！！看不懂字的看图！！！！&lt;/p&gt;
+&lt;p&gt;然后继续输入mysqld &amp;ndash;install
+注意：mysqld不是mysql，中间有空格，两横不是一横！！！
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image14.png" alt="" loading="lazy" /&gt;
+我这演示了一边移除，然后进行的安装，如上图显示就基本大功告成了&lt;/p&gt;
+&lt;p&gt;然后我们关闭cmd黑窗口（别忘了密码!!!密码!!!密码!!!），再按照之前的步骤从新以管理员身份打开一个新的cmd窗口
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image15.png" alt="" loading="lazy" /&gt;
+输入net start mysql命令来开启mysql服务
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image16.png" alt="" loading="lazy" /&gt;
+然后输入mysql -u root –p
+来进入数据库，这是会让你输入密码！！！！！
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image17.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;改密码&lt;span class="hx:absolute hx:-mt-20" id="改密码"&gt;&lt;/span&gt;
+&lt;a href="#%e6%94%b9%e5%af%86%e7%a0%81" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;然后改一个好记的密码
+继续输入alter user ‘root‘@’localhost’identified with mysql_native_password by ‘新密码’;
+注意！！！！！上面的句子是不区分大小写的，但是密码好像区分！不过符号还是都用英文符号来写吧，因为我用中文失败过。。。。还有！！！！句末有英文分号看清楚，不能少！！！
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-mysql-install/image18.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;完成&lt;span class="hx:absolute hx:-mt-20" id="完成"&gt;&lt;/span&gt;
+&lt;a href="#%e5%ae%8c%e6%88%90" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这个时候就算是完成了。&lt;/p&gt;
+&lt;p&gt;注意：如果有问题都会报错，自己动手搜索才能完全解决自己的问题&lt;/p&gt;</description></item></channel></rss>

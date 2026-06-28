@@ -1,0 +1,149 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>活在21世纪的孟游 – Github</title><link>https://aydenmeng.github.io/tags/github/</link><description>Recent content in Github on 活在21世纪的孟游</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 19 Dec 2021 00:16:15 +0000</lastBuildDate><atom:link href="https://aydenmeng.github.io/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>GitHub访问加速</title><link>https://aydenmeng.github.io/cs/5-devops/py_github_speedup/</link><pubDate>Sun, 19 Dec 2021 00:16:15 +0000</pubDate><guid>https://aydenmeng.github.io/cs/5-devops/py_github_speedup/</guid><description>
+&lt;blockquote&gt;
+&lt;p&gt;由于近些年&lt;code&gt;GitHub&lt;/code&gt;分发网络被&lt;code&gt;dns&lt;/code&gt;污染严重，导致国内用户访问速度巨慢，解决方法也有不少，详情参考“&lt;strong&gt;参考文献&lt;/strong&gt;中的内容”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;加速方法&lt;span class="hx:absolute hx:-mt-20" id="加速方法"&gt;&lt;/span&gt;
+&lt;a href="#%e5%8a%a0%e9%80%9f%e6%96%b9%e6%b3%95" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;使用镜像网站或代理网站&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cdn&lt;/code&gt;加速&lt;/li&gt;
+&lt;li&gt;转入&lt;code&gt;gitee&lt;/code&gt;加速&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;使用镜像网站&lt;span class="hx:absolute hx:-mt-20" id="使用镜像网站"&gt;&lt;/span&gt;
+&lt;a href="#%e4%bd%bf%e7%94%a8%e9%95%9c%e5%83%8f%e7%bd%91%e7%ab%99" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;镜像网站地址：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a
+href="https://github.com.cnpmjs.org/"target="_blank" rel="noopener"&gt;https://github.com.cnpmjs.org/ &lt;/a&gt; (常用)&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="https://hub.fastgit.org/"target="_blank" rel="noopener"&gt;https://hub.fastgit.org/&lt;/a&gt; (常用)&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="https://gitclone.com/"target="_blank" rel="noopener"&gt;https://gitclone.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="https://github-dotcom.gateway.web.tr/"target="_blank" rel="noopener"&gt;https://github-dotcom.gateway.web.tr/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="https://hub.xn--p8jhe.tw/?imyshare.com=friends"target="_blank" rel="noopener"&gt;https://hub.xn&amp;ndash;p8jhe.tw/?imyshare.com=friends&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="https://hub.xn--gzu630h.xn--kpry57d/?imyshare.com=friends"target="_blank" rel="noopener"&gt;https://hub.xn&amp;ndash;gzu630h.xn&amp;ndash;kpry57d/?imyshare.com=friends&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="https://gh.api.99988866.xyz/"target="_blank" rel="noopener"&gt;https://gh.api.99988866.xyz/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="https://toolwa.com/github/"target="_blank" rel="noopener"&gt;https://toolwa.com/github/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="https://ghproxy.com/"target="_blank" rel="noopener"&gt;https://ghproxy.com/&lt;/a&gt; (代理加速)&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="https://www.7ed.net/gra/"target="_blank" rel="noopener"&gt;https://www.7ed.net/gra/&lt;/a&gt; (raw加速)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;code&gt;CDN&lt;/code&gt;加速&lt;span class="hx:absolute hx:-mt-20" id="cdn加速"&gt;&lt;/span&gt;
+&lt;a href="#cdn%e5%8a%a0%e9%80%9f" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Hosts&lt;/strong&gt;是一个没有扩展名的&lt;a
+href="https://baike.baidu.com/item/%e7%b3%bb%e7%bb%9f%e6%96%87%e4%bb%b6/7581367"target="_blank" rel="noopener"&gt;系统文件&lt;/a&gt;，可以用记事本等工具打开，其作用就是将一些常用的网址&lt;a
+href="https://baike.baidu.com/item/%e5%9f%9f%e5%90%8d/86062"target="_blank" rel="noopener"&gt;域名&lt;/a&gt;与其对应的&lt;a
+href="https://baike.baidu.com/item/IP%e5%9c%b0%e5%9d%80"target="_blank" rel="noopener"&gt;IP地址&lt;/a&gt;建立一个关联“数据库”，当用户在浏览器中输入一个需要登录的网址时，系统会首先自动从&lt;a
+href="https://baike.baidu.com/item/Hosts%e6%96%87%e4%bb%b6"target="_blank" rel="noopener"&gt;Hosts文件&lt;/a&gt;中寻找对应的&lt;a
+href="https://baike.baidu.com/item/IP%e5%9c%b0%e5%9d%80"target="_blank" rel="noopener"&gt;IP地址&lt;/a&gt;，一旦找到，系统会立即打开对应网页，如果没有找到，则系统会再将网址提交DNS域名解析服务器进行IP地址的解析。&lt;/p&gt;
+&lt;p&gt;需要注意的是，Hosts文件配置的&lt;a
+href="https://baike.baidu.com/item/%e6%98%a0%e5%b0%84/20402620"target="_blank" rel="noopener"&gt;映射&lt;/a&gt;是静态的，如果网络上的计算机更改了请及时更新IP地址，否则将不能访问。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;CDN&lt;/code&gt;加速便是通过修改&lt;code&gt;Hosts&lt;/code&gt;文件，绕过国内的&lt;code&gt;dns&lt;/code&gt;解析，直达&lt;code&gt;github&lt;/code&gt;的&lt;code&gt;ip&lt;/code&gt;地址，从而加速访问。&lt;/p&gt;
+&lt;p&gt;以下三个网站是常用的访问链接：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;github.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;assets-cdn.github.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;github.global.ssl.fastly.net&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;首先在网址：&lt;a
+href="https://www.ipaddress.com/"target="_blank" rel="noopener"&gt;https://www.ipaddress.com/&lt;/a&gt;中查询上述域名的&lt;code&gt;ip&lt;/code&gt;地址，然后对应添加至Hosts中即可，如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/5-devops/py_github_speedup/image-20211219235834074.png" alt="image-20211219235834074" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/5-devops/py_github_speedup/image-20211220000000715.png" alt="image-20211220000000715" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/5-devops/py_github_speedup/image-20211220000031755.png" alt="image-20211220000031755" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;由于直接添加会有权限问题，所以先把&lt;code&gt;Hosts&lt;/code&gt;文件复制到桌面上，然后把复制的文件修改以后，再替换回去即可。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;一个简单的爬虫脚本&lt;span class="hx:absolute hx:-mt-20" id="一个简单的爬虫脚本"&gt;&lt;/span&gt;
+&lt;a href="#%e4%b8%80%e4%b8%aa%e7%ae%80%e5%8d%95%e7%9a%84%e7%88%ac%e8%99%ab%e8%84%9a%e6%9c%ac" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;由于每个人的位置不一样，所查询到的&lt;code&gt;ip&lt;/code&gt;可能也不一样，而且&lt;code&gt;github&lt;/code&gt;的主机自身可能也会变动&lt;code&gt;ip&lt;/code&gt;，所以写了个简单的爬虫脚本处理了一下，运行以后复制进去就行，&lt;code&gt;Linux&lt;/code&gt;用户直接用即可！(&lt;code&gt;full_domain&lt;/code&gt;列表中是&lt;code&gt;github&lt;/code&gt;中几乎全部会用到的域名，强迫症患者可以对应打开修改)&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;random&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;bs4&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;urllib3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;disable_warnings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;urllib3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exceptions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;InsecureRequestWarning&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;heads&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;User-Agent&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# All the options&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# full_domain = [github.githubassets.com, central.github.com, desktop.githubusercontent.com, camo.githubusercontent.com, github.map.fastly.net, github.global.ssl.fastly.net, gist.github.com, github.io, github.com, assets-cdn.github.com, api.github.com, raw.githubusercontent.com, user-images.githubusercontent.com, favicons.githubusercontent.com, avatars5.githubusercontent.com, avatars4.githubusercontent.com, avatars3.githubusercontent.com, avatars2.githubusercontent.com, avatars1.githubusercontent.com, avatars0.githubusercontent.com, avatars.githubusercontent.com, codeload.github.com, github-cloud.s3.amazonaws.com, github-com.s3.amazonaws.com, github-production-release-asset-2e65be.s3.amazonaws.com, github-production-user-asset-6210df.s3.amazonaws.com, github-production-repository-file-5c1aeb.s3.amazonaws.com, githubstatus.com, github.community, media.githubusercontent.com]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;website&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;https://websites.ipaddress.com/&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Necessary options&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;des_domain&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;github.com&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;assets-cdn.github.com&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;github.global.ssl.fastly.net&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;des_ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;getip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;domain&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;website&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;domain&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;res&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;heads&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;verify&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;UTF-8&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;res&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;#print(content)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;soup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;html.parser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;iplist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ul&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;comma-separated&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;iptmp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iplist&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;li&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34; &amp;#34;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;domain&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iptmp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="se"&gt;\033&lt;/span&gt;&lt;span class="s2"&gt;[31m############ Something Error #############&lt;/span&gt;&lt;span class="se"&gt;\033&lt;/span&gt;&lt;span class="s2"&gt;[0m](&lt;/span&gt;&lt;span class="se"&gt;\033&lt;/span&gt;&lt;span class="s2"&gt;[31m&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="se"&gt;\033&lt;/span&gt;&lt;span class="s2"&gt;[0m)&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;iptmp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;des&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iptmp&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Used in Windows&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# des = open(&amp;#34;/mnt/c/Windows/System32/drivers/etc/hosts&amp;#34;,&amp;#34;a&amp;#34;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Used in Linux&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;des&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/etc/hosts&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;r&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;github&amp;#34;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;des&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;des&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;github dns configuration is already done!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;des&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;des&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/etc/hosts&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;a&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;# Add by mxdon, you can remove duplicate options manually&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;des&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;# Add by mxdon, you can remove duplicate options manually&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;idomain&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;des_domain&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;getip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;idomain&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;except&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;des&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;转入&lt;code&gt;Gitee&lt;/code&gt;加速&lt;span class="hx:absolute hx:-mt-20" id="转入gitee加速"&gt;&lt;/span&gt;
+&lt;a href="#%e8%bd%ac%e5%85%a5gitee%e5%8a%a0%e9%80%9f" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;gitee&lt;/code&gt;可以直接将&lt;code&gt;github&lt;/code&gt;或&lt;code&gt;gitlab&lt;/code&gt;的仓库转入，所以只要知道想要访问的&lt;code&gt;github&lt;/code&gt;地址，直接导入&lt;code&gt;gitee&lt;/code&gt;即可：完成后访问速度超级快！！（已经操作过数十个项目啦~）&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/5-devops/py_github_speedup/image-20211220001157876.png" alt="image-20211220001157876" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;如上图，一般比较有名的项目在&lt;code&gt;gitee&lt;/code&gt;上已经被同步了，也可以直接用，但有时候不是最新的，有洁癖的朋友自行选择噢&lt;/p&gt;
+&lt;h2&gt;参考文献&lt;span class="hx:absolute hx:-mt-20" id="参考文献"&gt;&lt;/span&gt;
+&lt;a href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a
+href="https://zhuanlan.zhihu.com/p/75994966"target="_blank" rel="noopener"&gt;github访问加速 - 知乎&lt;/a&gt;
+&lt;a
+href="https://zhuanlan.zhihu.com/p/314071453"target="_blank" rel="noopener"&gt;提高国内访问 github 速度的 9 种方法！ - 知乎&lt;/a&gt;
+&lt;a
+href="https://www.7ed.net/gra/"target="_blank" rel="noopener"&gt;Github RAW 加速服务 - 7ED Service&lt;/a&gt;
+&lt;a
+href="https://blog.csdn.net/CHAOS_ORDER/article/details/110811952"target="_blank" rel="noopener"&gt;github 镜像站_CHAOS_ORDER的博客-CSDN博客_github镜像站&lt;/a&gt;
+&lt;a
+href="https://segmentfault.com/a/1190000023396995"target="_blank" rel="noopener"&gt;那些你用得上的镜像网站 - SegmentFault 思否&lt;/a&gt;
+&lt;a
+href="https://baike.baidu.com/item/hosts/10474546"target="_blank" rel="noopener"&gt;hosts_百度百科&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;最后，点个关注不迷路&lt;span class="hx:absolute hx:-mt-20" id="最后点个关注不迷路"&gt;&lt;/span&gt;
+&lt;a href="#%e6%9c%80%e5%90%8e%e7%82%b9%e4%b8%aa%e5%85%b3%e6%b3%a8%e4%b8%8d%e8%bf%b7%e8%b7%af" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/5-devops/py_github_speedup/640" alt="" loading="lazy" /&gt;&lt;/p&gt;</description></item></channel></rss>

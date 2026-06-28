@@ -1,0 +1,212 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>活在21世纪的孟游 – 网站搭建</title><link>https://aydenmeng.github.io/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/</link><description>Recent content in 网站搭建 on 活在21世纪的孟游</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 09 Dec 2020 22:58:16 +0000</lastBuildDate><atom:link href="https://aydenmeng.github.io/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/index.xml" rel="self" type="application/rss+xml"/><item><title>使用树莓派搭建wordpress博客网站</title><link>https://aydenmeng.github.io/cs/9-app/linux_wordpress_setup_on_raspbarry/</link><pubDate>Wed, 09 Dec 2020 22:58:16 +0000</pubDate><guid>https://aydenmeng.github.io/cs/9-app/linux_wordpress_setup_on_raspbarry/</guid><description>
+&lt;h2&gt;下载wordpress&lt;span class="hx:absolute hx:-mt-20" id="下载wordpress"&gt;&lt;/span&gt;
+&lt;a href="#%e4%b8%8b%e8%bd%bdwordpress" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;下载地址：&lt;code&gt;https://wordpress.org/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/46f1b7ce-9f21-444b-b252-ec0892dd70d8.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;安装树莓派&lt;span class="hx:absolute hx:-mt-20" id="安装树莓派"&gt;&lt;/span&gt;
+&lt;a href="#%e5%ae%89%e8%a3%85%e6%a0%91%e8%8e%93%e6%b4%be" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;详情参考《这篇文章》&lt;/p&gt;
+&lt;h2&gt;环境搭建&lt;span class="hx:absolute hx:-mt-20" id="环境搭建"&gt;&lt;/span&gt;
+&lt;a href="#%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;由于虚拟机出现了点问题——无法设置共享文件夹——&lt;code&gt;virtualbox&lt;/code&gt;中，文件权限修改的时候总会报错“&lt;code&gt;read only file system&lt;/code&gt;”，尝试了重新挂载等诸多方法未果，改到&lt;code&gt;Windows&lt;/code&gt;下使用&lt;code&gt;VMware&lt;/code&gt;，结果安装&lt;code&gt;VMwaretools&lt;/code&gt;的选项呈灰色，无法点击，也是没能解决（最近没能解决的事情也太多了……）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;但是作业还是要交的，只能暂时放弃修复，选择使用网盘传输（奶牛快传）（可气的是共享粘贴板也没办法正常使用……）：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/3b4c819a-8183-4e49-b79a-d75eb2fabcc2.png" alt="" loading="lazy" /&gt;
+只好手动输入网址：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/ff160488-6d22-4a2a-a586-26627bfe9073.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h3&gt;安装&lt;code&gt;php&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="安装php"&gt;&lt;/span&gt;
+&lt;a href="#%e5%ae%89%e8%a3%85php" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo apt install php&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;默认安装的版本是&lt;code&gt;7.3&lt;/code&gt;
+可用&lt;code&gt;php -v&lt;/code&gt;查看&lt;/p&gt;
+&lt;h3&gt;安装&lt;code&gt;mysql&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="安装mysql"&gt;&lt;/span&gt;
+&lt;a href="#%e5%ae%89%e8%a3%85mysql" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;常规思路也还是不行（疯了，树莓派使我处处碰壁），经过一番查证，应该安装&lt;code&gt;mysql&lt;/code&gt;的升级版——&lt;code&gt;mariadb&lt;/code&gt;，安装命令：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo apt-get install mariadb-server&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;默认情况下MariaDB安装好后都没有配置访问用户的密码，因此如果需要远程连接时会无法连接。因此需要先对root用户设置密码。首先透过上一步中的命令连接至MariaDB，输入如下语句进行密码的修改:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;use mysql;
+UPDATE user SET password=password(&amp;#39;你的密码&amp;#39;) WHERE user=&amp;#39;root&amp;#39;;
+UPDATE user SET plugin=&amp;#39;mysql_native_password&amp;#39; WHERE user = &amp;#39;root&amp;#39;;
+flush privileges;
+exit&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;重启服务&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo systemctl restart mariadb&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;重启完成后，试用密码进行mariadb登录，验证是否修改成功&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;mysql -u root -p&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;安装apache&lt;span class="hx:absolute hx:-mt-20" id="安装apache"&gt;&lt;/span&gt;
+&lt;a href="#%e5%ae%89%e8%a3%85apache" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;自带啦，不用安装啦&lt;/p&gt;
+&lt;h2&gt;配置wordpress&lt;span class="hx:absolute hx:-mt-20" id="配置wordpress"&gt;&lt;/span&gt;
+&lt;a href="#%e9%85%8d%e7%bd%aewordpress" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;将&lt;code&gt;wordpress&lt;/code&gt;解压到&lt;code&gt;/var/www/&lt;/code&gt;的目录下，名字随意，这里我的文件夹叫做&lt;code&gt;blog&lt;/code&gt;&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo unzip wordpress.zip&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;访问&lt;code&gt;localhost&lt;/code&gt;，显示如下：
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/19d506c3-cf88-48c7-a589-14a9ebf75185.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;更改&lt;code&gt;apache&lt;/code&gt;的首页定向,要不然访问&lt;code&gt;localhost&lt;/code&gt;的时候自动就是&lt;code&gt;/var/www/&lt;/code&gt;文件夹下默认的&lt;code&gt;html&lt;/code&gt;文件夹及其下面的&lt;code&gt;index.html&lt;/code&gt;&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo nano /etc/apache2/sites-available/000-default.conf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/fd161472-ea7c-4638-bcb6-9d25b722b4ab.png" alt="" loading="lazy" /&gt;
+然后又报没有&lt;code&gt;MySQL&lt;/code&gt;扩展的错误
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/8aee8efa-51a5-4abd-9a3f-d529469fe89d.png" alt="" loading="lazy" /&gt;
+安装扩展解决：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo apt install php-mysql&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后又报错：建立数据库连接出错
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/c74c9e22-024f-4745-b9aa-210fb1278562.png" alt="" loading="lazy" /&gt;
+经查询，是因为数据库的配置和连接问题。
+打开数据库：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;连接数据库
+mysql -u root -p
+创建wordpress数据库
+create database wordpress;
+创建名叫wordpress的用户，密码是root（可自行修改）
+grant all on wordpress.* to wordpress@&amp;#39;localhost&amp;#39; identified by &amp;#39;root&amp;#39;;
+刷新更改
+flush privileges;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这样数据库就建立完了，接下来是与&lt;code&gt;wordpress&lt;/code&gt;进行链接：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;把配置文件&amp;#39;wp-config-sample.php&amp;#39;的名字改成&amp;#39;wp-config.php&amp;#39;
+sudo mv wp-config-sample.php wp-config.php
+编辑配置文件
+sudo nano wp-config.php&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;将数据库的相关信息，一一对应修改掉：
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/19cc7f6b-7115-4075-9bc6-97abef24924f.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;然后再访问&lt;code&gt;localhost/blog/index.php&lt;/code&gt;即可开始配置&lt;code&gt;wordpress&lt;/code&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/30a69add-e0c2-4de5-a3eb-697752dd5940.png" alt="" loading="lazy" /&gt;
+部分设置如图：然后点击下方的安装即可。
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/bc7e6993-72a9-4a86-aef6-c472a85b1967.png" alt="" loading="lazy" /&gt;
+然后登录
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/6390f0cf-5828-4ca2-8e8b-f8b05f759e35.png" alt="" loading="lazy" /&gt;
+试写一篇并发布：
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/3d5f2fc7-0d53-421d-8262-4c90871eeaa7.png" alt="" loading="lazy" /&gt;
+最终效果：
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/ceebb4eb-a3e1-4f38-b759-6fde31795529.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;锵锵~计网作业完事啦&lt;/p&gt;
+&lt;h2&gt;参考文献&lt;span class="hx:absolute hx:-mt-20" id="参考文献"&gt;&lt;/span&gt;
+&lt;a href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a
+href="http://codex.wordpress.org.cn/WordPress%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B#.E8.91.97.E5.90.8D.E7.9A.845.E5.88.86.E9.92.9F.E5.AE.89.E8.A3.85.E6.AD.A5.E9.AA.A4"target="_blank" rel="noopener"&gt;WordPress的安装过程&lt;/a&gt;
+&lt;a
+href="https://blog.csdn.net/sitebus/article/details/97435428"target="_blank" rel="noopener"&gt;Ubuntu下安装PHP&lt;/a&gt;
+&lt;a
+href="https://www.cnblogs.com/bluewelkin/p/3808226.html"target="_blank" rel="noopener"&gt;Linux下安装配置MySQL+Apache+PHP+WordPress的详细笔记&lt;/a&gt;
+&lt;a
+href="https://blog.csdn.net/danmaidesenling/article/details/51280273"target="_blank" rel="noopener"&gt;Linux上安装 wordpress（apache，php，mysql）&lt;/a&gt;
+&lt;a
+href="https://www.cnblogs.com/ftl1012/p/9302206.html"target="_blank" rel="noopener"&gt;Linux 下Wordpress博客搭建&lt;/a&gt;
+&lt;a
+href="https://blog.csdn.net/armcsdn/article/details/100481814"target="_blank" rel="noopener"&gt;关于在树莓派上不能安装MySql&lt;/a&gt;
+&lt;a
+href="https://www.wpdaxue.com/error-establishing-a-database-connection.html"target="_blank" rel="noopener"&gt;解决WordPress建立数据库连接时出错&lt;/a&gt;
+&lt;a
+href="https://www.cnblogs.com/x_wukong/p/5859882.html"target="_blank" rel="noopener"&gt;您的 PHP 似乎没有安装运行 WordPress 所必需的 MySQL 扩展”处理方法&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>

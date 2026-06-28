@@ -1,0 +1,383 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>活在21世纪的孟游 – 树莓派</title><link>https://aydenmeng.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</link><description>Recent content in 树莓派 on 活在21世纪的孟游</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 09 Dec 2020 22:58:16 +0000</lastBuildDate><atom:link href="https://aydenmeng.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/index.xml" rel="self" type="application/rss+xml"/><item><title>使用树莓派搭建wordpress博客网站</title><link>https://aydenmeng.github.io/cs/9-app/linux_wordpress_setup_on_raspbarry/</link><pubDate>Wed, 09 Dec 2020 22:58:16 +0000</pubDate><guid>https://aydenmeng.github.io/cs/9-app/linux_wordpress_setup_on_raspbarry/</guid><description>
+&lt;h2&gt;下载wordpress&lt;span class="hx:absolute hx:-mt-20" id="下载wordpress"&gt;&lt;/span&gt;
+&lt;a href="#%e4%b8%8b%e8%bd%bdwordpress" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;下载地址：&lt;code&gt;https://wordpress.org/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/46f1b7ce-9f21-444b-b252-ec0892dd70d8.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;安装树莓派&lt;span class="hx:absolute hx:-mt-20" id="安装树莓派"&gt;&lt;/span&gt;
+&lt;a href="#%e5%ae%89%e8%a3%85%e6%a0%91%e8%8e%93%e6%b4%be" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;详情参考《这篇文章》&lt;/p&gt;
+&lt;h2&gt;环境搭建&lt;span class="hx:absolute hx:-mt-20" id="环境搭建"&gt;&lt;/span&gt;
+&lt;a href="#%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;由于虚拟机出现了点问题——无法设置共享文件夹——&lt;code&gt;virtualbox&lt;/code&gt;中，文件权限修改的时候总会报错“&lt;code&gt;read only file system&lt;/code&gt;”，尝试了重新挂载等诸多方法未果，改到&lt;code&gt;Windows&lt;/code&gt;下使用&lt;code&gt;VMware&lt;/code&gt;，结果安装&lt;code&gt;VMwaretools&lt;/code&gt;的选项呈灰色，无法点击，也是没能解决（最近没能解决的事情也太多了……）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;但是作业还是要交的，只能暂时放弃修复，选择使用网盘传输（奶牛快传）（可气的是共享粘贴板也没办法正常使用……）：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/3b4c819a-8183-4e49-b79a-d75eb2fabcc2.png" alt="" loading="lazy" /&gt;
+只好手动输入网址：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/ff160488-6d22-4a2a-a586-26627bfe9073.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h3&gt;安装&lt;code&gt;php&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="安装php"&gt;&lt;/span&gt;
+&lt;a href="#%e5%ae%89%e8%a3%85php" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo apt install php&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;默认安装的版本是&lt;code&gt;7.3&lt;/code&gt;
+可用&lt;code&gt;php -v&lt;/code&gt;查看&lt;/p&gt;
+&lt;h3&gt;安装&lt;code&gt;mysql&lt;/code&gt;&lt;span class="hx:absolute hx:-mt-20" id="安装mysql"&gt;&lt;/span&gt;
+&lt;a href="#%e5%ae%89%e8%a3%85mysql" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;常规思路也还是不行（疯了，树莓派使我处处碰壁），经过一番查证，应该安装&lt;code&gt;mysql&lt;/code&gt;的升级版——&lt;code&gt;mariadb&lt;/code&gt;，安装命令：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo apt-get install mariadb-server&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;默认情况下MariaDB安装好后都没有配置访问用户的密码，因此如果需要远程连接时会无法连接。因此需要先对root用户设置密码。首先透过上一步中的命令连接至MariaDB，输入如下语句进行密码的修改:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;use mysql;
+UPDATE user SET password=password(&amp;#39;你的密码&amp;#39;) WHERE user=&amp;#39;root&amp;#39;;
+UPDATE user SET plugin=&amp;#39;mysql_native_password&amp;#39; WHERE user = &amp;#39;root&amp;#39;;
+flush privileges;
+exit&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;重启服务&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo systemctl restart mariadb&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;重启完成后，试用密码进行mariadb登录，验证是否修改成功&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;mysql -u root -p&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3&gt;安装apache&lt;span class="hx:absolute hx:-mt-20" id="安装apache"&gt;&lt;/span&gt;
+&lt;a href="#%e5%ae%89%e8%a3%85apache" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;自带啦，不用安装啦&lt;/p&gt;
+&lt;h2&gt;配置wordpress&lt;span class="hx:absolute hx:-mt-20" id="配置wordpress"&gt;&lt;/span&gt;
+&lt;a href="#%e9%85%8d%e7%bd%aewordpress" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;将&lt;code&gt;wordpress&lt;/code&gt;解压到&lt;code&gt;/var/www/&lt;/code&gt;的目录下，名字随意，这里我的文件夹叫做&lt;code&gt;blog&lt;/code&gt;&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo unzip wordpress.zip&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;访问&lt;code&gt;localhost&lt;/code&gt;，显示如下：
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/19d506c3-cf88-48c7-a589-14a9ebf75185.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;更改&lt;code&gt;apache&lt;/code&gt;的首页定向,要不然访问&lt;code&gt;localhost&lt;/code&gt;的时候自动就是&lt;code&gt;/var/www/&lt;/code&gt;文件夹下默认的&lt;code&gt;html&lt;/code&gt;文件夹及其下面的&lt;code&gt;index.html&lt;/code&gt;&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo nano /etc/apache2/sites-available/000-default.conf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/fd161472-ea7c-4638-bcb6-9d25b722b4ab.png" alt="" loading="lazy" /&gt;
+然后又报没有&lt;code&gt;MySQL&lt;/code&gt;扩展的错误
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/8aee8efa-51a5-4abd-9a3f-d529469fe89d.png" alt="" loading="lazy" /&gt;
+安装扩展解决：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;sudo apt install php-mysql&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后又报错：建立数据库连接出错
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/c74c9e22-024f-4745-b9aa-210fb1278562.png" alt="" loading="lazy" /&gt;
+经查询，是因为数据库的配置和连接问题。
+打开数据库：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;连接数据库
+mysql -u root -p
+创建wordpress数据库
+create database wordpress;
+创建名叫wordpress的用户，密码是root（可自行修改）
+grant all on wordpress.* to wordpress@&amp;#39;localhost&amp;#39; identified by &amp;#39;root&amp;#39;;
+刷新更改
+flush privileges;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这样数据库就建立完了，接下来是与&lt;code&gt;wordpress&lt;/code&gt;进行链接：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;把配置文件&amp;#39;wp-config-sample.php&amp;#39;的名字改成&amp;#39;wp-config.php&amp;#39;
+sudo mv wp-config-sample.php wp-config.php
+编辑配置文件
+sudo nano wp-config.php&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;将数据库的相关信息，一一对应修改掉：
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/19cc7f6b-7115-4075-9bc6-97abef24924f.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;然后再访问&lt;code&gt;localhost/blog/index.php&lt;/code&gt;即可开始配置&lt;code&gt;wordpress&lt;/code&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/30a69add-e0c2-4de5-a3eb-697752dd5940.png" alt="" loading="lazy" /&gt;
+部分设置如图：然后点击下方的安装即可。
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/bc7e6993-72a9-4a86-aef6-c472a85b1967.png" alt="" loading="lazy" /&gt;
+然后登录
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/6390f0cf-5828-4ca2-8e8b-f8b05f759e35.png" alt="" loading="lazy" /&gt;
+试写一篇并发布：
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/3d5f2fc7-0d53-421d-8262-4c90871eeaa7.png" alt="" loading="lazy" /&gt;
+最终效果：
+&lt;img src="https://aydenmeng.github.io/img/cs/9-app/app-wordpress-raspberry/ceebb4eb-a3e1-4f38-b759-6fde31795529.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;锵锵~计网作业完事啦&lt;/p&gt;
+&lt;h2&gt;参考文献&lt;span class="hx:absolute hx:-mt-20" id="参考文献"&gt;&lt;/span&gt;
+&lt;a href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a
+href="http://codex.wordpress.org.cn/WordPress%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B#.E8.91.97.E5.90.8D.E7.9A.845.E5.88.86.E9.92.9F.E5.AE.89.E8.A3.85.E6.AD.A5.E9.AA.A4"target="_blank" rel="noopener"&gt;WordPress的安装过程&lt;/a&gt;
+&lt;a
+href="https://blog.csdn.net/sitebus/article/details/97435428"target="_blank" rel="noopener"&gt;Ubuntu下安装PHP&lt;/a&gt;
+&lt;a
+href="https://www.cnblogs.com/bluewelkin/p/3808226.html"target="_blank" rel="noopener"&gt;Linux下安装配置MySQL+Apache+PHP+WordPress的详细笔记&lt;/a&gt;
+&lt;a
+href="https://blog.csdn.net/danmaidesenling/article/details/51280273"target="_blank" rel="noopener"&gt;Linux上安装 wordpress（apache，php，mysql）&lt;/a&gt;
+&lt;a
+href="https://www.cnblogs.com/ftl1012/p/9302206.html"target="_blank" rel="noopener"&gt;Linux 下Wordpress博客搭建&lt;/a&gt;
+&lt;a
+href="https://blog.csdn.net/armcsdn/article/details/100481814"target="_blank" rel="noopener"&gt;关于在树莓派上不能安装MySql&lt;/a&gt;
+&lt;a
+href="https://www.wpdaxue.com/error-establishing-a-database-connection.html"target="_blank" rel="noopener"&gt;解决WordPress建立数据库连接时出错&lt;/a&gt;
+&lt;a
+href="https://www.cnblogs.com/x_wukong/p/5859882.html"target="_blank" rel="noopener"&gt;您的 PHP 似乎没有安装运行 WordPress 所必需的 MySQL 扩展”处理方法&lt;/a&gt;&lt;/p&gt;</description></item><item><title>树莓派入门--在Linux下搭建开发环境</title><link>https://aydenmeng.github.io/cs/2-os/raspberry-start/</link><pubDate>Wed, 09 Dec 2020 22:58:16 +0000</pubDate><guid>https://aydenmeng.github.io/cs/2-os/raspberry-start/</guid><description>
+&lt;h2&gt;环境&lt;span class="hx:absolute hx:-mt-20" id="环境"&gt;&lt;/span&gt;
+&lt;a href="#%e7%8e%af%e5%a2%83" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;由于网上绝大多数教程应该都是在Windows在如何烧写系统之类的，而我身为一个Linux用户（已经爱上Linux），就为Linux下的使用增添加瓦吧~（其实是因为我之前白嫖的内网穿透开始莫名其妙不给我用了，可能是嫖太多了emmmm，考虑到白嫖工具的网速之类问题，顺手就自己搭一个内网穿透环境吧（见下篇））&lt;/p&gt;
+&lt;p&gt;系统：Ubuntu20.10&lt;/p&gt;
+&lt;p&gt;架构：X64&lt;/p&gt;
+&lt;p&gt;材料：64G- TF卡一张、读卡器一个、树莓派4B 4G板卡一个&lt;/p&gt;
+&lt;h2&gt;TF卡制作&lt;span class="hx:absolute hx:-mt-20" id="tf卡制作"&gt;&lt;/span&gt;
+&lt;a href="#tf%e5%8d%a1%e5%88%b6%e4%bd%9c" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;其实和Windows下的区别，无非就是制作系统的步骤不一样、ssh的步骤不一样~（好像也就这两步哈？）&lt;/p&gt;
+&lt;h2&gt;格式化分区&lt;span class="hx:absolute hx:-mt-20" id="格式化分区"&gt;&lt;/span&gt;
+&lt;a href="#%e6%a0%bc%e5%bc%8f%e5%8c%96%e5%88%86%e5%8c%ba" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Ubuntu生态较为完备，一般可以直接使用&lt;strong&gt;磁盘工具&lt;/strong&gt;进行设置：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417104933418.png" alt="需要的话一开始可能还要格式化磁盘(推荐GPT或者不分区)" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417104957624.png" alt="卷名随便起就好啦" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;如果没有这样的软件，当然用命令行都可以做到呀：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;fdisk /dev/sdb &lt;span class="c1"&gt;#sdb表示你的TF卡&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g &lt;span class="c1"&gt;#创建gpt磁盘&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;n &lt;span class="c1"&gt;#创建分区&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;默认 &lt;span class="c1"&gt;#起始扇区，考虑分区对齐，所以从2048开始&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;默认 &lt;span class="c1"&gt;#结束扇区，用于将整个TF卡格式化&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;t &lt;span class="c1"&gt;#改变分区类型&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;C12A7328-F81F-11D2-BA4B-00A0C93EC93B &lt;span class="c1"&gt;#FAT的格式类型（EFI其实就是FAT）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;w&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417141850479.png" alt="操作过程" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;上面EFI其实就是FAT类型的，这是由UEFI只支持FAT文件系统去承载EFI文件&lt;/p&gt;
+&lt;p&gt;如果不放心的话（强迫症&lt;del&gt;是我&lt;/del&gt;）可以使用mkfs.vfat进行转换(.vfat就是fat的名字加强版，区别不打（vfat支持长文件名）)&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mkfs.vfat /dev/sdb&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;经过上面的分区操作，现在已经可以把系统写入到TF卡了！&lt;/p&gt;
+&lt;h2&gt;下载系统&lt;span class="hx:absolute hx:-mt-20" id="下载系统"&gt;&lt;/span&gt;
+&lt;a href="#%e4%b8%8b%e8%bd%bd%e7%b3%bb%e7%bb%9f" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;树莓派的官方系统在：&lt;a
+href="https://www.raspberrypi.org/software/operating-systems/"target="_blank" rel="noopener"&gt;https://www.raspberrypi.org/software/operating-systems/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417105359710.png" alt="谷歌翻译后的说明文字" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;在国内的话其实有很多镜像网站非常好用，比如清华源：&lt;a
+href="https://mirrors.tuna.tsinghua.edu.cn/raspberry-pi-os-images/"target="_blank" rel="noopener"&gt;https://mirrors.tuna.tsinghua.edu.cn/raspberry-pi-os-images/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417110401792.png" alt="清华软件源" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;1、2、3分别代表标准版、完整版、轻量版，其他见名知意，我选择了完整版最新的文件下载&lt;/p&gt;
+&lt;h2&gt;制作系统盘&lt;span class="hx:absolute hx:-mt-20" id="制作系统盘"&gt;&lt;/span&gt;
+&lt;a href="#%e5%88%b6%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9b%98" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;解压：下载的镜像是zip文件，所以要解压在linux下：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;unzip 2020-02-13-raspbian-buster-full.zip -d ./ &lt;span class="c1"&gt;#-d后面的路径是解压路径，./就是解压在当前路径&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后写入TF卡&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;dd &lt;span class="nv"&gt;bs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4M &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2020-02-13-raspbian-buster-full.img &lt;span class="nv"&gt;of&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/sdb &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;bs=4M代表blokesize一次写入的大小，大部分系统是支持的，如果不放心可以改成1M，就是烧录慢一点而已&lt;/p&gt;
+&lt;p&gt;if代表in_file&lt;/p&gt;
+&lt;p&gt;of代表out_file&lt;/p&gt;
+&lt;p&gt;照着抄就行啦&lt;/p&gt;
+&lt;p&gt;然后烧录完的TF卡如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417143521421.png" alt="和Linux下的分区很像嘛，毕竟树莓派系统也是Linux" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;然后就开始插到板子里了&lt;/p&gt;
+&lt;h2&gt;上电、连线、开机&lt;span class="hx:absolute hx:-mt-20" id="上电连线开机"&gt;&lt;/span&gt;
+&lt;a href="#%e4%b8%8a%e7%94%b5%e8%bf%9e%e7%ba%bf%e5%bc%80%e6%9c%ba" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;由于&lt;del&gt;没钱&lt;/del&gt;没有准备相应的HDMI线、键盘等工具，所以只是个裸板，为了能够直接通过网络操作我的树莓派，所以要先在上面写完的TF卡中，打开其中的boot文件夹，在里面新建一个ssh文件：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;touch /media/boot/ssh&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;然后连接网线和电源线，其中电源线就用常规的手机充电器就行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417152631452.png" alt="树莓派平面图" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;其中1、2、3分别插入TF卡、手机充电器、网线&lt;/p&gt;
+&lt;p&gt;对于一个裸机，这写就足够了，如果没有网线的话，也可以在上述boot文件夹下添加wifi连接参数，也可以的。&lt;/p&gt;
+&lt;h2&gt;开机&lt;span class="hx:absolute hx:-mt-20" id="开机"&gt;&lt;/span&gt;
+&lt;a href="#%e5%bc%80%e6%9c%ba" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;树莓派并没有关机按键，所以插上电源以后就开机了，这时我们可以使用&lt;code&gt;arp -a&lt;/code&gt;来查看局域网下的网络设备，其中排除所有已知ip以后就可以确定树莓派的ip地址&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417153300465.png" alt="arp -a查看局域网设备" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;当然，手机上使用Fing（一个软件）一眼就能看出哪个是树莓派的ip：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417153509940.png" alt="Fing查看局域网设备" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;ssh和vnc&lt;span class="hx:absolute hx:-mt-20" id="ssh和vnc"&gt;&lt;/span&gt;
+&lt;a href="#ssh%e5%92%8cvnc" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h2&gt;ssh&lt;span class="hx:absolute hx:-mt-20" id="ssh"&gt;&lt;/span&gt;
+&lt;a href="#ssh" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;经过以上配置，开机以后便可以直接通过ssh连接树莓派：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417153839091.png" alt="ssh连接树莓派" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;其中1处的pi是这个系统的默认用户名，2处输入系统的默认密码是：“&lt;code&gt;raspberry&lt;/code&gt;”&lt;/p&gt;
+&lt;p&gt;这样就进入系统了！&lt;/p&gt;
+&lt;h2&gt;VNC&lt;span class="hx:absolute hx:-mt-20" id="vnc"&gt;&lt;/span&gt;
+&lt;a href="#vnc" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;要是想使用VNC，还需要一定的配置。&lt;/p&gt;
+&lt;p&gt;首先执行&lt;code&gt;sudo raspi-config&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后按照图示进行选择：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417154320236.png" alt="接口配置" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417154405609.png" alt="vnc配置" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417154428794.png" alt="选择yes" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417154456062.png" alt="配置完成" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417154539971.png" alt="通过方向键或者Tab键选择finish退出" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;此时树莓派的VNC功能也配置完成了！&lt;/p&gt;
+&lt;p&gt;只需要在本机上使用VNC-viewer软件即可查看树莓派的桌面了！&lt;/p&gt;
+&lt;p&gt;其中ubuntu自带的远程桌面：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417154932014.png" alt="ubuntu自带远程桌面" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;但是我遇到了这个：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417163127838.png" alt="自带远程桌面连接树莓派报错" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;然后我查到说树莓派自带的vncserver的加密方式与tigervnc viewer不同，所以只好换一个（也可以在树莓派上重新安装其他版本的vncserver），网上推荐realvnc-viewer，下载地址：&lt;a
+href="https://www.realvnc.com/en/connect/download/viewer/"target="_blank" rel="noopener"&gt;https://www.realvnc.com/en/connect/download/viewer/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417163426291.png" alt="realvnc-viewer" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;输入ip地址，后面跟着vncserver的虚拟桌面序号，就可以连接成功啦~&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417163626417.png" alt="树莓派" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;换源&lt;span class="hx:absolute hx:-mt-20" id="换源"&gt;&lt;/span&gt;
+&lt;a href="#%e6%8d%a2%e6%ba%90" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;经过一定的配置，现在已经是一个可以正常使用的小电脑啦&lt;/p&gt;
+&lt;p&gt;为了更快的安装软件，国内用户经常需要替换软件源，将相应文件按下图编辑并替换掉：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417165025018.png" alt="树莓派换源" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;然后再更新apt仓库即可&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt-get upgrade&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;如果不知道替换适合自己的版本的话，也可以去清华大学软件源查看：地址——&lt;a
+href="https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/"target="_blank" rel="noopener"&gt;https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/raspberry-start/image-20210417165220279.png" alt="清华大学软件源说明" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;最后，点个关注不迷路&lt;span class="hx:absolute hx:-mt-20" id="最后点个关注不迷路"&gt;&lt;/span&gt;
+&lt;a href="#%e6%9c%80%e5%90%8e%e7%82%b9%e4%b8%aa%e5%85%b3%e6%b3%a8%e4%b8%8d%e8%bf%b7%e8%b7%af" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src="https://p.pstatp.com/origin/137610000bfce4e396a63" alt="" loading="lazy" /&gt;&lt;/p&gt;</description></item></channel></rss>

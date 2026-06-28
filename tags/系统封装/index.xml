@@ -1,0 +1,169 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>活在21世纪的孟游 – 系统封装</title><link>https://aydenmeng.github.io/tags/%E7%B3%BB%E7%BB%9F%E5%B0%81%E8%A3%85/</link><description>Recent content in 系统封装 on 活在21世纪的孟游</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 05 Dec 2021 22:59:33 +0000</lastBuildDate><atom:link href="https://aydenmeng.github.io/tags/%E7%B3%BB%E7%BB%9F%E5%B0%81%E8%A3%85/index.xml" rel="self" type="application/rss+xml"/><item><title>自己封装一个专属的Windows10系统</title><link>https://aydenmeng.github.io/cs/2-os/windows-diy/</link><pubDate>Sun, 05 Dec 2021 22:59:33 +0000</pubDate><guid>https://aydenmeng.github.io/cs/2-os/windows-diy/</guid><description>
+&lt;h2&gt;设计&lt;span class="hx:absolute hx:-mt-20" id="设计"&gt;&lt;/span&gt;
+&lt;a href="#%e8%ae%be%e8%ae%a1" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;每次重装都要把软件重新整一遍，十分麻烦，所以就寻思着直接封装一个集成了软件的系统。但是为啥只预装这些软件呢，因为软件和系统更新换代快，没必要太多，另外我自己也没必要老是重装，给大家贡献一款上手就能用的方便系统玩玩得了。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;集成的软件从浏览器、到下载、到文件查找、到清理、卸载、安全，基本适用于各行各业的伙伴使用。至于开发，不会配置开发环境的话还干开发嘛？/滑稽&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200404013123694.png" alt="预想效果" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;使用NTLITE精简一个系统&lt;span class="hx:absolute hx:-mt-20" id="使用ntlite精简一个系统"&gt;&lt;/span&gt;
+&lt;a href="#%e4%bd%bf%e7%94%a8ntlite%e7%b2%be%e7%ae%80%e4%b8%80%e4%b8%aa%e7%b3%bb%e7%bb%9f" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;下载：&lt;code&gt;https://www.ntlite.com/download/&lt;/code&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331082105544.png" alt="" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331082445844.png" alt="免费使用就足够了" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h3&gt;把系统ISO镜像解压&lt;span class="hx:absolute hx:-mt-20" id="把系统iso镜像解压"&gt;&lt;/span&gt;
+&lt;a href="#%e6%8a%8a%e7%b3%bb%e7%bb%9fiso%e9%95%9c%e5%83%8f%e8%a7%a3%e5%8e%8b" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331082936145.png" alt="" loading="lazy" /&gt;
+添加镜像文件夹（不知道这里为啥不能直接添加ISO文件），然后就直接添加刚才解压的文件夹就好。
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331083226964.png" alt="" loading="lazy" /&gt;
+删除不想要的系统版本
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331083435480.png" alt="" loading="lazy" /&gt;
+双击加载所要精简的系统，或者选中后点击上面的加载。
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331084158489.png" alt="" loading="lazy" /&gt;
+按照需求作如下更改：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;移除广告、闹钟、反馈、获取帮助、消息、人脉、Skype、你的手机、移动计划、钱包服务、游戏周边等选项及功能&lt;/li&gt;
+&lt;li&gt;移除edge浏览器桌面快捷方式&lt;/li&gt;
+&lt;li&gt;移除小娜&lt;/li&gt;
+&lt;li&gt;关闭Windows Defender&lt;/li&gt;
+&lt;li&gt;移除更新中的edge浏览器自动安装&lt;/li&gt;
+&lt;li&gt;将“此电脑”、“控制面板”和“回收站”置于桌面&lt;/li&gt;
+&lt;li&gt;禁用人脉功能&lt;/li&gt;
+&lt;li&gt;自动显示文件后缀名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;保存映像&lt;span class="hx:absolute hx:-mt-20" id="保存映像"&gt;&lt;/span&gt;
+&lt;a href="#%e4%bf%9d%e5%ad%98%e6%98%a0%e5%83%8f" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;点击开始，勾选&lt;strong&gt;创建ISO&lt;/strong&gt;并命名（忘了截图，略）
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331095655129.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;虚拟机配置&lt;span class="hx:absolute hx:-mt-20" id="虚拟机配置"&gt;&lt;/span&gt;
+&lt;a href="#%e8%99%9a%e6%8b%9f%e6%9c%ba%e9%85%8d%e7%bd%ae" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200318214154707.png" alt="创建虚拟机" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331110220928.png" alt="自定义虚拟机即将安装的系统" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331110233911.png" alt="选新的，因为我用的就是14版本的" loading="lazy" /&gt;
+由于需要进入审核模式，所以这里务必要选择稍后安装操作系统。
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331110324553.png" alt="稍后安装操作系统" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/2020033111040233.png" alt="其他的64位，不知道别的选项会不会有影响，为了干净，就选其他的" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331110549626.png" alt="选择创建位置及名字" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331110747827.png" alt="配置处理器" loading="lazy" /&gt;
+我的电脑有16G内存，所以这里分配了4G的虚拟机内存，仅供参考
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331110855153.png" alt="配置内存，一般为物理机的一半" loading="lazy" /&gt;
+封装系统不需要网络连接
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331110958212.png" alt="不使用网络连接" loading="lazy" /&gt;
+默认即可
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/2020033111101289.png" alt="IO控制器" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331111022307.png" alt="虚拟磁盘" loading="lazy" /&gt;
+分配25G硬盘空间
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331111102786.png" alt="分配25G空间" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331111126610.png" alt="默认命名，与之前设置的位置相同" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331111243332.png" alt="" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;使用虚拟机进入审核模式&lt;span class="hx:absolute hx:-mt-20" id="使用虚拟机进入审核模式"&gt;&lt;/span&gt;
+&lt;a href="#%e4%bd%bf%e7%94%a8%e8%99%9a%e6%8b%9f%e6%9c%ba%e8%bf%9b%e5%85%a5%e5%ae%a1%e6%a0%b8%e6%a8%a1%e5%bc%8f" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;在&lt;strong&gt;虚拟机-设置&lt;/strong&gt;选择使用NTLITE精简的系统镜像，点击&lt;strong&gt;确定&lt;/strong&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/2020033111183925.png" alt="" loading="lazy" /&gt;
+然后开启虚拟机，进入系统安装界面
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331111936688.png" alt="" loading="lazy" /&gt;
+接受条款，进入下一步
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331112054150.png" alt="接受条款，进入下一步" loading="lazy" /&gt;
+选择安装位置，点击下一步
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331112124662.png" alt="默认安装位置" loading="lazy" /&gt;
+帖子里说在如下界面按快捷键进入审核模式，但是我没有见到这个界面，随便按了两下就进来了。。。
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/2020033112070260.png" alt="远景的帖子" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200331120807806.png" alt="审核模式" loading="lazy" /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;后来经过多次尝试，除了上面的接受协议，等到界面不再让你选择的时候按快捷键就行，你品，你细品&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;集成软件&lt;span class="hx:absolute hx:-mt-20" id="集成软件"&gt;&lt;/span&gt;
+&lt;a href="#%e9%9b%86%e6%88%90%e8%bd%af%e4%bb%b6" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;选择&lt;strong&gt;取消&lt;/strong&gt;退出系统准备工具，然后就可以进行软件的集成了。
+这里我准备了之前总结过的各类软件，分别是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;杀毒——火绒&lt;/li&gt;
+&lt;li&gt;卸载——geek&lt;/li&gt;
+&lt;li&gt;下载——fdm&lt;/li&gt;
+&lt;li&gt;清理——dism++&lt;/li&gt;
+&lt;li&gt;浏览器——谷歌浏览器（使用免安装版谷歌打包了一些网站和插件，看图标你懂的）&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200403153343565.png" alt="" loading="lazy" /&gt;&lt;/li&gt;
+&lt;li&gt;工具——everything&lt;/li&gt;
+&lt;li&gt;解压——bandzip&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;然后将软件打包成镜像文件，在虚拟机设置中——将ISO镜像文件设置替换之前的系统镜像。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/c782657a-5ba2-44e2-9fa6-94742ee7a6ca.png" alt="这个地方" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;然后在虚拟机中进行安装即可。&lt;/p&gt;
+&lt;h2&gt;设置&lt;span class="hx:absolute hx:-mt-20" id="设置"&gt;&lt;/span&gt;
+&lt;a href="#%e8%ae%be%e7%bd%ae" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;使用软媒魔方进行部分设置。内容如下图所示：
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200403235640406.png" alt="去除快捷方式上的箭头之类" loading="lazy" /&gt;
+oem信息：设置为：mxdon
+一些设置优化：
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200404002249403.png" alt="设置oem厂商为Mxdon" loading="lazy" /&gt;
+最后安装出的效果预想：
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200404013123694-1586100907192.png" alt="好看嘛" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;封装&lt;span class="hx:absolute hx:-mt-20" id="封装"&gt;&lt;/span&gt;
+&lt;a href="#%e5%b0%81%e8%a3%85" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;重启虚拟机，勾选“通用”，关机选项选择&lt;strong&gt;关机&lt;/strong&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/2020040423293748.png" alt="选关机比较稳" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200404232914246.png" alt="等待" loading="lazy" /&gt;
+替换镜像为pe，打开电源事进入固件，调整cd-rom为第一启动选项
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200404232529284.png" alt="替换pe系统镜像，这里使用技术员pe" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200404234452745.png" alt="防止热键没办法进BIOS然后直接进系统" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200404234632900.png" alt="调整引导顺序" loading="lazy" /&gt;
+在pe种打开dism++
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/2020040423475695.png" alt="pe中的dism&amp;#43;&amp;#43;" loading="lazy" /&gt;
+根据大小选定“会话”
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200404235021875.png" alt="选择系统盘中的系统进行清理" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;删除&lt;code&gt;Administrator&lt;/code&gt;以及&lt;code&gt;defaultuser0&lt;/code&gt;文件夹。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;打开运行，输入命令：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;dism /capture-image /capturedir:D:\ /imagefile:E:\ABC.wim /name:&amp;quot;Windows1909_Professional_By_Mxdon&amp;quot; /compress:maximum&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;其中&lt;code&gt;D&lt;/code&gt;是我的系统盘，&lt;code&gt;E&lt;/code&gt;是&lt;code&gt;wim&lt;/code&gt;
+文件导出的路径&lt;code&gt;Windows1909_Professional_By_Mxdon&lt;/code&gt;是卷标，&lt;code&gt;ABC&lt;/code&gt;是&lt;code&gt;wim&lt;/code&gt;名，&lt;code&gt;maximum&lt;/code&gt;代表最大压缩（微软的方式），默认是&lt;code&gt;fast&lt;/code&gt;（如果还有更改需求的话可以用fast）
+完成后&lt;strong&gt;关闭虚拟机&lt;/strong&gt;，用&lt;code&gt;7zip&lt;/code&gt;打开虚拟机文件，比如我的是&lt;code&gt;1909.vmdk&lt;/code&gt;根据文件大小，可知我导出的&lt;code&gt;E:\ABC.wim&lt;/code&gt;应该在&lt;code&gt;2.ntfs&lt;/code&gt;下，相当于其中的E盘
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200405004934184.png" alt="7zip打开虚拟机的vmdk文件" loading="lazy" /&gt;
+打开&lt;code&gt;2.ntfs&lt;/code&gt;，可以把&lt;code&gt;wim&lt;/code&gt;文件导出
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/20200405005005202.png" alt="把wim文件解压出来" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;重命名为&lt;code&gt;install.wim&lt;/code&gt;这样得到一个&lt;code&gt;wim&lt;/code&gt;文件就就算封装完成了。&lt;/p&gt;
+&lt;h2&gt;一些问题&lt;span class="hx:absolute hx:-mt-20" id="一些问题"&gt;&lt;/span&gt;
+&lt;a href="#%e4%b8%80%e4%ba%9b%e9%97%ae%e9%a2%98" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;wim文件貌似只能使用pe带的安装器安装，无法直接通过Windows平台安装。&lt;strong&gt;可以通过整合到ISO镜像中解决&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;在将wim文件重新整合到ISO镜像中进行安装时，无法显示可用的映像。&lt;strong&gt;可用通过编辑source文件夹下EI.cfg文件解决&lt;/strong&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/9b0d00f0-5587-46c2-aa32-bcd505a15ad7.png" alt="" loading="lazy" /&gt;
+&lt;img src="https://aydenmeng.github.io/img/cs/2-os/windows-diy/a65d3f75-8a2f-480c-9ea2-fbaf34b1aa9a.png" alt="" loading="lazy" /&gt;&lt;/li&gt;
+&lt;li&gt;编辑EI.cfg文件没能解决问题，然后就不想试了，以后有机会再玩吧。&lt;/li&gt;
+&lt;li&gt;封装的系统安装后桌面不是预先设置的那样，手动放在桌面的快捷方式也没了。&lt;strong&gt;应该是在pe中清理的过头了&lt;/strong&gt;不整了。（封装的软件在&lt;code&gt;C:\dir_install&lt;/code&gt;文件夹下&lt;del&gt;里面还有Windows永久激活工具噢&lt;/del&gt;，背景图片在&lt;code&gt;C:\windows\background.jpg&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;下载&lt;span class="hx:absolute hx:-mt-20" id="下载"&gt;&lt;/span&gt;
+&lt;a href="#%e4%b8%8b%e8%bd%bd" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;NTLITE：&lt;code&gt;https://www.ntlite.com/download/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;7zip:&lt;code&gt;https://sparanoid.com/lab/7z/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;VMware:&lt;code&gt;http://www.xue51.com/search.asp?wd=VMware&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;软媒魔方：&lt;code&gt;https://mofang.ruanmei.com/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;系统中集成的软件&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;火绒：&lt;code&gt;https://www.huorong.cn/person5.html&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;bandzip：&lt;code&gt;https://www.bandisoft.com/bandizip/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;fdm：&lt;code&gt;https://www.freedownloadmanager.org/zh/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;geek：&lt;code&gt;https://geekuninstaller.com/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;everything：&lt;code&gt;https://www.voidtools.com/zh-cn/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;绿色版谷歌浏览器：&lt;code&gt;https://pan.baidu.com/s/1sVQgF01_Ekqxg-657ugS7w&lt;/code&gt;
+提取码：&lt;code&gt;qrgh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最终封装出的&lt;code&gt;wim&lt;/code&gt;文件&lt;/strong&gt;：&lt;code&gt;https://pan.baidu.com/s/1ryWEjl4bqn23G3vVd55zLA &lt;/code&gt;
+提取码：&lt;code&gt;04xc&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;参考文献&lt;span class="hx:absolute hx:-mt-20" id="参考文献"&gt;&lt;/span&gt;
+&lt;a href="#%e5%8f%82%e8%80%83%e6%96%87%e7%8c%ae" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a
+href="https://www.bilibili.com/video/BV1ib411g7Sd?p=8"target="_blank" rel="noopener"&gt;零基础学封装系统-Windows封装教程-定制属于你自己的系统-Windows 7篇&lt;/a&gt;
+&lt;a
+href="https://www.bilibili.com/video/BV1Gb41117pt"target="_blank" rel="noopener"&gt;最强Win10优化-NtLite作业，快来抄啊&lt;/a&gt;
+&lt;a
+href="http://bbs.pcbeta.com/forum.php?mod=viewthread&amp;amp;tid=1757374&amp;amp;highlight=%B7%E2%D7%B0"target="_blank" rel="noopener"&gt;Windows 10简易精简封装教程&lt;/a&gt;
+&lt;a
+href="http://bbs.pcbeta.com/viewthread-1756381-1-1.html"target="_blank" rel="noopener"&gt;16353自制64位中国版五合一镜像 附教程&lt;/a&gt;
+&lt;a
+href="https://blog.csdn.net/weixin_43707156/article/details/99223157"target="_blank" rel="noopener"&gt;最新WIN10系统封装教程2019系列&lt;/a&gt;
+&lt;a
+href="https://www.cnblogs.com/jairkong/p/3738387.html"target="_blank" rel="noopener"&gt;合并Windows系统镜像教程&lt;/a&gt;
+&lt;a
+href="https://wenku.baidu.com/view/c57dcab783c4bb4cf6ecd152.html"target="_blank" rel="noopener"&gt;win7系统封装wim教程&lt;/a&gt;
+&lt;a
+href="https://www.52pojie.cn/thread-1125559-1-1.html"target="_blank" rel="noopener"&gt;[Windows] 【浏览器】谷歌浏览器绿色免安装版，可装非C盘&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;往期回顾&lt;span class="hx:absolute hx:-mt-20" id="往期回顾"&gt;&lt;/span&gt;
+&lt;a href="#%e5%be%80%e6%9c%9f%e5%9b%9e%e9%a1%be" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a
+href="http://mp.weixin.qq.com/s?__biz=MzI4NDkzNTA3NQ==&amp;amp;mid=2247485346&amp;amp;idx=1&amp;amp;sn=639d4dd4bd8a1492fdcdd91144506fd5&amp;amp;chksm=ebf2916edc8518788b864d91de200bc06e48c8f9a54b3ff1e0282df5b768f76f2f888b24b51c&amp;amp;scene=21#wechat_redirect"target="_blank" rel="noopener"&gt;电脑必备软件清单5——清理类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="http://mp.weixin.qq.com/s?__biz=MzI4NDkzNTA3NQ==&amp;amp;mid=2247485336&amp;amp;idx=1&amp;amp;sn=01a7a8141dd3e18442a6bd39627f7942&amp;amp;chksm=ebf29154dc85184296521ad90569d6769eed0b892acc5b5c291c9e2f134ee6264742a9d8f0e8&amp;amp;scene=21#wechat_redirect"target="_blank" rel="noopener"&gt;电脑必备软件清单4——杀毒类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="http://mp.weixin.qq.com/s?__biz=MzI4NDkzNTA3NQ==&amp;amp;mid=2247485304&amp;amp;idx=1&amp;amp;sn=5d04fd640b2eaebbcf2be83385908a08&amp;amp;chksm=ebf291b4dc8518a28784a429ac7fda02dbd11791b05abe238a1f8866b0f70698ca152853d309&amp;amp;scene=21#wechat_redirect"target="_blank" rel="noopener"&gt;电脑必备软件清单3——下载类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="http://mp.weixin.qq.com/s?__biz=MzI4NDkzNTA3NQ==&amp;amp;mid=2247485289&amp;amp;idx=2&amp;amp;sn=50e6a793257082ce4e2130492159f5a3&amp;amp;chksm=ebf291a5dc8518b345fe189aadc5ae55ff94799b5ee53384e1a9c94bdbef45a5a9f51194f332&amp;amp;scene=21#wechat_redirect"target="_blank" rel="noopener"&gt;电脑必备软件清单2——工具类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+href="http://mp.weixin.qq.com/s?__biz=MzI4NDkzNTA3NQ==&amp;amp;mid=2247485254&amp;amp;idx=1&amp;amp;sn=942e25584d1fb75198fbf39b1462fddb&amp;amp;chksm=ebf2918adc85189c0345f1fb7a5147130bdf76f4245b7a61859147838484490931dec13aeed5&amp;amp;scene=21#wechat_redirect"target="_blank" rel="noopener"&gt;电脑必备软件清单1——卸载类&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;最后，点个关注不迷路&lt;/h1&gt;&lt;p&gt;&amp;lt;img src=&amp;quot;/img/cs/2-os/windows-diy/&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;img src=&amp;quot;/img/cs/2-os/windows-diy/&amp;gt;&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,414 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>活在21世纪的孟游 – PMON</title><link>https://aydenmeng.github.io/categories/pmon/</link><description>Recent content in PMON on 活在21世纪的孟游</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 08 Jun 2024 17:54:33 +0000</lastBuildDate><atom:link href="https://aydenmeng.github.io/categories/pmon/index.xml" rel="self" type="application/rss+xml"/><item><title>PMON的使用方法</title><link>https://aydenmeng.github.io/cs/0-firmware/pmon_usage/</link><pubDate>Sat, 08 Jun 2024 17:54:33 +0000</pubDate><guid>https://aydenmeng.github.io/cs/0-firmware/pmon_usage/</guid><description>
+&lt;h2&gt;1. 查看设备&lt;span class="hx:absolute hx:-mt-20" id="1-查看设备"&gt;&lt;/span&gt;
+&lt;a href="#1-%e6%9f%a5%e7%9c%8b%e8%ae%be%e5%a4%87" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; devls
+syn0
+wd0
+usb0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;sync0&lt;/code&gt;, &lt;code&gt;igb0&lt;/code&gt;, &lt;code&gt;em0&lt;/code&gt; 等字样,表示网络设备, 即网卡&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;wd0&lt;/code&gt;, &lt;code&gt;nvme0&lt;/code&gt;, &lt;code&gt;usb0&lt;/code&gt;, &lt;code&gt;cd0&lt;/code&gt;等字样表示存储设备, 即硬盘, &lt;code&gt;U&lt;/code&gt;盘等.&lt;/p&gt;
+&lt;h2&gt;2. 查看pci信息&lt;span class="hx:absolute hx:-mt-20" id="2-查看pci信息"&gt;&lt;/span&gt;
+&lt;a href="#2-%e6%9f%a5%e7%9c%8bpci%e4%bf%a1%e6%81%af" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; pciscan
+&amp;gt;&amp;gt; BUS 0 &amp;lt;&amp;lt;
+Dev Fun Device description
+--------------------------
+0 0 vendor/product: 0x0014/0x7a00 (bridge, host, interface: 0x00, revision: 0x00)
+0x00000000:0x00000000 mem @0x00000000, 0 bytes
+0 1 vendor/product: 0x0014/0x7a10 (bridge, host, interface: 0x00, revision: 0x01)
+0x00000000:0x00000000 mem @0x00000000, 0 bytes
+0 2 vendor/product: 0x0014/0x7a20 (bridge, host, interface: 0x00, revision: 0x01)
+0x00000000:0x00000000 mem @0x00000000, 0 bytes
+0 3 vendor/product: 0x0014/0x7a30 (bridge, host, interface: 0x00, revision: 0x00)
+0x00000000:0x00000000 mem @0x00000000, 0 bytes
+4 0 vendor/product: 0x0014/0x7a24 (serialbus, USB, interface: 0x10, revision: 0x02)
+64-bit mem,low address
+0x59648004:0xffff8004 mem @0x59648000, 32768 bytes
+0x00000000:0x00000000 mem @0x00000000, 0 bytes
+......
+......&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;3. 产看固件版本信息&lt;span class="hx:absolute hx:-mt-20" id="3-产看固件版本信息"&gt;&lt;/span&gt;
+&lt;a href="#3-%e4%ba%a7%e7%9c%8b%e5%9b%ba%e4%bb%b6%e7%89%88%e6%9c%ac%e4%bf%a1%e6%81%af" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; vers
+PMON: PMON 5.0.3-Release (loongson) #233: Wed Oct 18 15:09:40 CST 2023 commit d044be8f495e97082c8905b131d525ef31ade0b9 Author: Xiangdong Meng &amp;lt;mengxiangdong@loongson.cn&amp;gt; Date: Wed Sep 6 15:15:31 2023 &amp;#43;0800&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;4. 查看寄存器信息&lt;span class="hx:absolute hx:-mt-20" id="4-查看寄存器信息"&gt;&lt;/span&gt;
+&lt;a href="#4-%e6%9f%a5%e7%9c%8b%e5%af%84%e5%ad%98%e5%99%a8%e4%bf%a1%e6%81%af" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; d8 0x800000001fe00020 2
+800000001fe00020 : 0000303030364133 0000000000000000 3A6000..........&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;5. 查看磁盘信息&lt;span class="hx:absolute hx:-mt-20" id="5-查看磁盘信息"&gt;&lt;/span&gt;
+&lt;a href="#5-%e6%9f%a5%e7%9c%8b%e7%a3%81%e7%9b%98%e4%bf%a1%e6%81%af" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;这里&lt;code&gt;fdisk&lt;/code&gt;命令后面的设备名是在第一节中&lt;code&gt;devls&lt;/code&gt;命令列出来的.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;PMON&lt;/code&gt;支持&lt;code&gt;GPT&lt;/code&gt;和&lt;code&gt;MBR&lt;/code&gt;分区&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;PMON&lt;/code&gt;暂不支持设备热插拔.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;MBR&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; fdisk usb0
+Device Boot Start End Sectors Id System
+usb0a 2048 122880000 122877952 83 Linux&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;GPT&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; fdisk usb0
+Device Boot Start End Sectors Id System
+usb0a 2048 122877951 122875904 0FC63DAF Linux filesystem&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;6. 查看磁盘中的文件&lt;span class="hx:absolute hx:-mt-20" id="6-查看磁盘中的文件"&gt;&lt;/span&gt;
+&lt;a href="#6-%e6%9f%a5%e7%9c%8b%e7%a3%81%e7%9b%98%e4%b8%ad%e7%9a%84%e6%96%87%e4%bb%b6" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;/dev/fs/&lt;/code&gt;后的字符是&lt;code&gt;fdisk usb0&lt;/code&gt;命令中, &lt;code&gt;Device&lt;/code&gt;一列中显示的内容.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;PMON&lt;/code&gt;只支持&lt;code&gt;Fat&lt;/code&gt;, &lt;code&gt;Ext2/3/4&lt;/code&gt;, &lt;code&gt;ISO9660&lt;/code&gt;等分区&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;PMON&lt;/code&gt;在查看文件时, 通常不用指定文件系统类型.&lt;/p&gt;
+&lt;p&gt;比如加载一个&lt;code&gt;fat&lt;/code&gt;分区的内容: &lt;code&gt;load /dev/fs/usb0/&lt;/code&gt;和&lt;code&gt;load /dev/fs/fat@usb0/&lt;/code&gt;的效果是一样的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Fat&lt;/code&gt;分区:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; load /dev/fs/usb0/
+gz.mxd &amp;lt;FILE&amp;gt; 993222
+boot.cfg &amp;lt;FILE&amp;gt; 403
+vm.mxd &amp;lt;FILE&amp;gt; 95024056
+/dev/fs/fat@usb0/: Is a directory&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;ext2&lt;/code&gt;/&lt;code&gt;ext3&lt;/code&gt;/&lt;code&gt;ext4&lt;/code&gt;分区:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; load /dev/fs/usb1a/
+|./ ../ lost&amp;#43;found/ gz.mxd boot.cfg
+/dev/fs/ext4@usb1a/: Undefined error: 0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/uefi-usage/12.png" alt="load MBR" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;7. 加载内核&lt;span class="hx:absolute hx:-mt-20" id="7-加载内核"&gt;&lt;/span&gt;
+&lt;a href="#7-%e5%8a%a0%e8%bd%bd%e5%86%85%e6%a0%b8" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; load /dev/fs/usb0a/vm.mxd
+\Loading file: /dev/fs/fat@usb0a/vm.mxd (elf)
+(elf)
+0x9000000000200000/20053784 &amp;#43; 0x151ff18/922672(z) &amp;#43; 31926 syms|
+Entry address is 00c01000&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;8. 加载initrd&lt;span class="hx:absolute hx:-mt-20" id="8-加载initrd"&gt;&lt;/span&gt;
+&lt;a href="#8-%e5%8a%a0%e8%bd%bdinitrd" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; initrd /dev/fs/usb0a/initrd.img-4.19.0-19-loongson-3
+Loading initrd image /dev/fs/usb0a/initrd.img-4.19.0-19-loongson--dl_offset 9000000090000000 addr 9000000090000000
+(bin)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;9. 启动内核&lt;span class="hx:absolute hx:-mt-20" id="9-启动内核"&gt;&lt;/span&gt;
+&lt;a href="#9-%e5%90%af%e5%8a%a8%e5%86%85%e6%a0%b8" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;必须要在加载内核之后执行:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; g console=ttyS0,115200 earlycon=uart,mmio,0x1fe001e0 root=/dev/sda3
+Warning! NVRAM checksum fail. Reset!
+Reached finished_ap_limit=7 in a5 microseconds
+BootCore ID: 0 Collect AP: 7 Total Core: 8
+ACPI: ACPI tables init.
+VBIOS crc check is wrong,use default setting!
+GMEM: Get vbios from ls3a spi done!
+Init acpi table OK!
+set coherent
+[ 0.000000] Linux version 4.19.190&amp;#43; (mengxiangdong@5.5) (gcc version 8.3.0 (GCC)) #9 SMP Tue Oct 17 11:14:31 CST 2023
+[ 0.000000] 64-bit Loongson Processor probed (LA664 Core)
+[ 0.000000] CPU0 revision is: 0014d000 (Loongson-64bit)
+[ 0.000000] FPU0 revision is: 00000001
+[ 0.000000] efi: SMBIOS=0xfffe000 ACPI 2.0=0xfefe000 NEWMEM=0xb036800
+[ 0.000000] earlycon: uart0 at MMIO 0x000000001fe001e0 (options &amp;#39;&amp;#39;)
+[ 0.000000] bootconsole [uart0] enabled
+[ 0.000000] ACPI: Early table checksum verification disabled
+[ 0.000000] ACPI: RSDP 0x000000000FEFE000 000024 (v02 LOONGS)
+......
+......&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;10. 加载引导文件&lt;span class="hx:absolute hx:-mt-20" id="10-加载引导文件"&gt;&lt;/span&gt;
+&lt;a href="#10-%e5%8a%a0%e8%bd%bd%e5%bc%95%e5%af%bc%e6%96%87%e4%bb%b6" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;UEFI&lt;/code&gt;通过找到&lt;code&gt;grub.efi&lt;/code&gt;, 接着找到&lt;code&gt;grub.cfg&lt;/code&gt;, 进而引导内核&lt;/p&gt;
+&lt;p&gt;而&lt;code&gt;PMON&lt;/code&gt;只需要找到&lt;code&gt;boot.cfg&lt;/code&gt;文件即可. &lt;code&gt;PMON&lt;/code&gt;默认会从&lt;code&gt;/&lt;/code&gt;和&lt;code&gt;/boot&lt;/code&gt;目录中找&lt;code&gt;boot.cfg&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;倘若没有找到, 可以手动加载:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; bl /dev/fs/fat@usb0a/boot.cfg
+������������������������������������������������Ŀ
+� Boot Menu List �
+������������������������������������������������Ĵ
+� -&amp;gt; 1 Loongnix 20 GNU/Linux 4.19.0-19-loongson-3�
+� �
+� �
+� �
+� �
+� �
+� �
+� �
+� �
+� Please Select Boot Menu [1] �
+��������������������������������������������������
+Use the UP and DOWN keys to select the entry.
+Press ENTER to boot selected OS.
+Press &amp;#39;c&amp;#39; to command-line.
+Booting system in [2] second(s)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;11. 查看文件&lt;span class="hx:absolute hx:-mt-20" id="11-查看文件"&gt;&lt;/span&gt;
+&lt;a href="#11-%e6%9f%a5%e7%9c%8b%e6%96%87%e4%bb%b6" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; devcp /dev/fs/fat@usb0a/boot.cfg /dev/tty0
+default 0
+timeout 3
+showmenu 0
+title Loongnix 20 GNU/Linux 4.19.0-19-loongson-3
+kernel /dev/fs/fat@usb0a/vmlinuz-4.19.0-19-loongson-3
+initrd /dev/fs/fat@usb0a/initrd.img-4.19.0-19-loongson-3
+args root=/dev/sda3 console=ttyS0,115200 loglevel=8&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;12. 配置网络&lt;span class="hx:absolute hx:-mt-20" id="12-配置网络"&gt;&lt;/span&gt;
+&lt;a href="#12-%e9%85%8d%e7%bd%ae%e7%bd%91%e7%bb%9c" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; devls
+Device name Type
+syn0 IFNET
+usb0 DISK
+PMON&amp;gt; ifconfig syn0 192.168.1.13
+synopGMAC_linux_open called
+Version = 0xd137
+MacAddr = 0x3e 0xd0 0x62 0xf5 0x46 0x94
+===phy HALFDUPLEX MODE
+DMA status reg = 0x0 before cleared!
+DMA status reg = 0x0 after cleared!
+register poll interrupt: gmac 0
+==arp_ifinit done
+===phy FULLDUPLEX MODE
+Link is with 1000M Speed
+PMON&amp;gt; &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;13. 加载网络文件&lt;span class="hx:absolute hx:-mt-20" id="13-加载网络文件"&gt;&lt;/span&gt;
+&lt;a href="#13-%e5%8a%a0%e8%bd%bd%e7%bd%91%e7%bb%9c%e6%96%87%e4%bb%b6" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;PMON&lt;/code&gt;支持从网络加载内核, 支持的协议有&lt;code&gt;http&lt;/code&gt;和&lt;code&gt;tftp&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;http&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; load http://192.168.1.4/vm.mxd
+\Loading file: http://192.168.1.4/vm.mxd (elf)
+(elf)
+0x9000000000200000/20053784 &amp;#43; 0x151ff18/922672(z) &amp;#43; 31926 syms|
+Entry address is 00c01000&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;tftp&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; load tftp://192.168.1.4/vm.mxd
+\Loading file: tftp://192.168.1.4/vm.mxd (elf)
+(elf)
+0x9000000000200000/20053784 &amp;#43; 0x151ff18/922672(z) &amp;#43; 31926 syms|
+Entry address is 00c01000&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;14. 更新固件&lt;span class="hx:absolute hx:-mt-20" id="14-更新固件"&gt;&lt;/span&gt;
+&lt;a href="#14-%e6%9b%b4%e6%96%b0%e5%9b%ba%e4%bb%b6" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;code&gt;PMON&lt;/code&gt;更新固件的命令为&lt;code&gt;fload&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;与加载内核类似, 可以从硬盘加载, 也可以从网络加载&lt;/p&gt;
+&lt;p&gt;从硬盘加载:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; fload /dev/fs/usb0a/gz.mxd
+Loading file: /dev/fs/fat@usb0a/gz.mxd dl_offset 900000000f800000 addr 900000000f800000
+(bin)
+-
+Loaded 993222 bytes
+Programming flash 900000000f800000:f27c6 into 800000001c000000
+Erase end!
+-Programming end!&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;从&lt;code&gt;tftp&lt;/code&gt;服务器加载:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; fload tftp://192.168.1.4/gz.mxd
+Loading file: tftp://192.168.1.4/gz.mxd dl_offset 900000000f800000 addr 900000000f800000
+(bin)
+-
+Loaded 993222 bytes
+Programming flash 900000000f800000:f27c6 into 800000001c000000
+Erase end!
+-Programming end!&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;从&lt;code&gt;http&lt;/code&gt;服务器加载:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; fload http://192.168.1.4/gz.mxd
+Loading file: http://192.168.1.4/gz.mxd dl_offset 900000000f800000 addr 900000000f800000
+(bin)
+-
+Loaded 993222 bytes
+Programming flash 900000000f800000:f27c6 into 800000001c000000
+Erase end!
+-Programming end!&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>

@@ -1,0 +1,875 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>活在21世纪的孟游 – UEFI</title><link>https://aydenmeng.github.io/tags/uefi/</link><description>Recent content in UEFI on 活在21世纪的孟游</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 09 Jun 2024 17:54:33 +0000</lastBuildDate><atom:link href="https://aydenmeng.github.io/tags/uefi/index.xml" rel="self" type="application/rss+xml"/><item><title>龙芯平台如何更新固件</title><link>https://aydenmeng.github.io/cs/0-firmware/pmon_and_uefi_update/</link><pubDate>Sun, 09 Jun 2024 17:54:33 +0000</pubDate><guid>https://aydenmeng.github.io/cs/0-firmware/pmon_and_uefi_update/</guid><description>
+&lt;h2&gt;在PMON下更新固件&lt;span class="hx:absolute hx:-mt-20" id="在pmon下更新固件"&gt;&lt;/span&gt;
+&lt;a href="#%e5%9c%a8pmon%e4%b8%8b%e6%9b%b4%e6%96%b0%e5%9b%ba%e4%bb%b6" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;详情&lt;a
+href="pmon"&gt;PMON使用方法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;从硬盘加载:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; fload /dev/fs/usb0a/gz.mxd
+Loading file: /dev/fs/fat@usb0a/gz.mxd dl_offset 900000000f800000 addr 900000000f800000
+(bin)
+-
+Loaded 993222 bytes
+Programming flash 900000000f800000:f27c6 into 800000001c000000
+Erase end!
+-Programming end!&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;从tftp服务器加载:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; fload tftp://192.168.1.4/gz.mxd
+Loading file: tftp://192.168.1.4/gz.mxd dl_offset 900000000f800000 addr 900000000f800000
+(bin)
+-
+Loaded 993222 bytes
+Programming flash 900000000f800000:f27c6 into 800000001c000000
+Erase end!
+-Programming end!&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;从http服务器加载:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;PMON&amp;gt; fload http://192.168.1.4/gz.mxd
+Loading file: http://192.168.1.4/gz.mxd dl_offset 900000000f800000 addr 900000000f800000
+(bin)
+-
+Loaded 993222 bytes
+Programming flash 900000000f800000:f27c6 into 800000001c000000
+Erase end!
+-Programming end!&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;在UEFI下更新固件&lt;span class="hx:absolute hx:-mt-20" id="在uefi下更新固件"&gt;&lt;/span&gt;
+&lt;a href="#%e5%9c%a8uefi%e4%b8%8b%e6%9b%b4%e6%96%b0%e5%9b%ba%e4%bb%b6" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;详情&lt;a
+href="uefi.md"&gt;uefi使用方法&lt;/a&gt;&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;UEFI Interactive Shell v2.2
+EDK II
+UEFI v2.70 (EDK II, 0x00010000)
+Mapping table
+FS0: Alias(s):HD0c0:;BLK0:
+PciRoot(0x0)/Pci(0x19,0x0)/USB(0x2,0x0)
+Press ESC in 5 seconds to skip startup.nsh or any other key to continue.
+Shell&amp;gt; FS0:
+FSOpen: Open &amp;#39;\&amp;#39; Success
+FS0:\&amp;gt; ls
+Directory of: FS0:\
+10/17/2023 07:47 4,194,304 uefi.mxd
+1 File(s) 4,194,304 bytes
+0 Dir(s)
+FSOpen: Open &amp;#39;\&amp;#39; Success
+FS0:\&amp;gt; spi -u uefi.mxd
+Erase : ******************************************************************************************
+****************************************************************************************************
+****************************************************************** Erase OK.
+Program : ******************************************************************************************
+****************************************************************************************************
+****************************************************************** Program OK.
+FS0:\&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/uefi-usage/11.png" alt="UEFI Shell下烧写固件" loading="lazy" /&gt;&lt;/p&gt;
+&lt;h2&gt;在系统下更新固件&lt;span class="hx:absolute hx:-mt-20" id="在系统下更新固件"&gt;&lt;/span&gt;
+&lt;a href="#%e5%9c%a8%e7%b3%bb%e7%bb%9f%e4%b8%8b%e6%9b%b4%e6%96%b0%e5%9b%ba%e4%bb%b6" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;root@loongson-pc:/home/loongson# git clone https://github.com/MarsDoge/OsTools.git
+root@loongson-pc:/home/loongson# cd OsTools
+root@loongson-pc:/home/loongson# ./build.sh
+root@loongson-pc:/home/loongson/OsTools# ./OsTools spi -u -f uefi.mxd
+mmap addr start : 0xfff78bc1f0
+------------Read Buf Get Success!-----------
+Erase :
+[========================================================================] 100%
+Program :
+[========================================================================] 100%
+--------------Release mem Map----------------
+root@loongson-pc:/home/loongson/OsTools# reboot&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;在系统下备份当前固件&lt;span class="hx:absolute hx:-mt-20" id="在系统下备份当前固件"&gt;&lt;/span&gt;
+&lt;a href="#%e5%9c%a8%e7%b3%bb%e7%bb%9f%e4%b8%8b%e5%a4%87%e4%bb%bd%e5%bd%93%e5%89%8d%e5%9b%ba%e4%bb%b6" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;root@loongson-pc:/home/loongson# git clone https://github.com/MarsDoge/OsTools.git
+root@loongson-pc:/home/loongson# cd OsTools
+root@loongson-pc:/home/loongson# ./build.sh
+root@loongson-pc:/home/loongson# ./OsTools spi -d -f backup.dump.fd
+mmap addr start : 0x7ffff07fc1f0
+--------------Release mem Map----------------
+root@loongson-pc:/home/loongson# ls backup.dump.fd
+backup.dump.fd&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>UEFI的编译细节</title><link>https://aydenmeng.github.io/cs/0-firmware/uefi_compilation_detials/</link><pubDate>Tue, 19 Apr 2022 22:58:16 +0000</pubDate><guid>https://aydenmeng.github.io/cs/0-firmware/uefi_compilation_detials/</guid><description>
+&lt;h2&gt;UEFI编译&lt;span class="hx:absolute hx:-mt-20" id="uefi编译"&gt;&lt;/span&gt;
+&lt;a href="#uefi%e7%bc%96%e8%af%91" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;uefi的常规编译方式为：build -t CompilerName -A Arch -p PkgName -j logfile&lt;/p&gt;
+&lt;h2&gt;UEFI的编译细节展开&lt;span class="hx:absolute hx:-mt-20" id="uefi的编译细节展开"&gt;&lt;/span&gt;
+&lt;a href="#uefi%e7%9a%84%e7%bc%96%e8%af%91%e7%bb%86%e8%8a%82%e5%b1%95%e5%bc%80" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;通常UEFI的编译包括以下三个步骤：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;. edksetup.sh
+make -C BaseTools
+build -t CompilerName -A Arch -p PkgName -j logfile&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;edksetup.sh&lt;span class="hx:absolute hx:-mt-20" id="edksetupsh"&gt;&lt;/span&gt;
+&lt;a href="#edksetupsh" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;上述准备过程中,edksetup.sh的工作是准备工作的核心,具体来看一下:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;SCRIPTNAME=&amp;#34;edksetup.sh&amp;#34;
+RECONFIG=FALSE
+#使用帮助
+function HelpMsg()
+{
+echo &amp;#34;Usage: $SCRIPTNAME [Options]&amp;#34;
+echo
+echo &amp;#34;The system environment variable, WORKSPACE, is always set to the current&amp;#34;
+echo &amp;#34;working directory.&amp;#34;
+echo
+echo &amp;#34;Options: &amp;#34;
+echo &amp;#34; --help, -h, -? Print this help screen and exit.&amp;#34;
+echo
+echo &amp;#34; --reconfig Overwrite the WORKSPACE/Conf/*.txt files with the&amp;#34;
+echo &amp;#34; template files from the BaseTools/Conf directory.&amp;#34;
+echo
+echo Please note: This script must be \&amp;#39;sourced\&amp;#39; so the environment can be changed.
+echo &amp;#34;. $SCRIPTNAME&amp;#34;
+echo &amp;#34;source $SCRIPTNAME&amp;#34;
+}
+# 设定工作目录
+function SetWorkspace()
+{
+#
+# If WORKSPACE is already set, then we can return right now
+#
+if [ -n &amp;#34;$WORKSPACE&amp;#34; ]
+then
+return 0
+fi
+if [ ! ${BASH_SOURCE[0]} -ef ./edksetup.sh ] &amp;amp;&amp;amp; [ -z &amp;#34;$PACKAGES_PATH&amp;#34; ]
+then
+echo Run this script from the base of your tree. For example:
+echo &amp;#34; cd /Path/To/Edk/Root&amp;#34;
+echo &amp;#34; . edksetup.sh&amp;#34;
+return 1
+fi
+#
+# Check for BaseTools/BuildEnv before dirtying the user&amp;#39;s environment.
+#
+if [ ! -f BaseTools/BuildEnv ] &amp;amp;&amp;amp; [ -z &amp;#34;$EDK_TOOLS_PATH&amp;#34; ]
+then
+echo BaseTools not found in your tree, and EDK_TOOLS_PATH is not set.
+echo Please point EDK_TOOLS_PATH at the directory that contains
+echo the EDK2 BuildEnv script.
+return 1
+fi
+#
+# Set $WORKSPACE
+#
+export WORKSPACE=`pwd`
+return 0
+}
+# 设定环境变量
+function SetupEnv()
+{
+# !!环境变量的重要内容在BuildEnv里面!!
+if [ -n &amp;#34;$EDK_TOOLS_PATH&amp;#34; ]
+then
+. $EDK_TOOLS_PATH/BuildEnv
+elif [ -f &amp;#34;$WORKSPACE/BaseTools/BuildEnv&amp;#34; ]
+then
+. $WORKSPACE/BaseTools/BuildEnv
+elif [ -n &amp;#34;$PACKAGES_PATH&amp;#34; ]
+then
+PATH_LIST=$PACKAGES_PATH
+PATH_LIST=${PATH_LIST//:/ }
+for DIR in $PATH_LIST
+do
+if [ -f &amp;#34;$DIR/BaseTools/BuildEnv&amp;#34; ]
+then
+export EDK_TOOLS_PATH=$DIR/BaseTools
+. $DIR/BaseTools/BuildEnv
+break
+fi
+done
+else
+echo BaseTools not found in your tree, and EDK_TOOLS_PATH is not set.
+echo Please check that WORKSPACE or PACKAGES_PATH is not set incorrectly
+echo in your shell, or point EDK_TOOLS_PATH at the directory that contains
+echo the EDK2 BuildEnv script.
+return 1
+fi
+}
+# 设定环境变量和工作目录的入口
+function SourceEnv()
+{
+SetWorkspace &amp;amp;&amp;amp;
+SetupEnv
+}
+# 文件运行的入口,获取运行参数并按需执行
+I=$#
+while [ $I -gt 0 ]
+do
+case &amp;#34;$1&amp;#34; in
+BaseTools)
+# Ignore argument for backwards compatibility
+shift
+;;
+--reconfig)
+RECONFIG=TRUE
+shift
+;;
+-?|-h|--help|*)
+HelpMsg
+break
+;;
+esac
+I=$(($I - 1))
+done
+if [ $I -gt 0 ]
+then
+return 1
+fi
+SourceEnv
+unset SCRIPTNAME RECONFIG
+return $?&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;上面核心的内容在BuildEnv里&lt;span class="hx:absolute hx:-mt-20" id="上面核心的内容在buildenv里"&gt;&lt;/span&gt;
+&lt;a href="#%e4%b8%8a%e9%9d%a2%e6%a0%b8%e5%bf%83%e7%9a%84%e5%86%85%e5%ae%b9%e5%9c%a8buildenv%e9%87%8c" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;# 同样在设置环境变量
+SetWorkspace() {
+#
+# If WORKSPACE is already set, then we can return right now
+#
+if [ -n &amp;#34;$WORKSPACE&amp;#34; ]
+then
+return 0
+fi
+#
+# Set $WORKSPACE
+#
+export WORKSPACE=`pwd`
+return 0
+}
+# 恢复配置
+RestorePreviousConfiguration() {
+#
+# Restore previous configuration
+#
+if [ -z &amp;#34;$CONF_PATH&amp;#34; ]
+then
+export CONF_PATH=$WORKSPACE/Conf
+if [ ! -d $WORKSPACE/Conf ] &amp;amp;&amp;amp; [ -n &amp;#34;$PACKAGES_PATH&amp;#34; ]
+then
+PATH_LIST=${PACKAGES_PATH//:/ }
+for DIR in $PATH_LIST
+do
+if [ -d $DIR/Conf ]
+then
+export CONF_PATH=$DIR/Conf
+break
+fi
+done
+fi
+fi
+PREVIOUS_CONF_FILE=$CONF_PATH/BuildEnv.sh
+if [ -e $PREVIOUS_CONF_FILE ]
+then
+echo Loading previous configuration from $PREVIOUS_CONF_FILE
+. $PREVIOUS_CONF_FILE
+fi
+}
+# 生成Shell脚本去设置变量
+GenerateShellCodeToSetVariable() {
+VARIABLE=$1
+OUTPUT_FILE=$2
+VAR_VALUE=&amp;#34;echo \${${VARIABLE}}&amp;#34;
+VAR_VALUE=`eval $VAR_VALUE`
+echo &amp;#34;if [ -z \&amp;#34;\$${VARIABLE}\&amp;#34; ]&amp;#34; &amp;gt;&amp;gt; $OUTPUT_FILE
+echo &amp;#34;then&amp;#34; &amp;gt;&amp;gt; $OUTPUT_FILE
+echo &amp;#34; export ${VARIABLE}=${VAR_VALUE}&amp;#34; &amp;gt;&amp;gt; $OUTPUT_FILE
+echo &amp;#34;fi&amp;#34; &amp;gt;&amp;gt; $OUTPUT_FILE
+}
+# 生成shell脚本去更新环境变量
+GenerateShellCodeToUpdatePath() {
+OUTPUT_FILE=$1
+echo &amp;#34;if [ -e $EDK_TOOLS_PATH_BIN ]&amp;#34; &amp;gt;&amp;gt; $OUTPUT_FILE
+echo &amp;#34;then&amp;#34; &amp;gt;&amp;gt; $OUTPUT_FILE
+echo &amp;#34; if [ &amp;#34;\${PATH/$EDK_TOOLS_PATH_BIN/}&amp;#34; == &amp;#34;\$PATH&amp;#34; ]&amp;#34; &amp;gt;&amp;gt; $OUTPUT_FILE
+echo &amp;#34; then&amp;#34; &amp;gt;&amp;gt; $OUTPUT_FILE
+echo &amp;#34; export PATH=$EDK_TOOLS_PATH_BIN:\$PATH&amp;#34; &amp;gt;&amp;gt; $OUTPUT_FILE
+echo &amp;#34; fi&amp;#34; &amp;gt;&amp;gt; $OUTPUT_FILE
+echo &amp;#34;fi&amp;#34; &amp;gt;&amp;gt; $OUTPUT_FILE
+}
+# 存储当前配置信息
+StoreCurrentConfiguration() {
+#
+# Write configuration to a shell script to allow for configuration to be
+# easily reloaded.
+#
+OUTPUT_FILE=$CONF_PATH/BuildEnv.sh
+#echo Storing current configuration into $OUTPUT_FILE
+echo &amp;#34;# Auto-generated by ${BASH_SOURCE[0]}&amp;#34; &amp;gt;| $OUTPUT_FILE
+GenerateShellCodeToSetVariable WORKSPACE $OUTPUT_FILE
+GenerateShellCodeToSetVariable EDK_TOOLS_PATH $OUTPUT_FILE
+GenerateShellCodeToUpdatePath $OUTPUT_FILE
+}
+# 设定配置信息的目录
+SetEdkToolsPath() {
+#
+# If EDK_TOOLS_PATH is already set, then we can return right now
+#
+if [ -n &amp;#34;$EDK_TOOLS_PATH&amp;#34; ]
+then
+return 0
+fi
+#
+# Try $CONF_PATH/EdkTools
+#
+if [ -e $CONF_PATH/EdkTools ]
+then
+export EDK_TOOLS_PATH=$CONF_PATH/EdkTools
+return 0
+fi
+#
+# Try $CONF_PATH/BaseToolsSource
+#
+if [ -e $CONF_PATH/BaseToolsSource ]
+then
+export EDK_TOOLS_PATH=$CONF_PATH/BaseToolsSource
+return 0
+fi
+#
+# Try $WORKSPACE/BaseTools
+#
+if [ -e $WORKSPACE/BaseTools ]
+then
+export EDK_TOOLS_PATH=$WORKSPACE/BaseTools
+return 0
+fi
+#
+# Try $PACKAGES_PATH
+#
+if [ -n &amp;#34;$PACKAGES_PATH&amp;#34;]
+then
+PATH_LIST=${PACKAGES_PATH//:/ }
+for DIR in $PATH_LIST
+do
+if [ -d $DIR/BaseTools ]
+then
+export EDK_TOOLS_PATH=$DIR/BaseTools
+return 0
+fi
+done
+fi
+echo &amp;#34;Unable to determine EDK_TOOLS_PATH&amp;#34;
+echo
+echo &amp;#34;You may need to download the &amp;#39;BaseTools&amp;#39; from buildtools.tianocore.org.&amp;#34;
+echo &amp;#34;After downloading, either create a symbolic link to the source at&amp;#34;
+echo &amp;#34;\$WORKSPACE/Conf/BaseToolsSource, or set the EDK_TOOLS_PATH environment&amp;#34;
+echo &amp;#34;variable.&amp;#34;
+}
+# 由系统类型,获取相关的子文件夹名称
+GetBaseToolsBinSubDir() {
+#
+# Figure out a uniq directory name from the uname command
+#
+UNAME_DIRNAME=`uname -sm`
+UNAME_DIRNAME=${UNAME_DIRNAME// /-}
+UNAME_DIRNAME=${UNAME_DIRNAME//\//-}
+echo $UNAME_DIRNAME
+}
+# 结合上一个函数,得到edk下二进制存放目录
+GetEdkToolsPathBinDirectory() {
+#
+# Figure out a uniq directory name from the uname command
+#
+BIN_SUB_DIR=`GetBaseToolsBinSubDir`
+if [ -e $EDK_TOOLS_PATH/BinWrappers/$BIN_SUB_DIR ]
+then
+EDK_TOOLS_PATH_BIN=$EDK_TOOLS_PATH/BinWrappers/$BIN_SUB_DIR
+else
+EDK_TOOLS_PATH_BIN=$EDK_TOOLS_PATH/Bin/$BIN_SUB_DIR
+fi
+echo $EDK_TOOLS_PATH_BIN
+}
+# 还是环境变量
+AddDirToStartOfPath() {
+DIRNAME=$1
+PATH=$DIRNAME:$DIRNAME:$DIRNAME:$PATH
+PATH=${PATH//$DIRNAME:/}
+PATH=$DIRNAME:$PATH
+export PATH
+}
+AddEdkToolsToPath() {
+#
+# If EDK_TOOLS_PATH is not set, then we cannot update PATH
+#
+if [ -z &amp;#34;$EDK_TOOLS_PATH&amp;#34; ]
+then
+return 1
+fi
+EDK_TOOLS_PATH_BIN=`GetEdkToolsPathBinDirectory`
+AddDirToStartOfPath $EDK_TOOLS_PATH/BinWrappers/PosixLike
+AddDirToStartOfPath $EDK_TOOLS_PATH_BIN
+}
+# !!拷贝配置文件模板!!
+# 把BaseTools/Conf下的模板文件,拷贝到Conf下
+# 拷贝的模板文件为:build_rule, tools_def, target
+CopySingleTemplateFile() {
+SRC_FILENAME=Conf/$1.template
+DST_FILENAME=$CONF_PATH/$1.txt
+if [ -e $DST_FILENAME ]
+then
+[ $RECONFIG != TRUE ] &amp;amp;&amp;amp; return
+fi
+echo &amp;#34;Copying \$EDK_TOOLS_PATH/$SRC_FILENAME&amp;#34;
+echo &amp;#34; to $DST_FILENAME&amp;#34;
+SRC_FILENAME=$EDK_TOOLS_PATH/$SRC_FILENAME
+cp $SRC_FILENAME $DST_FILENAME
+}
+CopyTemplateFiles() {
+CopySingleTemplateFile build_rule
+CopySingleTemplateFile tools_def
+CopySingleTemplateFile target
+}
+# 脚本入口
+ScriptMain() {
+SetWorkspace
+if [ -z $WORKSPACE ]
+then
+echo &amp;#34;Failure setting WORKSPACE&amp;#34;
+return 1
+fi
+RestorePreviousConfiguration
+SetEdkToolsPath
+if [ -z $EDK_TOOLS_PATH ]
+then
+return 1
+fi
+AddEdkToolsToPath
+if [ $? -ne 0 ]
+then
+echo &amp;#34;Failure adding EDK Tools into PATH!&amp;#34;
+return 1
+fi
+StoreCurrentConfiguration
+echo WORKSPACE: $WORKSPACE
+echo EDK_TOOLS_PATH: $EDK_TOOLS_PATH
+echo CONF_PATH: $CONF_PATH
+CopyTemplateFiles
+}
+#
+# Run the main function
+#
+ScriptMain&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;make -C BaseTools&lt;span class="hx:absolute hx:-mt-20" id="make--c-basetools"&gt;&lt;/span&gt;
+&lt;a href="#make--c-basetools" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;上面所述编译前的准备中,Basetools会在edksetup.sh没有生效时执行,也稍作分析吧&lt;/p&gt;
+&lt;p&gt;来看一眼其中的的Makefile&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;!IFNDEF BASE_TOOLS_PATH
+!ERROR &amp;#34;BASE_TOOLS_PATH is not set! Please run toolsetup.bat first!&amp;#34;
+!ENDIF
+SUBDIRS = $(BASE_TOOLS_PATH)\Source\C $(BASE_TOOLS_PATH)\Source\Python
+//#编译依赖项是c和python
+all: c python
+c :
+@$(BASE_TOOLS_PATH)\Source\C\Makefiles\NmakeSubdirs.bat all $(BASE_TOOLS_PATH)\Source\C
+python:
+@$(BASE_TOOLS_PATH)\Source\C\Makefiles\NmakeSubdirs.bat all $(BASE_TOOLS_PATH)\Source\Python
+subdirs: $(SUBDIRS)
+@$(BASE_TOOLS_PATH)\Source\C\Makefiles\NmakeSubdirs.bat all $**
+.PHONY: clean
+clean:
+@$(BASE_TOOLS_PATH)\Source\C\Makefiles\NmakeSubdirs.bat clean $(SUBDIRS)
+.PHONY: cleanall
+cleanall:
+@$(BASE_TOOLS_PATH)\Source\C\Makefiles\NmakeSubdirs.bat cleanall $(SUBDIRS)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;需要编译相应的C和Python库,但是使用的是bat脚本,真正make输出的log确是正常的shell输出,这点还不知道怎么处理的,先分析到这,之后继续吧TODO&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;Build&lt;span class="hx:absolute hx:-mt-20" id="build"&gt;&lt;/span&gt;
+&lt;a href="#build" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;build才是真正编译的开始!&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;build -a ARM64 -p /home/mxdon/clone/UEFI/uefi-arm/ArmCodePkg/SampleCode/Desktop/Script/Arm.dsc -t GCC83 -b DEBUG -j log.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;显然,执行者是build,所以看看build的实质&lt;/p&gt;
+&lt;p&gt;先找到build在哪&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;[mxdon@5 uefi-arm]$ cat `which build`
+#!/usr/bin/env bash
+#python `dirname $0`/RunToolFromSource.py `basename $0` $*
+# If a python2 command is available, use it in preference to python
+if command -v python2 &amp;gt;/dev/null 2&amp;gt;&amp;amp;1; then
+python_exe=python2
+fi
+full_cmd=${BASH_SOURCE:-$0} # see http://mywiki.wooledge.org/BashFAQ/028 for a discussion of why $0 is not a good choice here
+dir=$(dirname &amp;#34;$full_cmd&amp;#34;)
+cmd=${full_cmd##*/}
+export PYTHONPATH=&amp;#34;$dir/../../Source/Python&amp;#34;
+exec &amp;#34;${python_exe:-python}&amp;#34; &amp;#34;$dir/../../Source/Python/$cmd/$cmd.py&amp;#34; &amp;#34;$@&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;可以看到，先是设置了环境，然后执行&lt;code&gt;$cmd.py $@&lt;/code&gt;来执行build&lt;/p&gt;
+&lt;p&gt;所以再找到$cmd.py,同时可以发现，$cmd在Source/Python下面，所以执行什么命令，就是在运行该命令名称下的以该命令命名的py文件。&lt;/p&gt;
+&lt;p&gt;所以执行build的时候是执行的build.py，AutoGen执行AutoGen.py以此类推，由于python文件较长，此后选择性展开。&lt;/p&gt;
+&lt;p&gt;如果查看打印log的话，也可以发现入口是build.py&lt;/p&gt;
+&lt;p&gt;ok,继续看，在编译的log中,首先打印的是:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;Build environment: Linux-4.18.0-305.10.2.el8_4.x86_64-x86_64-with-centos-8.4.2105
+Build start time: 15:00:53, Jan.04 2022&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;对应于build.py中:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;EdkLogger.quiet(&amp;#34;Build environment: %s&amp;#34; % platform.platform())
+EdkLogger.quiet(time.strftime(&amp;#34;Build start time: %H:%M:%S, %b.%d %Y\n&amp;#34;, time.localtime()));&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;相关变量在之前获取.&lt;/p&gt;
+&lt;p&gt;类似的分析,log中设定环境变量:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;WORKSPACE = /home/mxdon/clone/UEFI/uefi-arm
+ECP_SOURCE = /home/mxdon/clone/UEFI/uefi-arm/EdkCompatibilityPkg
+EDK_SOURCE = /home/mxdon/clone/UEFI/uefi-arm/EdkCompatibilityPkg
+EFI_SOURCE = /home/mxdon/clone/UEFI/uefi-arm/EdkCompatibilityPkg
+EDK_TOOLS_PATH = /home/mxdon/clone/UEFI/uefi-arm/BaseTools/
+CONF_PATH = /home/mxdon/clone/UEFI/uefi-arm/Conf
+Architecture(s) = ARM64
+Build target = DEBUG
+Toolchain = GCC83
+Active Platform = /home/mxdon/clone/UEFI/uefi-arm/ArmCodePkg/SampleCode/Desktop/Script/Arm.dsc
+Flash Image Definition = /home/mxdon/clone/UEFI/uefi-arm/ArmCodePkg/SampleCode/Desktop/Script/Arm.fdf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;对应build.py中的则是:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;CheckEnvVariable() -&amp;gt;
+MyBuild = Build(Target, Workspace, Option) -&amp;gt;
+__init__() -&amp;gt;
+EdkLogger.quiet(...)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;类似的分析不再赘述,简要说明如下:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;main-&amp;gt;MyBuild-&amp;gt;Build-&amp;gt;__init__-&amp;gt;... #设定及检验用于build的环境,包括加载target.txt中的编译器,dsc文件中的描述等,用于生成最终的编译规则.
+-&amp;gt;_BuildPlatform-&amp;gt;WorkspaceAutoGen-&amp;gt;PlatformAutoGen #通过解析FDF文件和INF文件,生成相应的C代码(宏变量)和Makefile(编译规则)
+-&amp;gt;_BuildPa-&amp;gt;_GenFfsCmd #编译模块
+-&amp;gt;_CollectModuleMapBuffer #根据PCD修改EFI的内存分布,并获取modules的内存分布,用于重定位modules,链接生成最终的FD文件
+-&amp;gt;_Build #编译模块
+-&amp;gt;_CollectFvMapBuffer #获取重定位FV的信息&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;大概流程如上,其中重定位相关的内容调用_RebaseModule-&amp;gt;LaunchCommand[GenFw&amp;hellip;],其中LaunchCommand也是在Build中执行make的途径.&lt;/p&gt;
+&lt;p&gt;从前面知道,执行的命令与其文件名相同,GenFw所用到的文件不是Python,而是C/GenFw/GenFw.c,其中具体细节暂不展开.&lt;/p&gt;
+&lt;h2&gt;重定位&lt;span class="hx:absolute hx:-mt-20" id="重定位"&gt;&lt;/span&gt;
+&lt;a href="#%e9%87%8d%e5%ae%9a%e4%bd%8d" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;TODO&lt;span class="hx:absolute hx:-mt-20" id="todo"&gt;&lt;/span&gt;
+&lt;a href="#todo" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h2&gt;总结&lt;span class="hx:absolute hx:-mt-20" id="总结"&gt;&lt;/span&gt;
+&lt;a href="#%e6%80%bb%e7%bb%93" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;UEFI是像一个魔改的Kernel,图形化,文字功能,网络功能都具备,在一定条件下可以变成内核,具有学习的价值和意义.&lt;/p&gt;
+&lt;p&gt;尤其,UEFI比内核简单许多,作为一个嵌入式C的大型项目来说是非常不错的,基于此,再看上述分析过程,整个UEFI的核心也无非就是C,Python,Shell(Makefile)这三种语言.也竟然有这三种语言.&lt;/p&gt;
+&lt;p&gt;我的意思是,项目开发中,只会一种语言可能越来越不够了,技多不压身,多学吧~&lt;/p&gt;
+&lt;h2&gt;最后，点个关注不迷路&lt;span class="hx:absolute hx:-mt-20" id="最后点个关注不迷路"&gt;&lt;/span&gt;
+&lt;a href="#%e6%9c%80%e5%90%8e%e7%82%b9%e4%b8%aa%e5%85%b3%e6%b3%a8%e4%b8%8d%e8%bf%b7%e8%b7%af" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;公众号：&lt;a
+href="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8a089ae12bfb4ca9a9e5d9ac82f58d43~tplv-k3u1fbpfcp-zoom-1.image"target="_blank" rel="noopener"&gt;孟游先生的旅游笔记&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>BIOS、UEFI、Boot Loader都是些什么</title><link>https://aydenmeng.github.io/cs/0-firmware/what_is_bios_uefi_bootloader/</link><pubDate>Wed, 09 Dec 2020 22:58:16 +0000</pubDate><guid>https://aydenmeng.github.io/cs/0-firmware/what_is_bios_uefi_bootloader/</guid><description>
+&lt;h2&gt;什么是BIOS&lt;span class="hx:absolute hx:-mt-20" id="什么是bios"&gt;&lt;/span&gt;
+&lt;a href="#%e4%bb%80%e4%b9%88%e6%98%afbios" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Basic Input Output System&lt;/code&gt;（基本输入输出系统）&lt;/p&gt;
+&lt;p&gt;其实就是一组保存着计算机最重要的&lt;strong&gt;基本输入输出的程序&lt;/strong&gt;、&lt;strong&gt;开机后自检程序&lt;/strong&gt;、&lt;strong&gt;系统自启动程序&lt;/strong&gt;，&lt;strong&gt;并固化到计算机内主板上的一个ROM芯片上的程序&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;基本的输入输出是什么&lt;span class="hx:absolute hx:-mt-20" id="基本的输入输出是什么"&gt;&lt;/span&gt;
+&lt;a href="#%e5%9f%ba%e6%9c%ac%e7%9a%84%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e6%98%af%e4%bb%80%e4%b9%88" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;BIOS的终极目标：&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“BIOS的最主要的功能：初始化硬件平台和提供硬件的软件抽象，引导操作系统启动。”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;所以：&lt;/p&gt;
+&lt;p&gt;输入的是：硬件平台的信息&lt;/p&gt;
+&lt;p&gt;输出的是：硬件的软件抽象&lt;/p&gt;
+&lt;p&gt;然后&lt;strong&gt;将引导文件加载至内存引导操作系统启动&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;自检程序“检”了什么&lt;span class="hx:absolute hx:-mt-20" id="自检程序检了什么"&gt;&lt;/span&gt;
+&lt;a href="#%e8%87%aa%e6%a3%80%e7%a8%8b%e5%ba%8f%e6%a3%80%e4%ba%86%e4%bb%80%e4%b9%88" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201209230345560.png" alt="image-20201209230345560" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;每个硬件平台都需要发现IO总线，因为数据的传输离不开总线。&lt;/p&gt;
+&lt;p&gt;所谓的系统自检，就是&lt;code&gt;Power On Self Test&lt;/code&gt;，也就是图中的&lt;code&gt;POST&lt;/code&gt;过程。在传统&lt;code&gt;BIOS&lt;/code&gt;的上电阶段，通过&lt;code&gt;IO&lt;/code&gt;枚举发现总线，进入到标准描述的平台接口部分。&lt;/p&gt;
+&lt;h3&gt;系统自启动了什么&lt;span class="hx:absolute hx:-mt-20" id="系统自启动了什么"&gt;&lt;/span&gt;
+&lt;a href="#%e7%b3%bb%e7%bb%9f%e8%87%aa%e5%90%af%e5%8a%a8%e4%ba%86%e4%bb%80%e4%b9%88" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201209231643209.png" alt="image-20201209231643209" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;自启动了操作系统呀~毕竟按下电源只是启动了&lt;code&gt;BIOS&lt;/code&gt;程序。&lt;/p&gt;
+&lt;p&gt;此外，在传统&lt;code&gt;BIOS&lt;/code&gt;程序中，还不支持文件系统，不像上图的&lt;code&gt;Dell&lt;/code&gt;主板，可以手动的添加引导文件，在传统&lt;code&gt;BIOS&lt;/code&gt;启动之后，&lt;code&gt;BIOS&lt;/code&gt;会自动加载&lt;code&gt;MBR&lt;/code&gt;的主引导记录，使操作系统“自行启动”&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;所以我们再看什么是&lt;code&gt;BIOS&lt;/code&gt;？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201209230345560.png" alt="image-20201209230345560" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;**输入：**围绕上图进行展开，左边部分刚好是硬件的初始化：&lt;code&gt;CPU&lt;/code&gt;初始化、内存初始化……相当于是上面说的，输入的硬件平台信息。&lt;/p&gt;
+&lt;p&gt;**自检：**再经过中间部分的系统自检，控制台初始化、设备初始化、通过枚举发现总线并初始化。&lt;/p&gt;
+&lt;p&gt;**输出&amp;amp;自启动：**选择引导设备之后，通过&lt;code&gt;BIOS&lt;/code&gt;将硬件平台的软件接口提供给&lt;code&gt;OS Loader&lt;/code&gt;，以供操作系统运行使用。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;BIOS&lt;/code&gt;的脉络就稍微有一些清楚了吧。&lt;/p&gt;
+&lt;h2&gt;什么是UEFI BIOS&lt;span class="hx:absolute hx:-mt-20" id="什么是uefi-bios"&gt;&lt;/span&gt;
+&lt;a href="#%e4%bb%80%e4%b9%88%e6%98%afuefi-bios" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Unified Extensible Firmware Interface（统一可扩展固件接口）&lt;/p&gt;
+&lt;p&gt;由于安藤处理器芯片组的创新，64位架构的处理器已经不再适用传统BIOS的16位运行模式，英特尔将系统固件和操作系统之间的接口完全重新定义为一个可扩展的，标准化的固件接口规范。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;UEFI&lt;/code&gt;名字听起来和&lt;code&gt;BIOS&lt;/code&gt;相差较大，但是作为业界的新&lt;code&gt;BIOS&lt;/code&gt;——&lt;code&gt;UEFI BIOS&lt;/code&gt;，毕竟还是&lt;code&gt;BIOS&lt;/code&gt;，所以它的主要目标就还是——&lt;strong&gt;初始化硬件，提供硬件的软件抽象，并引导操作系统启动&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;UEFI和BIOS的区别&lt;span class="hx:absolute hx:-mt-20" id="uefi和bios的区别"&gt;&lt;/span&gt;
+&lt;a href="#uefi%e5%92%8cbios%e7%9a%84%e5%8c%ba%e5%88%ab" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201209233106533.png" alt="image-20201209233106533" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;效率方面：&lt;/strong&gt;&lt;code&gt;BIOS&lt;/code&gt;正是因为其闭源、接口混乱才导致其最终不适用于新架构的芯片，那时候刚好赶上开源的浪潮，&lt;code&gt;UEFI&lt;/code&gt;开源且使用规定的标准接口，通过提供接口，也将大部分代码移步到了&lt;code&gt;C&lt;/code&gt;代码，大大降低了开发难度，这也是其快速发展的根本原因。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;性能方面：&lt;/strong&gt;&lt;code&gt;UEFI&lt;/code&gt;舍弃了硬件外部中断的低效方式，只保留了时钟中断，通过异步+事件来实现对外部设备的操作，性能因此得到极大的释放。&lt;/p&gt;
+&lt;p&gt;**扩展性和兼容性：**由于规范的模块化设计，在扩展功能时只需要动态链接其模块即可，扩展十分方便。而且传统&lt;code&gt;BIOS&lt;/code&gt;必须运行在&lt;code&gt;16&lt;/code&gt;位的指令模式下，寻址范围也十分有限，而&lt;code&gt;UEFI BIOS&lt;/code&gt;支持64位的程序，兼容&lt;code&gt;32&lt;/code&gt;位，这也是为什么&lt;code&gt;Windows XP&lt;/code&gt;这么久了，稍微改改还可以安装在新设备上。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安全性：&lt;/strong&gt;&lt;code&gt;UEFI&lt;/code&gt;安装的驱动设备需要经过签名验证才可以，通过一定的加密机制进行验证，其安全性也非常的高。&lt;/p&gt;
+&lt;p&gt;**其他：**传统&lt;code&gt;BIOS&lt;/code&gt;只支持容量不超过&lt;code&gt;2TB&lt;/code&gt;的驱动器，原因是：按照常见的&lt;code&gt;512Byte&lt;/code&gt;扇区，其分区表的单个分区的第&lt;code&gt;13-16&lt;/code&gt;字节用来进行&lt;code&gt;LBA&lt;/code&gt;寻址，也就是以扇区为单位进行寻址。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201209234539804.png" alt="image-20201209234539804" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;13-16&lt;/code&gt;总共&lt;code&gt;4&lt;/code&gt;个字节，&lt;code&gt;1Byte=8bit&lt;/code&gt;，这样也就是&lt;code&gt;4*8=32&lt;/code&gt;位，总共就是&lt;code&gt;2^32&lt;/code&gt;个单位空间，以扇区为单位进行寻址，也就是每次&lt;code&gt;512Byte&lt;/code&gt;，也就是：
+$$
+2^{32}*512=2^{41}B=2^{31}KB=2^{21}MB=2^{11}GB=2TB
+$$
+所以传统&lt;code&gt;BIOS&lt;/code&gt;支持的最大容量的驱动器，不超过&lt;code&gt;2TB&lt;/code&gt;。以硬件厂商&lt;code&gt;1000：1024&lt;/code&gt;的计算方式，也就是&lt;code&gt;2.2TB&lt;/code&gt;：
+$$
+2^{41}B/1000,000,000,000=2.2TB
+$$
+那么&lt;code&gt;UEFI&lt;/code&gt;支持多大的呢？&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201209235422385.png" alt="image-20201209235422385" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;采用类似的分区表，具体可以看[参考文章]。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;UEFI&lt;/code&gt;支持&lt;code&gt;64&lt;/code&gt;位的地址空间，所以其寻址偏移恰好为一个机器长度——&lt;code&gt;64&lt;/code&gt;位，即&lt;code&gt;8Byte&lt;/code&gt;，还是按照&lt;code&gt;LBA&lt;/code&gt;寻址方式，按照上述计算：
+$$
+2^{64}*512=2^{73}B=2^{13}EB=8ZB
+$$
+但是微软关方和一些其他资料都显示是&lt;code&gt;18EB&lt;/code&gt;(按照硬件厂商&lt;code&gt;1000：1024&lt;/code&gt;计算)：
+$$
+2^{64}B/10^{60}=18EB
+$$&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201211123226161.png" alt="微软对GPT大小的解释" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201211123247101.png" alt="Intel白皮书未对GPT大小进行说明" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201211123836500.png" alt="NTFS官网上的计算大小" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;所以可以对微软官网的数据&lt;strong&gt;证伪&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由于现在又由&lt;code&gt;8&lt;/code&gt;个&lt;code&gt;512Byte&lt;/code&gt;扇区伪装一下，发展成了&lt;code&gt;4k&lt;/code&gt;大小的扇区，所以上述计算还可以再乘&lt;code&gt;8&lt;/code&gt;，即&lt;code&gt;GPT&lt;/code&gt;最大分区容量可以是&lt;code&gt;64ZB&lt;/code&gt;，而当前整个万维网的大小也不过&lt;code&gt;1ZB&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;GPT分区的结构&lt;span class="hx:absolute hx:-mt-20" id="gpt分区的结构"&gt;&lt;/span&gt;
+&lt;a href="#gpt%e5%88%86%e5%8c%ba%e7%9a%84%e7%bb%93%e6%9e%84" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;既然说到了&lt;code&gt;GPT&lt;/code&gt;分区的大小问题，那就顺便稍微说一说它的结构吧，如上图：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201211125738922.png" alt="NTFS官网的图" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;PMBR&lt;/code&gt;是&lt;code&gt;Protective MBR&lt;/code&gt;，就是当作&lt;code&gt;MBR&lt;/code&gt;用，位置在&lt;code&gt;LBA0&lt;/code&gt;，如果是传统引导，就从这个地方寻找引导文件，如果是&lt;code&gt;UEFI&lt;/code&gt;引导，再从后面的&lt;code&gt;GPT HDR&lt;/code&gt;寻找，&lt;code&gt;GPT HDR&lt;/code&gt;是**&lt;code&gt;GPT&lt;/code&gt;表头**，位置在&lt;code&gt;LBA1&lt;/code&gt;，记录其他表项的位置；&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;LBA2-LBA33&lt;/code&gt;总共&lt;code&gt;32&lt;/code&gt;个分区表，记录对应分区的信息，比如起始地址和结束地址等，每个分区的信息用&lt;code&gt;128Byte&lt;/code&gt;记录，也叫做&lt;strong&gt;分区表项&lt;/strong&gt;，比较有意思的一点是，由于&lt;code&gt;Windows&lt;/code&gt;只允许最多&lt;code&gt;128&lt;/code&gt;个分区，所以&lt;code&gt;GPT&lt;/code&gt;&lt;strong&gt;一般&lt;/strong&gt;也就只设&lt;code&gt;32&lt;/code&gt;个分区表。那这是为什么呢？&lt;/p&gt;
+&lt;p&gt;前面介绍，一个扇区一般是&lt;code&gt;512Byte&lt;/code&gt;，按照微软的设定来，&lt;code&gt;128&lt;/code&gt;个分区，也就需要&lt;code&gt;128&lt;/code&gt;个分区表项来记录，一个分区表项&lt;code&gt;128Byte&lt;/code&gt;，也就是总共
+$$
+128&lt;em&gt;128=2^7&lt;/em&gt;2^7=2^{14}
+$$
+&lt;code&gt;32&lt;/code&gt;个&lt;code&gt;512Byte&lt;/code&gt;大小的扇区，是不是刚好：
+$$
+32&lt;em&gt;512=2^5&lt;/em&gt;2^9=2^{14}
+$$
+这里可能只做了解即可。&lt;/p&gt;
+&lt;p&gt;至于后面的蓝色区域，对应之后，&lt;code&gt;LBA-1&lt;/code&gt;是&lt;code&gt;GPT HDR&lt;/code&gt;的备份表，&lt;code&gt;LBA-2 - LBA-33&lt;/code&gt;是分区表的备份表，如果前面的数据发生错误，就从后面恢复就好啦~&lt;/p&gt;
+&lt;p&gt;中间的&lt;code&gt;LBA34-LBA-34&lt;/code&gt;也就是除去表头、表项和备份表等信息的&lt;strong&gt;分区&lt;/strong&gt;内容啦&lt;/p&gt;
+&lt;h3&gt;UEFI与硬件初始化&lt;span class="hx:absolute hx:-mt-20" id="uefi与硬件初始化"&gt;&lt;/span&gt;
+&lt;a href="#uefi%e4%b8%8e%e7%a1%ac%e4%bb%b6%e5%88%9d%e5%a7%8b%e5%8c%96" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;UEFI&lt;/code&gt;纯粹地是一个接口规范&lt;/p&gt;
+&lt;p&gt;它不会具体涉及平台固件是如何实现的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;UEFI&lt;/code&gt;建立在被称为平台初始化（&lt;code&gt;Platform Initialization&lt;/code&gt;，简称&lt;code&gt;PI&lt;/code&gt;）标准的框架之上。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;PI&lt;/code&gt;是关于&lt;code&gt;UEFI&lt;/code&gt;具体如何实现的规范&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201210000457886.png" alt="image-20201210000457886" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;SEC&lt;/code&gt;安全验证，初始化&lt;code&gt;cpu&lt;/code&gt;和&lt;code&gt;cpu&lt;/code&gt;内部资源，使&lt;code&gt;cache&lt;/code&gt;作为&lt;code&gt;ram&lt;/code&gt;提供堆栈运行C代码（&lt;code&gt;CAR&lt;/code&gt;——&lt;code&gt;Cache As Ram&lt;/code&gt;）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;PEI&lt;/code&gt;阶段初始化内存，并将需要传递的信息传递给&lt;code&gt;DXE&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;DXE&lt;/code&gt;驱动执行环境，内存已经可以完全被使用，初始化核心芯片，并将控制权转交给&lt;code&gt;UEFI&lt;/code&gt;接口&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;BDS&lt;/code&gt;引导设备选择，负责初始化所有启动&lt;code&gt;OS&lt;/code&gt;所需的设备，负责执行所有符合&lt;code&gt;UEFI&lt;/code&gt;驱动模型的驱动。&lt;/p&gt;
+&lt;p&gt;选择完引导设备，就加载&lt;code&gt;OS loader&lt;/code&gt;运行&lt;code&gt;OS&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;OS&lt;/code&gt;启动后，系统的控制权从UEFI转交给&lt;code&gt;OS loader&lt;/code&gt;，&lt;code&gt;UEFI&lt;/code&gt;占用的资源被回收到&lt;code&gt;OS loader&lt;/code&gt;，只保留&lt;code&gt;UEFI&lt;/code&gt;运行是服务。&lt;/p&gt;
+&lt;p&gt;其实再统观一下上面的流程，是不是就变成了：&lt;strong&gt;基本输入&amp;raquo;&amp;gt;&lt;code&gt;PI&lt;/code&gt;&amp;raquo;&amp;gt;&lt;code&gt;UEFI&lt;/code&gt;&amp;raquo;&amp;gt;基本输出&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这个过程是不是又像&lt;code&gt;BIOS&lt;/code&gt;了？毕竟&lt;code&gt;UEFI&lt;/code&gt;还是用作&lt;code&gt;BIOS&lt;/code&gt;的。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201210001009450.png" alt="image-20201210001009450" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;如果还是觉得&lt;code&gt;UEFI&lt;/code&gt;和&lt;code&gt;BIOS&lt;/code&gt;是两回事，那么可以换种解读：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Rom Stage&lt;/code&gt;：一开始运行在&lt;code&gt;Rom&lt;/code&gt;中，初始化&lt;code&gt;Cache&lt;/code&gt;作为&lt;code&gt;Ram&lt;/code&gt;运行，从而有了初步的&lt;code&gt;C&lt;/code&gt;环境，运行&lt;code&gt;C&lt;/code&gt;代码。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Ram Stage&lt;/code&gt;：初始化一定的硬件之后，&lt;code&gt;BIOS&lt;/code&gt;程序进入到&lt;code&gt;Ram&lt;/code&gt;中，继续初始化芯片组、主板等硬件。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Find something to boot&lt;/code&gt;：最后找到启动设备，把控制权交给操作系统内核，开始操作系统的时代。&lt;/p&gt;
+&lt;h2&gt;什么是Boot Loader&lt;span class="hx:absolute hx:-mt-20" id="什么是boot-loader"&gt;&lt;/span&gt;
+&lt;a href="#%e4%bb%80%e4%b9%88%e6%98%afboot-loader" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Boot Loader&lt;/code&gt;是在操作系统内核运行前执行的一小段程序&lt;/strong&gt;，执行的工作听起来和&lt;code&gt;BIOS&lt;/code&gt;很像：初始化硬件，和引导系统，相当于&lt;code&gt;UEFI&lt;/code&gt;启动过程中的&lt;code&gt;PEI&lt;/code&gt;初始化硬件、&lt;code&gt;DXE&lt;/code&gt;识别启动设备，&lt;code&gt;BDS&lt;/code&gt;把权限交给启动加载器，引导内核。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对比一下&lt;code&gt;UEFI&lt;/code&gt;和&lt;code&gt;Boot Loader&lt;/code&gt;的启动方式：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201210000457886.png" alt="UEFI启动" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://aydenmeng.github.io/img/cs/0-firmware/what_is_BIOS_UEFI_BootLoader/image-20201210001749309.png" alt="Boot Loader启动" loading="lazy" /&gt;&lt;/p&gt;
+&lt;p&gt;再分析&lt;code&gt;Boot Loader&lt;/code&gt;的启动过程：&lt;/p&gt;
+&lt;p&gt;首先硬件设备初始化。为加载 &lt;code&gt;Boot Loader&lt;/code&gt; 的 &lt;code&gt;stage2&lt;/code&gt; 准备 &lt;code&gt;RAM&lt;/code&gt; 空间。拷贝 &lt;code&gt;Boot Loader&lt;/code&gt; 的 &lt;code&gt;stage2&lt;/code&gt; 到 &lt;code&gt;RAM&lt;/code&gt; 空间中。设置好堆栈。跳转到 &lt;code&gt;stage2&lt;/code&gt; 的 &lt;code&gt;C&lt;/code&gt; 入口点。&lt;/p&gt;
+&lt;p&gt;初始化本阶段要使用到的硬件设备。检测系统内存映射(&lt;code&gt;memory map&lt;/code&gt;)。将&lt;code&gt;kernel&lt;/code&gt; 映像和根文件系统映像从 &lt;code&gt;flash&lt;/code&gt; 上读到 &lt;code&gt;RAM&lt;/code&gt; 空间中。为内核设置启动参数。调用内核。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PS:有的Boot Loader可能只有一个过程，上述为两个阶段的类型。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;几个问题：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;BIOS&lt;/code&gt;为什么固化到&lt;code&gt;ROM&lt;/code&gt;芯片上？&lt;/p&gt;
+&lt;p&gt;因为掉电不丢失&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;只读存储器的话，又不能作修改，还有界面干什么？&lt;/p&gt;
+&lt;p&gt;要作修改，修改内容在&lt;code&gt;CMOS&lt;/code&gt;中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;现在的&lt;code&gt;BIOS&lt;/code&gt;固化到哪了？&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ROM&lt;/code&gt;-&amp;gt;&lt;code&gt;PROM&lt;/code&gt;-&amp;gt;&lt;code&gt;EPROM&lt;/code&gt;-&amp;gt;&lt;code&gt;EEPROM&lt;/code&gt;-&amp;gt;&lt;code&gt;FLASH&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一开始是在&lt;code&gt;ROM&lt;/code&gt;上，但是只能检验，不能修改，十分的不方便，所以就转到了&lt;code&gt;PROM&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;PROM&lt;/code&gt;可编程&lt;code&gt;ROM&lt;/code&gt;，但是写入后也不能改，&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后就是&lt;code&gt;EPROM&lt;/code&gt;，可擦除可编程&lt;code&gt;ROM&lt;/code&gt;，但是人们又觉得不方便，&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;于是又有了&lt;code&gt;EEPROM&lt;/code&gt;，电可擦除可编程&lt;code&gt;ROM&lt;/code&gt;，而且双电压可防毒。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Flash&lt;/code&gt;闪存，更方便，只要用专用程序即可修改，&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description></item></channel></rss>

@@ -1,0 +1,323 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>活在21世纪的孟游 – Loongarch</title><link>https://aydenmeng.github.io/tags/loongarch/</link><description>Recent content in Loongarch on 活在21世纪的孟游</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 16 Oct 2022 20:22:06 +0000</lastBuildDate><atom:link href="https://aydenmeng.github.io/tags/loongarch/index.xml" rel="self" type="application/rss+xml"/><item><title>hvml gui 01: Configure xGUI-Pro for hvml</title><link>https://aydenmeng.github.io/cs/3-software/hvml_00_configure_xgui_pro_for_hvml/</link><pubDate>Sun, 16 Oct 2022 20:22:06 +0000</pubDate><guid>https://aydenmeng.github.io/cs/3-software/hvml_00_configure_xgui_pro_for_hvml/</guid><description>
+&lt;p&gt;libssl-dev libgtk-3-dev libsoup2.4-dev ninja ninja-build libruby2.5 libgcrypt-dev libjpeg-dev libsqlite3-dev&lt;/p&gt;</description></item><item><title>hvml02-学习hvml的语法</title><link>https://aydenmeng.github.io/cs/3-software/hvml_02_grammar/</link><pubDate>Tue, 27 Sep 2022 22:00:33 +0000</pubDate><guid>https://aydenmeng.github.io/cs/3-software/hvml_02_grammar/</guid><description>
+&lt;h2&gt;关键字&lt;span class="hx:absolute hx:-mt-20" id="关键字"&gt;&lt;/span&gt;
+&lt;a href="#%e5%85%b3%e9%94%ae%e5%ad%97" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;在HVML中将其称为标签, 我是这么理解的.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;HVML 为不同的操作引入了大约 20 个标签：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;hvml, head 和 body 被称为 框架标签（frame tag）; 它们用于定义 HVML 程序的框架或者整体结构。&lt;/li&gt;
+&lt;li&gt;archetype, achedata, error 和 except 被称为 模板标签（template tag）; 它们用于定义参数化模板。&lt;/li&gt;
+&lt;li&gt;init, test, iterate, define, call, include, load, exit, return, update, back 和其他使用动词的标签被称为 动词标签（verb tag），它们用于定义操作数据、更新目标文档或控制虚拟机的动作。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;注意，body 标签不是外部标签，它是 HVML 的框架标签。用于定义一个 HVML 程序的入口体。实际上，您可以在 HVML 程序中定义多个 body 元素，并告诉解释器使用特定的主体作为程序的主入口。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;类比成C语言, body就像是main函数.&lt;/p&gt;
+&lt;h2&gt;数据类型&lt;span class="hx:absolute hx:-mt-20" id="数据类型"&gt;&lt;/span&gt;
+&lt;a href="#%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;基本数据类型&lt;span class="hx:absolute hx:-mt-20" id="基本数据类型"&gt;&lt;/span&gt;
+&lt;a href="#%e5%9f%ba%e6%9c%ac%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;null&lt;/td&gt;
+&lt;td&gt;空&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;boolean&lt;/td&gt;
+&lt;td&gt;用于表示真假逻辑值，可取 true 或 false 两种值。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;number&lt;/td&gt;
+&lt;td&gt;用于表达整数或浮点数，一般情况下，等价于 C 语言的 double 类型（双精度浮点数）。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;用于表达文本，始终使用 UTF-8 编码。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;array&lt;/td&gt;
+&lt;td&gt;可使用索引引用的多个数据项，容量可变。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;object&lt;/td&gt;
+&lt;td&gt;用单个或多个键值对（key-value pair）表示，亦称字典、关联数组等；键值对也常被称作属性（property）。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;扩展数据类型&lt;span class="hx:absolute hx:-mt-20" id="扩展数据类型"&gt;&lt;/span&gt;
+&lt;a href="#%e6%89%a9%e5%b1%95%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;undefined&lt;/td&gt;
+&lt;td&gt;该数据仅在内部使用，用来表示数据尚未就绪，或在更新容器数据时移除一个成员。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;exception&lt;/td&gt;
+&lt;td&gt;该数据仅在内部使用，用来表示异常。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;longint&lt;/td&gt;
+&lt;td&gt;应实现为 64 位有符号整数。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ulongint&lt;/td&gt;
+&lt;td&gt;应实现为 64 位无符号整数。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;longdouble&lt;/td&gt;
+&lt;td&gt;对应 C 语言 long double 类型。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;bsequence&lt;/td&gt;
+&lt;td&gt;&lt;del&gt;应该指字符数组&lt;/del&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;tuple&lt;/td&gt;
+&lt;td&gt;可使用索引引用的多个数据项，一旦创建，其容量不可变，其成员不可移除，仅可置空。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;set&lt;/td&gt;
+&lt;td&gt;特殊的数组，其中的成员可根据其值或者对象数组上的唯一性键值确保唯一性。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;特殊数据类型&lt;span class="hx:absolute hx:-mt-20" id="特殊数据类型"&gt;&lt;/span&gt;
+&lt;a href="#%e7%89%b9%e6%ae%8a%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;dynamic value&lt;/td&gt;
+&lt;td&gt;动态值本质上由 获取器（getter） 和 设置器（setter） 方法构成，读取时，由获取器返回对应的值，设置时，由设置器完成对应的工作。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;native entity&lt;/td&gt;
+&lt;td&gt;由底层实现的原生实体，通常用于代表一些可执行复杂操作的抽象数据，如读写流、长连接等。这些复杂操作包括实现虚拟属性上的获取器或设置器方法，实现对原生对象的观察（observe）等。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;上述特殊数据类型属于内部数据类型，仅在运行时有效，在 HVML 代码中可通过变量和表达式访问。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;变量&lt;span class="hx:absolute hx:-mt-20" id="变量"&gt;&lt;/span&gt;
+&lt;a href="#%e5%8f%98%e9%87%8f" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;a
+href="https://github.com/HVML/hvml-docs/blob/master/zh/hvml-spec-predefined-variables-v1.0-zh.md"target="_blank" rel="noopener"&gt;HVML 预定义变量&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;变量初始化&lt;span class="hx:absolute hx:-mt-20" id="变量初始化"&gt;&lt;/span&gt;
+&lt;a href="#%e5%8f%98%e9%87%8f%e5%88%9d%e5%a7%8b%e5%8c%96" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>hvml01-在龙芯平台搭建hvml运行环境</title><link>https://aydenmeng.github.io/cs/3-software/hvml_01_env_prepare_on_loongarch/</link><pubDate>Sun, 25 Sep 2022 21:08:55 +0000</pubDate><guid>https://aydenmeng.github.io/cs/3-software/hvml_01_env_prepare_on_loongarch/</guid><description>
+&lt;h2&gt;1. 准备环境&lt;span class="hx:absolute hx:-mt-20" id="1-准备环境"&gt;&lt;/span&gt;
+&lt;a href="#1-%e5%87%86%e5%a4%87%e7%8e%af%e5%a2%83" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;根据Hvml社区介绍:&lt;/p&gt;
+&lt;p&gt;PurC 的目标是用 C 语言实现HVML 规范 V1.0定义的所有特性和HVML 预定义变量 V1.0 定义的所有预定义动态对象。&lt;/p&gt;
+&lt;p&gt;To build PurC, make sure that the following tools or libraries are available on your Linux or macOS system:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;cmake&lt;/li&gt;
+&lt;li&gt;A C11 and CXX17 compliant complier: GCC 8+ or Clang 6+&lt;/li&gt;
+&lt;li&gt;glib 2.44.0 or later&lt;/li&gt;
+&lt;li&gt;Python 3&lt;/li&gt;
+&lt;li&gt;BISON 3.0 or later&lt;/li&gt;
+&lt;li&gt;FLEX 2.6.4 or later&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我使用的是龙芯发布的Loongnix系统:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml$ cat /etc/os-release
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;PRETTY_NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Loongnix GNU/Linux 20 (DaoXiangHu)&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Loongnix GNU/Linux&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;VERSION_ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;20&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;20 (DaoXiangHu)&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;VERSION_CODENAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;DaoXiangHu
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Loongnix
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;HOME_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;https://www.loongnix.cn/&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;SUPPORT_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;https://www.loongnix.cn/&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;BUG_REPORT_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;http://www.loongnix.cn/&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其中系统自带的gcc, glibc, python3是满足需求的, 需要手动安装的bison, flex默认版本也都是满足需求的, 安装命令如下:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install bison flex -y&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其中只有cmake的环境有一点问题, 但也很好解决.&lt;/p&gt;
+&lt;p&gt;系统默认不带有cmake, &lt;code&gt;sudo apt install cmake&lt;/code&gt;所安装的cmake版本是3.13.4, 编译PurC时提示需要3.15以上的cmake:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml/PurC$ cmake -DCMAKE_BUILD_TYPE&lt;span class="o"&gt;=&lt;/span&gt;RelWithDebInfo -DPORT&lt;span class="o"&gt;=&lt;/span&gt;Linux -B build &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; cmake --build build &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo cmake --install build
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;CMake Error at CMakeLists.txt:11 &lt;span class="o"&gt;(&lt;/span&gt;cmake_minimum_required&lt;span class="o"&gt;)&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; CMake 3.15 or higher is required. You are running version 3.13.4
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Configuring incomplete, errors occurred!
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;See also &lt;span class="s2"&gt;&amp;#34;/home/mxdon/hvml/PurC/build/CMakeFiles/CMakeOutput.log&amp;#34;&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;See also &lt;span class="s2"&gt;&amp;#34;/home/mxdon/hvml/PurC/build/CMakeFiles/CMakeError.log&amp;#34;&lt;/span&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;所以手动编译一个cmake3.15.3, 其他版本应该是类似的:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml/cmake-3.15.3$ ./bootstrap --prefix&lt;span class="o"&gt;=&lt;/span&gt;/home/mxdon/hvml/cmake-3.15.3/build/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;CMake 3.15.3, Copyright 2000-2019 Kitware, Inc. and Contributors
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Found GNU toolchain
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;C compiler on this system is: gcc
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;C++ compiler on this system is: g++
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Makefile processor on this system is: make
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ has setenv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ has unsetenv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ does not have environ in stdlib.h
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ has stl wstring
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ has &amp;lt;ext/stdio_filebuf.h&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;g++ -I/home/mxdon/hvml/cmake-3.15.3/Bootstrap.cmk -I/home/mxdon/hvml/cmake-3.15.3/Source -I/home/mxdon/hvml/cmake-3.15.3/Source/LexerParser -I/home/mxdon/hvml/cmake-3.15.3/Utilities -c /home/mxdon/hvml/cmake-3.15.3/Source/cmAddCustomCommandCommand.cxx -o cmAddCustomCommandCommand.o
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;In file included from /home/mxdon/hvml/cmake-3.15.3/Utilities/cm_kwiml.h:12,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; from /home/mxdon/hvml/cmake-3.15.3/Source/cmAlgorithms.h:10,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; from /home/mxdon/hvml/cmake-3.15.3/Source/cmGlobalGenerator.h:16,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; from /home/mxdon/hvml/cmake-3.15.3/Source/cmAddCustomCommandCommand.cxx:11:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/home/mxdon/hvml/cmake-3.15.3/Utilities/KWIML/include/kwiml/abi.h:476:3: error: &lt;span class="c1"&gt;#error &amp;#34;Byte order of target CPU unknown.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# error &amp;#34;Byte order of target CPU unknown.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ^~~~~
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;make: *** &lt;span class="o"&gt;[&lt;/span&gt;Makefile:4：cmAddCustomCommandCommand.o&lt;span class="o"&gt;]&lt;/span&gt; 错误 &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Error when bootstrapping CMake:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Problem &lt;span class="k"&gt;while&lt;/span&gt; running make
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Log of errors: /home/mxdon/hvml/cmake-3.15.3/Bootstrap.cmk/cmake_bootstrap.log
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;---------------------------------------------&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这个问题很好解决, 只是在&lt;code&gt;Utilities/KWIML/include/kwiml/abi.h&lt;/code&gt;缺少一个大小端的定义, 所以就直接加个小端定义好了.&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-patch" data-lang="patch"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; /* Unknown CPU */
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; #elif !defined(KWIML_ABI_NO_ERROR_ENDIAN)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gd"&gt;-# error &amp;#34;Byte order of target CPU unknown.&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+//# error &amp;#34;Byte order of target CPU unknown.&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+# define KWIML_ABI_ENDIAN_ID KWIML_ABI_ENDIAN_ID_LITTLE
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; #endif
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;将cmake-3.15.3添加至环境变量中, 然后就可以编译PurC了:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;root@mxdon-la:/home/mxdon/hvml/PurC# &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/home/mxdon/hvml/cmake-3.15.3/build/bin/:&lt;span class="nv"&gt;$PATH&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;root@mxdon-la:/home/mxdon/hvml/PurC# cmake -DCMAKE_BUILD_TYPE&lt;span class="o"&gt;=&lt;/span&gt;RelWithDebInfo -DPORT&lt;span class="o"&gt;=&lt;/span&gt;Linux -B build &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; cmake --build build &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo /home/mxdon/hvml/cmake-3.15.3/build/bin/cmake --install build
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- The CMake build &lt;span class="nb"&gt;type&lt;/span&gt; is: RelWithDebInfo
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Enabling ccache: Couldn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t find ccache program. Not enabling it.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Performing Test C_COMPILER_SUPPORTS_-fmax-errors&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Performing Test C_COMPILER_SUPPORTS_-fmax-errors&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt; - Success
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Performing Test CXX_COMPILER_SUPPORTS_-fmax-errors&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Performing Test CXX_COMPILER_SUPPORTS_-fmax-errors&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt; - Success
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;......
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Installing: /usr/local/include/purc/purc.h
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Installing: /usr/local/lib/purc-0.8/libpurc-dvobj-FS.so
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Set runtime path of &lt;span class="s2"&gt;&amp;#34;/usr/local/lib/purc-0.8/libpurc-dvobj-FS.so&amp;#34;&lt;/span&gt; to &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Installing: /usr/local/lib/purc-0.8/libpurc-dvobj-MATH.so
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Set runtime path of &lt;span class="s2"&gt;&amp;#34;/usr/local/lib/purc-0.8/libpurc-dvobj-MATH.so&amp;#34;&lt;/span&gt; to &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Installing: /usr/local/bin/purc
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-- Set runtime path of &lt;span class="s2"&gt;&amp;#34;/usr/local/bin/purc&amp;#34;&lt;/span&gt; to &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;之后需要将PurC用到的链接库增加至系统链接路径, 修改&lt;code&gt;/etc/ld.so.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml$ cat /etc/ld.so.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;include /etc/ld.so.conf.d/*.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/usr/local/lib/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml$ sudo ldconfig&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;然后执行demo程序:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml/PurC$ cat demo.hvml
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;!DOCTYPE hvml&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;hvml &lt;span class="nv"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;void&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;$STREAM&lt;/span&gt;.stdout.writelines&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Hello, world!&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;/hvml&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mxdon@mxdon-la:~/hvml/PurC$ purc demo.hvml
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Hello, world!&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>

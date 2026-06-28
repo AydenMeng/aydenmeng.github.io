@@ -1,0 +1,327 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>活在21世纪的孟游 – Git</title><link>https://aydenmeng.github.io/tags/git/</link><description>Recent content in Git on 活在21世纪的孟游</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 03 Jun 2024 17:54:33 +0000</lastBuildDate><atom:link href="https://aydenmeng.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>3A6000上搭建gogs</title><link>https://aydenmeng.github.io/cs/9-app/linux_gogs_for_git/</link><pubDate>Mon, 03 Jun 2024 17:54:33 +0000</pubDate><guid>https://aydenmeng.github.io/cs/9-app/linux_gogs_for_git/</guid><description>
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;pacman -S mariadb
+mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+systemctl start mysql
+mariadb --initialize-insecure --user=mysql --datadir=&amp;#39;./data&amp;#39;
+mysql -u root
+[root@mxd gitrepo]# mysql -u root
+mysql: Deprecated program name. It will be removed in a future release, use &amp;#39;/usr/bin/mariadb&amp;#39; instead
+Welcome to the MariaDB monitor. Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 11.0.2-MariaDB Arch Linux
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+Type &amp;#39;help;&amp;#39; or &amp;#39;\h&amp;#39; for help. Type &amp;#39;\c&amp;#39; to clear the current input statement.
+MariaDB [(none)]&amp;gt; create user &amp;#39;gogs&amp;#39;@&amp;#39;localhost&amp;#39; identified by &amp;#39;passwd&amp;#39;;
+Query OK, 0 rows affected (0.001 sec)
+MariaDB [(none)]&amp;gt; select user,host from mysql.user;
+&amp;#43;-------------&amp;#43;-----------&amp;#43;
+| User | Host |
+&amp;#43;-------------&amp;#43;-----------&amp;#43;
+| PUBLIC | |
+| | localhost |
+| gogs | localhost |
+| mariadb.sys | localhost |
+| mysql | localhost |
+| root | localhost |
+| | mxd |
+&amp;#43;-------------&amp;#43;-----------&amp;#43;
+7 rows in set (0.001 sec)
+MariaDB [(none)]&amp;gt; CREATE DATABASE gogs;
+Query OK, 1 row affected (0.000 sec)
+MariaDB [(none)]&amp;gt; show databases;
+&amp;#43;--------------------&amp;#43;
+| Database |
+&amp;#43;--------------------&amp;#43;
+| gogs |
+| information_schema |
+| mysql |
+| performance_schema |
+| sys |
+| test |
+&amp;#43;--------------------&amp;#43;
+6 rows in set (0.000 sec)
+MariaDB [(none)]&amp;gt; grant all privileges on gogs.* to &amp;#39;gogs&amp;#39;@&amp;#39;%&amp;#39; identified by &amp;#39;passwd&amp;#39; with grant option;
+Query OK, 0 rows affected (0.001 sec)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;build gogs:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;pacman -S go node npm
+git clone --depth 1 https://github.com/gogs/gogs.git gogs
+cd gogs
+go build -o gogs
+./gogs web&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>个人git仓库搭建过程</title><link>https://aydenmeng.github.io/cs/9-app/linux_gitea_for_git/</link><pubDate>Sat, 22 Jan 2022 17:57:36 +0000</pubDate><guid>https://aydenmeng.github.io/cs/9-app/linux_gitea_for_git/</guid><description>
+&lt;h2&gt;准备&lt;span class="hx:absolute hx:-mt-20" id="准备"&gt;&lt;/span&gt;
+&lt;a href="#%e5%87%86%e5%a4%87" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;gitea——gitea是一款轻量开源git服务器，可以在本地搭建。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;mysql——gitea需要数据库支持，mysql对个人用户比较方便。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;搭建&lt;span class="hx:absolute hx:-mt-20" id="搭建"&gt;&lt;/span&gt;
+&lt;a href="#%e6%90%ad%e5%bb%ba" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h3&gt;mysql&lt;span class="hx:absolute hx:-mt-20" id="mysql"&gt;&lt;/span&gt;
+&lt;a href="#mysql" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;由于服务器没有root权限，所以数据库需要非root用户安装，可以参考：&lt;a
+href="https://cloud.tencent.com/developer/article/1583129"target="_blank" rel="noopener"&gt;https://cloud.tencent.com/developer/article/1583129&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PS: 如果有root权限的话完全不必这么麻烦～&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;下载过程省略&lt;/p&gt;
+&lt;p&gt;配置文件：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;[client]
+port=3333
+socket=/home/mxdon/gitea/mysql/mysql.sock
+[mysqld]
+port=3333
+basedir=/home/mxdon/gitea/mysql
+datadir=/home/mxdon/gitea/mysql/data
+pid-file=/home/mxdon/gitea/mysql/mysql.pid
+socket=/home/mxdon/gitea/mysql/mysql.sock
+log_error=/home/mxdon/gitea/mysql/error.log
+server-id=100&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：由于3306端口常被占用，需要更改&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;启动命令&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;/home/mxdon/gitea/mysql/bin/mysqld_safe --defaults-file=/home/mxdon/gitea/mysql/my.cnf --user=mxdon&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：这里的user是mysql的主机用户，与文件夹的拥有者不同&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;gitea&lt;span class="hx:absolute hx:-mt-20" id="gitea"&gt;&lt;/span&gt;
+&lt;a href="#gitea" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;启动命令&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;/home/mxdon/gitea/gitea web -p 5000&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;-p 指定http访问端口，默认是3000&lt;/p&gt;
+&lt;p&gt;然后打开15.2.5.5:5000网址，即可进行图形配置，这里只放出ini文件：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;APP_NAME = mxdon资料共享
+RUN_USER = mxdon
+RUN_MODE = prod
+[security]
+INTERNAL_TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2MzY0NDM5MzB9.LyfUN-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+INSTALL_LOCK = true
+SECRET_KEY = okb73n7MVPRTC1UAeIlxxxxxxxxxxxxxxxxxxxxxxxfunuGv7tPVRQD9CvJMQGFv
+PASSWORD_HASH_ALGO = pbkdf2
+[server]
+LOCAL_ROOT_URL = http://localhost:5000/
+SSH_DOMAIN = 15.2.5.5
+DOMAIN = 15.2.5.5
+HTTP_PORT = 5000
+ROOT_URL = http://15.2.5.5:5000/
+DISABLE_SSH = false
+SSH_PORT = 22
+LFS_START_SERVER = true
+LFS_CONTENT_PATH = /home/mxdon/gitea/data/lfs
+LFS_JWT_SECRET = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxQ6N80
+OFFLINE_MODE = false
+[database]
+DB_TYPE = mysql
+HOST = 15.2.5.5:3333
+NAME = gitea
+USER = mxdon
+PASSWD = mxdon123
+SCHEMA =
+SSL_MODE = disable
+CHARSET = utf8
+PATH = /home/mxdon/gitea/data/gitea.db
+LOG_SQL = false
+[repository]
+ROOT = /home/mxdon/gitea/data/gitea-repositories
+[mailer]
+ENABLED = false
+[service]
+REGISTER_EMAIL_CONFIRM = false
+ENABLE_NOTIFY_MAIL = false
+DISABLE_REGISTRATION = false
+ALLOW_ONLY_EXTERNAL_REGISTRATION = false
+ENABLE_CAPTCHA = false
+REQUIRE_SIGNIN_VIEW = false
+DEFAULT_KEEP_EMAIL_PRIVATE = false
+DEFAULT_ALLOW_CREATE_ORGANIZATION = true
+DEFAULT_ENABLE_TIMETRACKING = true
+NO_REPLY_ADDRESS = noreply.localhost
+[picture]
+DISABLE_GRAVATAR = false
+ENABLE_FEDERATED_AVATAR = true
+[openid]
+ENABLE_OPENID_SIGNIN = true
+ENABLE_OPENID_SIGNUP = true
+[session]
+PROVIDER = file
+[log]
+MODE = console
+LEVEL = info
+ROOT_PATH = /home/mxdon/gitea/log
+ROUTER = console&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意，其中mysql的账户需要有远程访问的权限，并建议新建数据库gitea用作gitea服务器交互，配置过程如下，其中先设权限后建数据库，以防数据库被弄脏使索引不匹配&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;mysql&amp;gt; GRANT ALL ON *.* TO &amp;#39;mxdon&amp;#39;@&amp;#39;%&amp;#39;;
+mysql&amp;gt; create database gitea;
+mysql&amp;gt; flush privileges;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;使用如下命令查看，可以验证：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;mysql&amp;gt; use mysql;
+mysql&amp;gt; select user, host from user;
+&amp;#43;---------------&amp;#43;-----------&amp;#43;
+| user | host |
+&amp;#43;---------------&amp;#43;-----------&amp;#43;
+| mxdon | % |
+| mysql.session | localhost |
+| mysql.sys | localhost |
+| root | localhost |
+&amp;#43;---------------&amp;#43;-----------&amp;#43;
+4 rows in set (0.00 sec)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2&gt;自启动&lt;span class="hx:absolute hx:-mt-20" id="自启动"&gt;&lt;/span&gt;
+&lt;a href="#%e8%87%aa%e5%90%af%e5%8a%a8" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;没有root权限没法自启动，只能假装一下: nohup&lt;/p&gt;
+&lt;p&gt;可以写一个简单的脚本：&lt;/p&gt;
+&lt;p&gt;另外，不要在脚本中添加echo输出一些提示信息，这样会使scp不生效，我也不知道为什么&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;#!/bin/sh
+Pgitea=`ps -aux | grep &amp;#34;/home/mxdon/gitea/gitea web -p 5000&amp;#34;`
+Pmysql=`ps -aux | grep &amp;#34;/home/mxdon/gitea/mysql/bin/mysqld_safe --defaults-file&amp;#34;`
+if [ ${#Pmysql} -eq 0 ]
+then
+nohup /home/mxdon/gitea/mysql/bin/mysqld_safe --defaults-file=/home/mxdon/gitea/mysql/my.cnf --user=mxdon &amp;gt; /home/mxdon/gitea/mysql/.nohup.log 2&amp;gt;&amp;amp;1 &amp;amp;
+fi
+if [ ${#Pgitea} -eq 0 ]
+then
+nohup /home/mxdon/gitea/gitea web -p 5000 &amp;gt; /home/mxdon/gitea/.nohup.log 2&amp;gt;&amp;amp;1 &amp;amp;
+fi&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;命名为.gitea.sh&lt;/p&gt;
+&lt;p&gt;每次可以直接source一下即可，也可以写进bashrc中：&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;source /home/mxdon/.gitea.sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;另外，由于mysql的启动有些麻烦，可以使用alias:&lt;/p&gt;
+&lt;div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code"&gt;
+&lt;div&gt;&lt;pre&gt;&lt;code&gt;alias mysql=&amp;#39;/home/mxdon/gitea/mysql/bin/mysql -S /home/mxdon/gitea/mysql/mysql.sock&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0"&gt;
+&lt;button
+class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+title="复制代码"
+aria-label="复制代码"
+data-copied-label="已复制！"
+&gt;
+&lt;div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"&gt;&lt;/div&gt;
+&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这样就可以无痕使用mysql&lt;/p&gt;
+&lt;h2&gt;最后，点个关注不迷路&lt;span class="hx:absolute hx:-mt-20" id="最后点个关注不迷路"&gt;&lt;/span&gt;
+&lt;a href="#%e6%9c%80%e5%90%8e%e7%82%b9%e4%b8%aa%e5%85%b3%e6%b3%a8%e4%b8%8d%e8%bf%b7%e8%b7%af" class="subheading-anchor" aria-label="此章节的永久链接"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;公众号：&lt;a
+href="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8a089ae12bfb4ca9a9e5d9ac82f58d43~tplv-k3u1fbpfcp-zoom-1.image"target="_blank" rel="noopener"&gt;孟游先生的旅游笔记&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description></item></channel></rss>
